@@ -342,7 +342,7 @@
                 <div class="sys-img-box">
                     <picture>
                         <source type="image/webp" srcset="anime.webp">
-                        <img src="anime.jpg" alt="Trasparenza — система из массива и стекла" decoding="async">
+                        <img src=" anime.jpg" alt="Trasparenza — система из массива и стекла" decoding="async">
                     </picture>
                 </div>
                 <div class="sys-info"><h3 class="sys-name">Trasparenza</h3><span class="sys-meta">Сбалансированная система из массива и стекла.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
@@ -734,5 +734,83 @@
             }).catch(err => { console.error('Error:', err); });
         }
     </script>
+        <div id="debug-log" style="
+        position: fixed; 
+        bottom: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 40vh; 
+        background: rgba(0,0,0,0.9); 
+        color: #00ff00; 
+        font-family: monospace; 
+        font-size: 12px; 
+        z-index: 999999; 
+        overflow-y: scroll; 
+        padding: 10px;
+        border-top: 2px solid red;
+    ">
+        🔍 DEBUG MODE STARTED...<br>
+    </div>
+
+    <script>
+        const logBox = document.getElementById('debug-log');
+        function log(msg, color = '#00ff00') {
+            logBox.innerHTML += `<span style="color:${color}">${msg}</span><br>----------------<br>`;
+        }
+
+        // 1. Прослушка ошибок загрузки (ЭТО САМОЕ ВАЖНОЕ)
+        window.addEventListener('error', function(e) {
+            if (e.target && e.target.tagName === 'IMG') {
+                const fileName = e.target.getAttribute('src');
+                const fullUrl = e.target.src;
+                
+                // Красим рамку картинки в красный
+                e.target.style.border = "5px solid red";
+                e.target.style.minHeight = "50px";
+                e.target.style.display = "block";
+                e.target.alt = "BROKEN";
+
+                log(`❌ ОШИБКА ЗАГРУЗКИ КАРТИНКИ!<br>
+                    <b>Имя в коде:</b> "${fileName}"<br>
+                    <b>Полный путь, который ищет браузер:</b><br> ${fullUrl}`, 'red');
+            }
+        }, true);
+
+        // 2. Проверка после загрузки страницы
+        window.addEventListener('load', () => {
+            log("✅ Страница загружена. Проверяю картинки...");
+            
+            const images = document.querySelectorAll('img');
+            if (images.length === 0) {
+                log("⚠️ На странице вообще нет тегов <img>!", 'yellow');
+            }
+
+            images.forEach((img, index) => {
+                const name = img.getAttribute('src');
+                
+                if (!img.complete) {
+                    log(`❓ Картинка #${index} (${name}) еще грузится...`, 'yellow');
+                } else if (img.naturalWidth === 0) {
+                    log(`💀 Картинка #${index} (${name}) загрузилась, но она ПУСТАЯ (ширина 0px).<br>Это значит файл битый или формат не поддерживается!`, 'red');
+                } else {
+                    log(`🆗 Картинка #${index} (${name}) загружена.<br>Размер: ${img.naturalWidth}x${img.naturalHeight}`, '#00ff00');
+                }
+            });
+            
+            // 3. Проверка доступности файла напрямую (Тест Hero)
+            const heroImg = document.querySelector('.hero-img');
+            if(heroImg) {
+                const src = heroImg.currentSrc || heroImg.src;
+                log(`🔍 Пробую скачать Hero напрямую: ${src}`, 'cyan');
+                
+                fetch(src)
+                    .then(res => {
+                        if(res.ok) log(`✅ Сервер отдал Hero картинку (Status 200). Тип: ${res.headers.get('content-type')}`, 'cyan');
+                        else log(`⛔ Сервер послал нафиг с Hero картинкой. Status: ${res.status}`, 'red');
+                    })
+                    .catch(err => log(`⛔ Ошибка сети при запросе Hero: ${err}`, 'red'));
+            }
+        });
+</script>
 </body>
 </html>
