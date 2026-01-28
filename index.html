@@ -119,6 +119,7 @@
         /* HERO */
         .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
         .hero-bg-wrap { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .hero-bg-wrap picture { display: block; width: 100%; height: 100%; }
         .hero-img { width: 100%; height: 100%; object-fit: cover; filter: blur(4px); transform: scale(1.05); will-change: transform; }
         .hero-bottom-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 40vh; background: linear-gradient(to bottom, transparent 0%, var(--bg-base) 100%); z-index: 2; pointer-events: none; }
         .hero-content { position: relative; z-index: 3; max-width: 1200px; padding: 0 20px; display: flex; flex-direction: column; align-items: center; }
@@ -166,6 +167,7 @@
             height: 600px; margin-bottom: 25px; position: relative; overflow: hidden; border-radius: 24px; 
             background: #dcd9d0; 
         }
+        .sys-img-box picture { display: block; width: 100%; height: 100%; }
         .sys-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; display: block; }
         .sys-card:hover .sys-img-box img { transform: scale(1.05); }
         .sys-info { text-align: center; position: relative; z-index: 2; padding-bottom: 10px; }
@@ -189,6 +191,7 @@
 
         /* BESPOKE */
         .bespoke-banner { background: #111; color: #fff; padding: 100px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; overflow: hidden; margin-top: 0; }
+        .b-img-wrap picture { display: block; width: 100%; height: 100%; }
         .bespoke-img { width: 100%; height: 100%; min-height: 600px; object-fit: cover; filter: grayscale(100%); display: block; position: relative; z-index: 1; border-radius: 24px; }
         .b-content-wrap { position: relative; z-index: 3; }
         .b-title { font-family: 'Cormorant Garamond'; font-size: 48px; margin-bottom: 20px; color: #fff; }
@@ -296,7 +299,10 @@
 
     <section class="hero">
         <div class="hero-bg-wrap">
-            <img src="hero-bg.webp" class="hero-img" decoding="async">
+            <picture>
+                <source type="image/webp" srcset="hero-bg.webp">
+                <img src="hero-bg.jpg" alt="ROVERO CASA — модульные системы из массива" class="hero-img" decoding="async">
+            </picture>
             <div class="hero-bottom-fade"></div>
         </div>
         <div class="hero-content">
@@ -333,27 +339,57 @@
         
         <div class="sys-grid">
             <div class="sys-card" data-hover onclick="handleCardClick('Trasparenza')">
-                <div class="sys-img-box"><img src="anime.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-img-box">
+                    <picture>
+                        <source type="image/webp" srcset="anime.webp">
+                        <img src="anime.jpg" alt="Trasparenza — система из массива и стекла" loading="lazy" decoding="async">
+                    </picture>
+                </div>
                 <div class="sys-info"><h3 class="sys-name">Trasparenza</h3><span class="sys-meta">Сбалансированная система из массива и стекла.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Mezzanotte')">
-                <div class="sys-img-box"><img src="Improve_the_quality_2k_202601261824.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-img-box">
+                    <picture>
+                        <source type="image/webp" srcset="Improve_the_quality_2k_202601261824.webp">
+                        <img src="Improve_the_quality_2k_202601261824.jpg" alt="Mezzanotte — темный орех с LED-подсветкой" loading="lazy" decoding="async">
+                    </picture>
+                </div>
                 <div class="sys-info"><h3 class="sys-name">Mezzanotte</h3><span class="sys-meta">Премиальный темный орех с интегрированной LED-подсветкой.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Luce')">
-                <div class="sys-img-box"><img src="prostor.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-img-box">
+                    <picture>
+                        <source type="image/webp" srcset="prostor.webp">
+                        <img src="prostor.jpg" alt="Luce — открытая система для просторных помещений" loading="lazy" decoding="async">
+                    </picture>
+                </div>
                 <div class="sys-info"><h3 class="sys-name">Luce</h3><span class="sys-meta">Лаконичная открытая система для просторных помещений.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Collezione')">
-                <div class="sys-img-box"><img src="Make_the_sneakers_2k_202601261709.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-img-box">
+                    <picture>
+                        <source type="image/webp" srcset="Make_the_sneakers_2k_202601261709.webp">
+                        <img src="Make_the_sneakers_2k_202601261709.jpg" alt="Collezione — витрина для коллекции обуви" loading="lazy" decoding="async">
+                    </picture>
+                </div>
                 <div class="sys-info"><h3 class="sys-name">Collezione</h3><span class="sys-meta">Специализированная витрина для коллекции обуви с подсветкой.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Armonia')">
-                <div class="sys-img-box"><img src="stol.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-img-box">
+                    <picture>
+                        <source type="image/webp" srcset="stol.webp">
+                        <img src="stol.jpg" alt="Armonia — рабочая зона в системе хранения" loading="lazy" decoding="async">
+                    </picture>
+                </div>
                 <div class="sys-info"><h3 class="sys-name">Armonia</h3><span class="sys-meta">Функциональная интеграция рабочей зоны в систему хранения.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Riserva')">
-                <div class="sys-img-box"><img src="vino.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-img-box">
+                    <picture>
+                        <source type="image/webp" srcset="vino.webp">
+                        <img src="vino.jpg" alt="Riserva — винная библиотека" loading="lazy" decoding="async">
+                    </picture>
+                </div>
                 <div class="sys-info"><h3 class="sys-name">Riserva</h3><span class="sys-meta">Профессиональная винная библиотека для ценителей.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
             </div>
         </div>
@@ -406,8 +442,11 @@
             <p class="b-desc">Ваше пространство уникально. Если стандартные модули не подходят, мы разработаем систему с нуля под геометрию вашего помещения.</p>
             <a href="#" class="b-btn" id="openRequestBtn" data-hover onclick="var m=document.getElementById('contactModal');if(m){m.classList.add('active');document.body.classList.add('modal-open');}var i=document.getElementById('interestedProduct');if(i)i.value='';return false;">Оставить заявку</a>
         </div>
-        <div style="order: 1; overflow: hidden; position: relative; height: 100%; min-height: 600px;">
-            <img src="Improve_the_quality_2k_202601261804.webp" class="bespoke-img" loading="lazy" decoding="async">
+        <div class="b-img-wrap" style="order: 1; overflow: hidden; position: relative; height: 100%; min-height: 600px;">
+            <picture>
+                <source type="image/webp" srcset="Improve_the_quality_2k_202601261804.webp">
+                <img src="Improve_the_quality_2k_202601261804.jpg" alt="Индивидуальное проектирование ROVERO" class="bespoke-img" loading="lazy" decoding="async">
+            </picture>
         </div>
     </section>
 
