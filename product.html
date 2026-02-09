@@ -84,9 +84,27 @@
         }
         .main-image { 
             width: 100%; height: 100%; object-fit: cover; 
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease; /* Плавное изменение прозрачности при загрузке */
         }
-        .main-image.fade-out { opacity: 0; }
+        
+        /* --- LOADER STYLES (NEW) --- */
+        .image-loader {
+            position: absolute;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px; 
+            height: 40px;
+            border: 3px solid rgba(197, 160, 101, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--gold);
+            animation: spin 1s linear infinite;
+            display: none; /* Скрыт по умолчанию */
+            z-index: 10;
+        }
+        @keyframes spin { 
+            to { transform: translate(-50%, -50%) rotate(360deg); } 
+        }
 
         /* Lightbox */
         .lightbox { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; cursor: zoom-out; opacity: 0; transition: opacity 0.3s; }
@@ -184,7 +202,6 @@
             .product-gallery { flex-direction: column; height: auto; }
             .main-image-box { height: 500px; }
             
-            /* --- ИСПРАВЛЕНИЕ: ЦЕНТРИРОВАНИЕ ШАПКИ --- */
             .header-inner { justify-content: center; padding: 0 20px; position: relative; }
             .back-link { position: absolute; left: 20px; z-index: 2; top: 50%; transform: translateY(-50%); } 
             .logo-box {
@@ -195,28 +212,24 @@
             }
             .header-spacer { display: none; }
 
-            /* --- ИСПРАВЛЕНИЕ: ЦВЕТА ПОД ФОТО --- */
-            /* Используем flex и order для перестановки блоков */
             .product-info {
                 display: flex;
                 flex-direction: column;
             }
             .color-selection {
-                order: -1; /* Переносим наверх (перед заголовком) */
+                order: -1;
                 margin-bottom: 30px;
                 padding-bottom: 20px;
-                border-bottom: 1px solid rgba(0,0,0,0.05); /* Легкий разделитель для красоты */
+                border-bottom: 1px solid rgba(0,0,0,0.05);
                 width: 100%;
             }
-            /* Центрируем содержимое для красоты на планшете */
             .p-title, .p-price, .p-desc, .color-label { text-align: center; }
             .colors-row { justify-content: center; }
             .action-btn { margin: 0 auto; }
         }
         
         @media (max-width: 600px) {
-            /* --- МОБИЛЬНАЯ ВЕРСИЯ --- */
-            .back-link { display: none; } /* Скрываем кнопку назад */
+            .back-link { display: none; } 
             
             .product-page-container { padding: 100px 20px 60px 20px; }
             .main-image-box { height: 350px; width: 100%; margin-bottom: 20px; }
@@ -247,6 +260,7 @@
         <div class="product-gallery">
             <div class="main-image-box" onclick="openLightbox()">
                 <img id="mainImage" src="" class="main-image" alt="Product Image">
+                <div id="loader" class="image-loader"></div>
             </div>
         </div>
 
@@ -508,7 +522,7 @@
             mainImg.src = safeImages[0];
         }
 
-        // Функция выбора цвета
+        // Функция выбора цвета (ОБНОВЛЕННАЯ С LOADER)
         function selectColor(colorName) {
             // 1. Обновляем активный класс на цветах
             document.querySelectorAll('.p-color-swatch').forEach(el => {
@@ -517,24 +531,42 @@
             });
 
             // 2. Получаем изображения для этого цвета
-            // Если для этого цвета нет фото, берем 'Натуральный' или просто заглушку
             let images = [];
             if (productData.colors && productData.colors[colorName]) {
                 images = productData.colors[colorName];
             } else if (productData.colors && productData.colors['Натуральный']) {
-                // Фолбек на натуральный, если выбранного цвета нет в базе фото
                 images = productData.colors['Натуральный'];
             } else {
-                // Совсем фолбек
                 images = [productData.image];
             }
 
-            // 3. Обновляем галерею
-            mainImg.classList.add('fade-out');
-            setTimeout(() => {
-                updateGallery(images);
-                mainImg.classList.remove('fade-out');
-            }, 200);
+            const newSrc = images[0];
+            const loader = document.getElementById('loader');
+
+            // Проверка, если картинка уже стоит, не перезагружаем
+            if (mainImg.src.includes(newSrc)) return;
+
+            // 3. Показываем лоадер и затемняем текущее фото
+            loader.style.display = 'block';
+            mainImg.style.opacity = '0.5';
+
+            // 4. Предзагрузка изображения
+            const tempImg = new Image();
+            tempImg.onload = function() {
+                // Когда загрузилось:
+                updateGallery(images);          // Меняем источник
+                loader.style.display = 'none';  // Прячем лоадер
+                mainImg.style.opacity = '1';    // Возвращаем яркость
+            };
+            
+            tempImg.onerror = function() {
+                // Если ошибка загрузки
+                loader.style.display = 'none';
+                mainImg.style.opacity = '1';
+                console.error("Ошибка загрузки изображения: " + newSrc);
+            };
+
+            tempImg.src = newSrc; // Запускаем загрузку
         }
 
         // Рендерим палитру цветов
