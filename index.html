@@ -62,7 +62,6 @@
 
         .header-inner { display: flex; justify-content: center; align-items: center; padding: 0 50px; position: relative; height: 50px; }
 
-        /* ЛЕВЫЙ БЛОК: ТЕЛЕФОН + ПОЧТА */
         .header-left-group {
             position: absolute; left: 50px; top: 50%; transform: translateY(-50%);
             display: flex; flex-direction: column; 
@@ -83,13 +82,11 @@
         }
         .h-phone:hover, .h-email:hover { color: var(--gold); }
 
-        /* ЛОГОТИП ПО ЦЕНТРУ */
         .logo-box { text-align: center; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-main); cursor: pointer; user-select: none; }
         .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; letter-spacing: 0.02em; line-height: 1; text-transform: uppercase; }
         .brand-div { width: 100%; height: 1px; background-color: var(--gold); margin: 2px 0; }
         .brand-sub { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 11px; letter-spacing: 0.3em; font-weight: 600; text-transform: uppercase; margin-right: -0.3em; }
 
-        /* МЕНЮ СПРАВА */
         .nav-container {
             position: absolute; right: 50px; top: 50%; transform: translateY(-50%);
             display: flex; gap: 30px;
@@ -127,12 +124,23 @@
         .flow-btn:hover { background: rgba(20, 20, 20, 0.9); color: #fff; transform: translateY(-2px); border-color: transparent; }
 
         /* SECTIONS GENERAL */
-        .brand-manifesto, .catalog-section, .palette-section { position: relative; z-index: 2; }
+        .brand-manifesto, .catalog-section { position: relative; z-index: 2; }
         
         /* MANIFESTO */
-        .brand-manifesto { background: var(--bg-base); padding: 120px 50px; text-align: center; border-top: 1px solid rgba(197, 160, 101, 0.3); border-bottom: 1px solid rgba(197, 160, 101, 0.3); }
+        .brand-manifesto { 
+            background: var(--bg-base); 
+            /* ИЗМЕНЕНО: Паддинг уменьшен до 50px сверху */
+            padding: 50px 50px 100px 50px; 
+            text-align: center; 
+            /* ИЗМЕНЕНО: Убрана верхняя граница */
+            border-top: none; 
+            border-bottom: 1px solid rgba(197, 160, 101, 0.3); 
+        }
         .manifesto-title { font-family: 'Cormorant Garamond'; font-size: 42px; margin-bottom: 60px; text-transform: uppercase; display: inline-block; position: relative; user-select: none;}
-        .manifesto-title::after { content: ''; display: block; width: 60px; height: 2px; background: var(--gold); margin: 30px auto 0; }
+        
+        /* ИЗМЕНЕНО: Полоска скрыта */
+        .manifesto-title::after { display: none; }
+        
         .manifesto-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; max-width: 1200px; margin: 0 auto; }
         .m-item-title { font-family: 'Cormorant Garamond'; font-size: 22px; color: var(--gold); margin-bottom: 20px; text-transform: uppercase; }
         .m-item-text { font-size: 14px; color: var(--text-muted); line-height: 1.8; text-align: left; }
@@ -141,68 +149,27 @@
         .catalog-section { padding: 100px 40px 0 40px; }
         .sec-header { text-align: center; margin-bottom: 80px; }
         .sec-title { font-family: 'Cormorant Garamond'; font-size: 56px; line-height: 1; margin: 0; user-select: none; }
-        .sys-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding-bottom: 80px; }
-        .sys-card { cursor: pointer; }
-        .sys-img-box { height: 600px; margin-bottom: 25px; border-radius: 24px; overflow: hidden; background: #dcd9d0; }
+        .sys-grid { 
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px; 
+            padding-bottom: 80px; 
+        }
+        
+        /* Добавьте сюда расчет ширины (width) */
+        .sys-card { 
+            cursor: pointer; 
+            margin-bottom: 0px;
+    /* Считаем ширину: (100% ширины минус 2 отступа по 40px) делим на 3 карточки */
+            width: calc((100% - 80px) / 3);
+        }
+        .sys-img-box { height: 600px; margin-bottom: 12px; border-radius: 24px; overflow: hidden; background: #dcd9d0; } 
+        
         .sys-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; display: block; }
         .sys-card:hover img { transform: scale(1.05); }
         .sys-info { text-align: center; }
         .sys-name { font-family: 'Cormorant Garamond'; font-size: 32px; margin-bottom: 8px; }
-        .sys-meta { font-size: 14px; margin-bottom: 12px; display: block; }
-        .sys-price { color: var(--gold); font-weight: 600; font-size: 14px; letter-spacing: 1px; }
-
-        /* --- PALETTE (ПАЛИТРА - ИСПРАВЛЕНА) --- */
-        .palette-section { 
-            background-color: var(--bg-base); 
-            padding: 50px 0 100px 0; /* Убраны боковые паддинги для скролла от края до края */
-            text-align: center; 
-        }
-
-        .palette-swiper {
-            display: flex; 
-            overflow-x: auto; 
-            padding: 30px 40px; 
-            gap: 15px; 
-            /* Выравнивание по верху, чтобы круги были в линию */
-            align-items: flex-start; 
-            
-            scrollbar-width: none; -ms-overflow-style: none; cursor: grab;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* ЛОГИКА ЦЕНТРИРОВАНИЯ: Если экран широкий (16:9), центрируем палитру */
-        @media (min-width: 1300px) {
-            .palette-swiper {
-                justify-content: center;
-                gap: 30px; /* Больше воздуха на больших экранах */
-            }
-        }
-        
-        .palette-swiper::-webkit-scrollbar { display: none; }
-        
-        .palette-item { 
-            flex: 0 0 auto; 
-            display: flex; flex-direction: column; align-items: center; user-select: none; 
-            transition: transform 0.3s; 
-            width: 100px; /* Фиксированная ширина, чтобы влезало много */
-        } 
-        .palette-item:hover { transform: translateY(-5px); }
-        
-        .color-swatch { 
-            width: 80px; height: 80px; border-radius: 50%; 
-            margin-bottom: 20px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid #fff; 
-            flex-shrink: 0; 
-        }
-        
-        .color-name { 
-            font-size: 10px; text-transform: uppercase; letter-spacing: 1px; 
-            color: var(--text-main); font-weight: 600; 
-            text-align: center; line-height: 1.3;
-            /* Резерв места под 2 строки, чтобы текст не прыгал */
-            min-height: 2.6em; 
-            display: flex; align-items: flex-start; justify-content: center;
-        }
 
         /* BESPOKE */
         .bespoke-banner { background: #111; color: #fff; padding: 100px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; overflow: hidden; user-select: none; }
@@ -221,12 +188,22 @@
         .f-contact-link:hover { color: var(--gold); }
         .f-copy { font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 2px; display: block; margin-top: 10px; }
         .f-address { font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 2px; line-height: 1.6; text-decoration: none; }
+        .f-address:hover { color: var(--gold); }
         .footer-up-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; transition: transform 0.3s; user-select: none; }
         .footer-up-link:hover { transform: translateY(-3px); }
         .f-socials { display: flex; gap: 15px; margin-bottom: 15px; }
         .social-link { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
-        .social-link svg { width: 100%; height: 100%; fill: var(--text-muted); transition: 0.3s; }
-        .social-link:hover svg { fill: var(--gold); }
+        
+        /* ИЗМЕНЕНО: Стили для картинок в соцсетях */
+        .social-link img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            transition: transform 0.3s ease; 
+        }
+        .social-link:hover img { 
+            transform: scale(1.15); 
+        }
 
         /* MODAL */
         .modal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
@@ -243,13 +220,6 @@
         .submit-btn { width: 100%; background: var(--text-main); color: #fff; border: none; padding: 15px 0; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px; user-select: none;}
         .submit-btn:hover { background: var(--gold); }
 
-        /* Palette Modal */
-        .palette-modal-swatch { width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 30px auto; border: 4px solid #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.15); transition: background-color 0.3s; user-select: none; }
-        .palette-modal-content { max-width: 400px; }
-        .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 30px; color: var(--text-muted); padding: 10px; cursor: pointer; z-index: 10; transition: 0.3s; user-select: none; }
-        .nav-arrow:hover { color: var(--gold); transform: translateY(-50%) scale(1.2); }
-        .nav-arrow.prev { left: 10px; } .nav-arrow.next { right: 10px; }
-
         /* Toast */
         .request-toast { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 10002; background: rgba(234, 229, 217, 0.95); padding: 24px 40px; border-radius: 8px; font-family: 'Cormorant Garamond'; font-size: 22px; border: 1px solid rgba(197, 160, 101, 0.4); opacity: 0; visibility: hidden; transition: 0.1s; user-select: none; }
         .request-toast.visible { opacity: 1; visibility: visible; }
@@ -257,7 +227,10 @@
         @media (max-width: 1024px) { 
             .sys-grid, .manifesto-grid { grid-template-columns: 1fr 1fr; } 
             .bespoke-banner { grid-template-columns: 1fr; padding: 80px 40px; }
-            .header-left-group, .nav-container { display: none; } /* Скрываем на моб */
+            .header-left-group, .nav-container { display: none; }
+            .sys-card {
+                width: calc((100% - 40px) / 2);
+            } 
         }
         @media (max-width: 600px) { 
             footer { display: flex; flex-direction: column; gap: 30px; } 
@@ -265,12 +238,15 @@
             .sys-grid, .manifesto-grid { grid-template-columns: 1fr; } 
             h1 { font-size: 13vw; } 
             .header-inner { padding: 0 20px; }
+            .sys-card { 
+                width: 100%; 
+            }
         }
 
         .no-select {
-        -webkit-user-select: none; /* Safari */
-        -ms-user-select: none;      /* IE 10 и Edge */
-        user-select: none;          /* Стандартный синтаксис */
+        -webkit-user-select: none; 
+        -ms-user-select: none;      
+        user-select: none;          
         }
     </style>
 </head>
@@ -294,7 +270,6 @@
             <nav class="nav-container">
                 <a href="#manifesto" class="nav-item" data-hover>Философия</a>
                 <a href="#catalog" class="nav-item" data-hover>Коллекции</a>
-                <a href="#palette" class="nav-item" data-hover>Палитра</a>
                 <a href="#footer" class="nav-item" data-hover>Контакты</a>
             </nav>
         </div>
@@ -339,69 +314,36 @@
         
         <div class="sys-grid">
             <div class="sys-card" data-hover onclick="handleCardClick('Diamante')">
-                <div class="sys-img-box"><img src="diamante.webp" loading="lazy" decoding="async"></div>
-                <div class="sys-info"><h3 class="sys-name">Diamante</h3><span class="sys-meta">Строгий дизайн профилей. Внешне напоминает драгоценный камень.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
+                <div class="sys-img-box"><img src="diamante3.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-info"><h3 class="sys-name">Diamante</h3></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Luce')">
-                <div class="sys-img-box"><img src="luce.webp" loading="lazy" decoding="async"></div>
-                <div class="sys-info"><h3 class="sys-name">Luce</h3><span class="sys-meta">Рациональный дизайн. Интеллектуальный подход к хранению.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
+                <div class="sys-img-box"><img src="luce4.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-info"><h3 class="sys-name">Luce</h3></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Cerchio')">
-                <div class="sys-img-box"><img src="cerchio.webp" loading="lazy" decoding="async"></div>
-                <div class="sys-info"><h3 class="sys-name">Cerchio</h3><span class="sys-meta">Закругленный профиль. Располагает к себе, сглаживает помещение.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
+                <div class="sys-img-box"><img src="cerchio2.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-info"><h3 class="sys-name">Cerchio</h3></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Intimita')">
-                <div class="sys-img-box"><img src="intimita.webp" loading="lazy" decoding="async"></div>
-                <div class="sys-info"><h3 class="sys-name">Intimita</h3><span class="sys-meta">Компактная модульная конструкция для украшения любого интерьера.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
+                <div class="sys-img-box"><img src="intimita4.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-info"><h3 class="sys-name">Intimita</h3></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Armonia')">
-                <div class="sys-img-box"><img src="armonia.webp" loading="lazy" decoding="async"></div>
-                <div class="sys-info"><h3 class="sys-name">Armonia</h3><span class="sys-meta">Сбалансированная система модулей. Отлично дополняет пространство.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
+                <div class="sys-img-box"><img src="armonia5.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-info"><h3 class="sys-name">Armonia</h3></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Sommelier')">
-                <div class="sys-img-box"><img src="sommelier.webp" loading="lazy" decoding="async"></div>
-                <div class="sys-info"><h3 class="sys-name">Sommelier</h3><span class="sys-meta">Модульная система хранения вина. Превращает коллекцию в окружение.</span><div class="sys-price">от 65 000 ₽ / м²</div></div>
+                <div class="sys-img-box"><img src="sommelier4.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-info"><h3 class="sys-name">Sommelier</h3></div>
             </div>
-        </div>
-    </section>
-
-    <section class="palette-section" id="palette">
-        <div class="sec-header">
-            <h2 class="sec-title" style="font-size: 42px;">Палитра Массива</h2>
-        </div>
-        <div class="palette-swiper" data-hover>
-            <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Натуральный оттенок древесины без тонировки. Подчеркивает естественную красоту волокон.">
-                <div class="color-swatch" style="background-color: #E5D0B1;"></div><span class="color-name">Натуральный</span>
+            <div class="sys-card" data-hover onclick="handleCardClick('Cucina')">
+                <div class="sys-img-box"><img src="cucina5.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-info"><h3 class="sys-name">Cucina</h3></div>
             </div>
-            <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Благородный американский орех. Глубокий, насыщенный цвет с выразительной текстурой.">
-                <div class="color-swatch" style="background-color: #7B5135;"></div><span class="color-name">Орех</span>
-            </div>
-            <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Тропическая древесина темных пород. Строгий, почти черный рисунок волокон.">
-                <div class="color-swatch" style="background-color: #3E2F28;"></div><span class="color-name">Венге</span>
-            </div>
-             <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Сложный, приглушенный оттенок выдержанного табачного листа.">
-                <div class="color-swatch" style="background-color: #8A6642;"></div><span class="color-name">Табачный</span>
-            </div>
-            <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Эксклюзивный землисто-коричневый оттенок. Отлично сочетается с камнем.">
-                <div class="color-swatch" style="background-color: #664A3A;"></div><span class="color-name">Херос</span>
-            </div>
-            <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Глубокий темно-серый цвет вулканической породы.">
-                <div class="color-swatch" style="background-color: #5A5A5A;"></div><span class="color-name">Базальтовый</span>
-            </div>
-            <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Легкий и воздушный серый оттенок, напоминающий утренний туман.">
-                <div class="color-swatch" style="background-color: #8C8C91;"></div><span class="color-name">Дымчато-серый</span>
-            </div>
-            <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Холодный, чистый серый цвет. Идеальный фон для ярких акцентов.">
-                <div class="color-swatch" style="background-color: #BCC2C7;"></div><span class="color-name">Серый Аляска</span>
-            </div>
-            <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Самый светлый оттенок серого в палитре.">
-                <div class="color-swatch" style="background-color: #D4D8DB;"></div><span class="color-name">Ледниковый серый</span>
-            </div>
-            <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Полупрозрачное белое покрытие, через которое проглядывает текстура дерева.">
-                <div class="color-swatch" style="background-color: #F4F1E8; border: 1px solid #ddd;"></div><span class="color-name">Белый лессирующий</span>
-            </div>
-            <div class="palette-item" onclick="openPaletteModal(this)" data-desc="Плотный, абсолютно белый цвет. Создает гладкую, матовую поверхность.">
-                <div class="color-swatch" style="background-color: #FFFFFF; border: 1px solid #ddd;"></div><span class="color-name">Полярно-белый</span>
+            <div class="sys-card" data-hover onclick="handleCardClick('Arma')">
+                <div class="sys-img-box"><img src="arma5.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-info"><h3 class="sys-name">Arma</h3></div>
             </div>
         </div>
     </section>
@@ -430,21 +372,18 @@
             </a>
         </div>
         <div class="f-right">
-            
             <div class="f-socials">
                 <a href="https://pin.it/2L0sqvX60" target="_blank" class="social-link" data-hover>
-                    <svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.399.165-1.495-.69-2.433-2.864-2.433-4.629 0-3.77 2.748-7.229 7.93-7.229 4.163 0 7.398 2.967 7.398 6.931 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.367 18.624 0 12.017 0z"/></svg>
+                    <img src="pin.webp" alt="Pinterest">
                 </a>
                 <a href="https://youtube.com/@roverocasa?si=NMpVTXKtrxvTGa6S" target="_blank" class="social-link" data-hover>
-                    <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <img src="yt.webp" alt="YouTube">
                 </a>
                 <a href="https://vk.com/roverodesign" target="_blank" class="social-link vk-link" data-hover>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.162 18.994c.609 0 .858-.446.858-1.263 0-2.179 1.133-3.799 3-3.799s3 1.61 3 3.799c0 .817.249 1.263.858 1.263h2.529c.858 0 1.162-.881.48-1.998-1.077-1.768-3.169-4.164-3.872-5.002-.631-.753-1.5-1.438-1.5-2.313 0-.875 1.1-2.179 1.872-3.133 1.18-1.457 3.215-4.177 3.984-5.314.509-.753.249-1.263-.858-1.263h-2.529c-.609 0-1.18.287-1.813 1.167-1.016 1.415-2.408 3.47-3.343 4.794-.584.826-.892.985-1.437.318-.475-.581-.528-1.631-.528-3.71 0-2.079.505-2.544.078-3.071-.444-.547-1.219-.729-2.258-.729-1.618 0-2.718.575-3.029.985-.459.603.232 1.212.985 1.575 1.133.547 1.102 2.612 1.102 4.329 0 1.031-.193 2.052-1.202 3.086-.548.561-1.015.441-1.813-.639-1.31-1.77-2.954-4.715-3.872-6.299-.48-.827-1.021-1.167-1.793-1.167H.988c-.773 0-1.133.532-.858 1.263.657 1.749 3.556 7.951 6.299 11.217 2.743 3.266 6.036 3.969 7.733 3.969h2.529z"/></svg>
+                    <img src="vk.webp" alt="VK">
                 </a>
                 <a href="https://t.me/roverodesign" target="_blank" class="social-link" data-hover>
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.293-.605.293l.214-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.962-.924c-.643-.204-.657-.643.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
-                    </svg>
+                    <img src="tg.webp" alt="Telegram">
                 </a>
             </div>
 
@@ -470,17 +409,6 @@
                 </div>
                 <button type="submit" class="submit-btn">Отправить</button>
             </form>
-        </div>
-    </div>
-
-    <div id="paletteModal" class="modal">
-        <div class="modal-content palette-modal-content">
-            <div class="nav-arrow prev" onclick="changeColor(-1)">&#10094;</div>
-            <div class="nav-arrow next" onclick="changeColor(1)">&#10095;</div>
-            <div id="pModalSwatch" class="palette-modal-swatch"></div>
-            <h3 id="pModalTitle" class="m-title"></h3>
-            <p id="pModalDesc" class="m-sub"></p>
-            <button onclick="closePaletteModal()" class="submit-btn" style="margin-top: 0;">Закрыть</button>
         </div>
     </div>
 
@@ -558,7 +486,6 @@
         })();
     </script>
     <script>
-        // Header scroll effect
         const header = document.getElementById('site-header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -570,7 +497,6 @@
 
         const modal = document.getElementById('contactModal');
         const body = document.body;
-        const commentField = document.getElementById('modalComment');
 
         function openModal() { if (modal) { modal.classList.add('active'); body.classList.add('modal-open'); } }
         function closeModal() { if (modal) { modal.classList.remove('active'); body.classList.remove('modal-open'); } }
@@ -589,117 +515,57 @@
         if (modal) modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
 
         function handleCardClick(productName) {
-            document.getElementById('bespoke').scrollIntoView({ behavior: 'smooth' });
-            if (commentField) commentField.value = 'Здравствуйте! Меня интересует система: ' + productName + '.';
-            var inp = document.getElementById('interestedProduct');
-            if (inp) inp.value = productName;
-            setTimeout(openModal, 500);
+            window.location.href = 'product.html?product=' + encodeURIComponent(productName);
         }
         window.handleCardClick = handleCardClick;
 
-        function getRequestPayload(form) {
-            return {
-                name: (form.name && form.name.value) || '',
-                phone: (form.phone && form.phone.value) || '',
-                comment: (form.comment && form.comment.value) || '',
-                interested_product: (form.interested_product && form.interested_product.value) || null
-            };
-        }
-
         async function saveRequestToSupabase(payload) {
             var client = window.ROVERO_SUPABASE_CLIENT;
-            if (!client) { console.error('Supabase not init'); return false; }
+            if (!client) return false;
             try {
                 var res = await client.from('requests_rovero').insert(payload);
-                if (res.error) { console.error('Supabase error:', res.error); return false; }
-                return true;
-            } catch (err) { console.error('Request failed:', err); return false; }
+                return !res.error;
+            } catch (err) { return false; }
         }
 
         async function submitForm(e) {
             e.preventDefault();
             const form = e.target;
-            const payload = getRequestPayload(form);
+            const payload = {
+                name: form.name.value,
+                phone: form.phone.value,
+                comment: form.comment.value,
+                interested_product: form.interested_product.value || null
+            };
             const btn = form.querySelector('button');
             const originalText = btn.innerText;
-            btn.disabled = true; btn.innerText = "ОТПРАВКА…"; btn.style.background = "#9a8a6a";
+            btn.disabled = true; btn.innerText = "ОТПРАВКА…";
 
             const ok = await saveRequestToSupabase(payload);
 
             if (ok) {
                 closeModal();
-                btn.innerText = originalText; btn.style.background = ''; btn.disabled = false;
+                btn.innerText = originalText; btn.disabled = false;
                 form.reset();
-                var ip = document.getElementById('interestedProduct'); if (ip) ip.value = '';
                 var toast = document.getElementById('requestToast');
                 if (toast) {
-                    toast.textContent = 'Заявка отправлена';
-                    toast.classList.remove('visible'); toast.offsetHeight; toast.classList.add('visible');
-                    setTimeout(function() { toast.classList.remove('visible'); }, 2200);
+                    toast.classList.add('visible');
+                    setTimeout(() => { toast.classList.remove('visible'); }, 2200);
                 }
             } else {
-                btn.innerText = "ОШИБКА"; btn.style.background = "#8b4513";
-                setTimeout(function() { btn.innerText = originalText; btn.style.background = ''; btn.disabled = false; }, 2000);
+                btn.innerText = "ОШИБКА";
+                setTimeout(() => { btn.innerText = originalText; btn.disabled = false; }, 2000);
             }
         }
         window.submitForm = submitForm;
-
-        /* PALETTE LOGIC */
-        const pModal = document.getElementById('paletteModal');
-        const pSwatch = document.getElementById('pModalSwatch');
-        const pTitle = document.getElementById('pModalTitle');
-        const pDesc = document.getElementById('pModalDesc');
-        let paletteItems = document.querySelectorAll('.palette-item');
-        let currentIndex = 0;
-
-        function openPaletteModal(element) {
-            paletteItems = document.querySelectorAll('.palette-item');
-            currentIndex = Array.from(paletteItems).indexOf(element);
-            updateModalContent();
-            pModal.classList.add('active');
-            document.body.classList.add('modal-open');
-        }
-
-        function updateModalContent() {
-            const element = paletteItems[currentIndex];
-            const colorStyle = element.querySelector('.color-swatch').style.backgroundColor;
-            const colorBorder = element.querySelector('.color-swatch').style.border;
-            const name = element.querySelector('.color-name').innerText;
-            const desc = element.getAttribute('data-desc') || "Экологически чистый массив дерева.";
-            pSwatch.style.backgroundColor = colorStyle;
-            pSwatch.style.border = colorBorder;
-            pTitle.innerText = name;
-            pDesc.innerText = desc;
-        }
-
-        function changeColor(direction) {
-            currentIndex += direction;
-            if (currentIndex >= paletteItems.length) currentIndex = 0;
-            else if (currentIndex < 0) currentIndex = paletteItems.length - 1;
-            updateModalContent();
-        }
-
-        function closePaletteModal() {
-            pModal.classList.remove('active');
-            document.body.classList.remove('modal-open');
-        }
-
-        if (pModal) pModal.addEventListener('click', (e) => { if (e.target === pModal) closePaletteModal(); });
-        document.addEventListener('keydown', (e) => {
-            if (pModal && pModal.classList.contains('active')) {
-                if (e.key === 'ArrowLeft') changeColor(-1);
-                if (e.key === 'ArrowRight') changeColor(1);
-                if (e.key === 'Escape') closePaletteModal();
-            }
-        });
 
         function copyPhone(element, event) {
             event.preventDefault();
             const originalText = element.innerText;
             navigator.clipboard.writeText(originalText).then(() => {
-                element.innerText = "СКОПИРОВАНО"; element.style.color = "#C5A065";
-                setTimeout(() => { element.innerText = originalText; element.style.color = ""; }, 400);
-            }).catch(err => { console.error('Error:', err); });
+                element.innerText = "СКОПИРОВАНО"; 
+                setTimeout(() => { element.innerText = originalText; }, 400);
+            });
         }
     </script>
 </body>

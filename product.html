@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <title>ROVERO | Коллекция</title>
+    
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <meta name="description" content="ROVERO CASA — модульные гардеробные системы.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --bg-base: #EAE5D9; --text-main: #141414; --text-muted: #6b6b6b; --gold: #C5A065; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        body { 
+            background: radial-gradient(circle at center, #F7F4EB 0%, #EAE5D9 40%, #BDB6A8 100%);
+            color: var(--text-main); 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden; 
+            line-height: 1.6; 
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header { 
+            position: fixed; top: 0; width: 100%; z-index: 1000; 
+            padding: 15px 0;
+            background: rgba(179, 134, 31, 0);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+        }
+
+        .header-inner { display: flex; justify-content: center; align-items: center; padding: 0 50px; position: relative; height: 50px; }
+        
+        .logo-box { text-align: center; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-main); cursor: pointer; user-select: none; }
+        .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; letter-spacing: 0.02em; line-height: 1; text-transform: uppercase; }
+        .brand-div { width: 100%; height: 1px; background-color: var(--gold); margin: 2px 0; }
+        .brand-sub { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 11px; letter-spacing: 0.3em; font-weight: 600; text-transform: uppercase; margin-right: -0.3em; }
+        
+        /* Contact links in header/footer */
+        .h-phone { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-main); text-decoration: none; font-weight: 600; transition: 0.3s; display: block; }
+        .h-email { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); text-decoration: none; font-weight: 500; transition: 0.3s; display: block; margin-top: 1px; }
+        .h-phone:hover, .h-email:hover { color: var(--gold); }
+
+        .back-link {
+            position: absolute; left: 50px; top: 50%; transform: translateY(-50%);
+            font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); text-decoration: none; font-weight: 600;
+            display: flex; align-items: center; gap: 10px; transition: 0.3s;
+        }
+        .back-link:hover { color: var(--gold); }
+        
+        /* Spacer class specifically for desktop alignment balance */
+        .header-spacer { width: 100px; display: block; }
+
+        /* PRODUCT PAGE LAYOUT */
+        .product-page-container { 
+            padding: 140px 50px 100px 50px; 
+            display: grid; 
+            grid-template-columns: 1fr 1.1fr; 
+            gap: 60px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            min-height: 100vh;
+            align-items: center;
+        }
+
+        /* Gallery */
+        .product-gallery { 
+            display: flex; height: 600px; justify-content: center;
+            min-width: 0; 
+        }
+        .main-image-box { 
+            width: 100%; height: 100%; 
+            background: #dcd9d0; border-radius: 12px; overflow: hidden; 
+            position: relative; cursor: zoom-in;
+        }
+        .main-image { 
+            width: 100%; height: 100%; object-fit: cover; 
+            transition: opacity 0.4s ease;
+        }
+        .main-image.fade-out { opacity: 0; }
+
+        /* Lightbox */
+        .lightbox { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; cursor: zoom-out; opacity: 0; transition: opacity 0.3s; }
+        .lightbox.active { display: flex; opacity: 1; }
+        .lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 4px; }
+
+        /* Info */
+        .product-info { 
+            padding-top: 20px; display: flex; flex-direction: column; 
+            min-width: 0; width: 100%;
+        }
+        .p-title { font-family: 'Cormorant Garamond'; font-size: 56px; margin-bottom: 10px; line-height: 1; text-transform: uppercase; font-weight: 500; }
+        .p-price { font-size: 24px; color: var(--gold); margin-bottom: 30px; font-weight: 600; font-family: 'Cormorant Garamond'; }
+        .p-desc { 
+            font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 40px; 
+            border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 30px;
+        }
+
+        /* Color Selector */
+        .color-selection { margin-bottom: 40px; user-select: none; -webkit-user-select: none; width: 100%; }
+        .color-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: block; font-weight: 600; color: var(--text-main); }
+        
+        .colors-row { 
+            display: flex; gap: 15px; flex-wrap: nowrap; align-items: center; 
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch; 
+            scrollbar-width: none; 
+            width: 100%;
+            padding: 10px 5px; 
+        }
+        .colors-row::-webkit-scrollbar { display: none; }
+        
+        .p-color-swatch { 
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer; 
+            border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.1); 
+            transition: all 0.3s; position: relative;
+            caret-color: transparent; -webkit-tap-highlight-color: transparent; flex-shrink: 0; 
+        }
+        .p-color-swatch:hover { transform: scale(1.1); }
+        .p-color-swatch.active { 
+            box-shadow: 0 0 0 2px var(--gold); 
+            transform: scale(1.1);
+        }
+
+        /* Button */
+        .action-btn { 
+            background: var(--text-main); color: #fff; padding: 20px 0; border: none; 
+            text-transform: uppercase; letter-spacing: 2px; font-size: 12px; 
+            cursor: pointer; transition: 0.3s; width: 100%; max-width: 350px; font-weight: 600; border-radius: 4px;
+        }
+        .action-btn:hover { background: var(--gold); }
+
+        /* Modal & Footer */
+        .modal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+        .modal.active { display: flex; opacity: 1; }
+        .modal-content { background: var(--bg-base); padding: 60px 50px; border-radius: 4px; width: 100%; max-width: 500px; position: relative; text-align: center; transform: translateY(20px); transition: transform 0.3s; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .modal.active .modal-content { transform: translateY(0); }
+        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 30px; font-weight: 300; cursor: pointer; transition: 0.3s; user-select: none; }
+        .close-modal:hover { color: var(--gold); }
+        .m-title { font-family: 'Cormorant Garamond'; font-size: 36px; margin-bottom: 10px; line-height: 1.1; }
+        .m-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 40px; }
+        .form-group { margin-bottom: 25px; text-align: left; }
+        .form-input { width: 100%; padding: 10px 0; background: transparent; border: none; border-bottom: 1px solid #ccc; font-family: 'Montserrat'; font-size: 14px; outline: none; transition: 0.3s; color: var(--text-main); }
+        .form-input:focus { border-bottom-color: var(--text-main); }
+        .submit-btn { width: 100%; background: var(--text-main); color: #fff; border: none; padding: 15px 0; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .submit-btn:hover { background: var(--gold); }
+        .request-toast { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 10002; background: rgba(234, 229, 217, 0.95); padding: 24px 40px; border-radius: 8px; font-family: 'Cormorant Garamond'; font-size: 22px; border: 1px solid rgba(197, 160, 101, 0.4); opacity: 0; visibility: hidden; transition: 0.1s; user-select: none; }
+        .request-toast.visible { opacity: 1; visibility: visible; }
+
+        footer { background: #fff; padding: 50px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; position: relative; z-index: 3; }
+        .f-left { text-align: left; } .f-center { text-align: center; display: flex; flex-direction: column; align-items: center; } .f-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
+        .f-logo { font-family: 'Cormorant Garamond'; font-size: 32px; font-weight: 700; line-height: 1; margin-bottom: 5px; }
+        .f-ussr { font-size: 11px; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        .f-contact-link { font-size: 11px; font-weight: 600; color: var(--text-main); text-decoration: none; margin-bottom: 8px; display: block; transition: 0.3s; }
+        .f-contact-link:hover { color: var(--gold); }
+        .f-copy { font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 2px; display: block; margin-top: 10px; }
+        .f-address { font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 2px; line-height: 1.6; text-decoration: none; }
+        .footer-up-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; transition: transform 0.3s; user-select: none; }
+        .footer-up-link:hover { transform: translateY(-3px); }
+        .f-socials { display: flex; gap: 15px; margin-bottom: 15px; }
+        .social-link { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+        .social-link img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            transition: transform 0.3s ease; 
+        }
+        .social-link:hover img { 
+            transform: scale(1.2); 
+        }
+        
+        /* MEDIA QUERIES */
+        @media (max-width: 1024px) {
+            .product-page-container { grid-template-columns: 1fr; padding-top: 100px; gap: 40px; }
+            .product-gallery { flex-direction: column; height: auto; }
+            .main-image-box { height: 500px; }
+            
+            /* --- ИСПРАВЛЕНИЕ: ЦЕНТРИРОВАНИЕ ШАПКИ --- */
+            .header-inner { justify-content: center; padding: 0 20px; position: relative; }
+            .back-link { position: absolute; left: 20px; z-index: 2; top: 50%; transform: translateY(-50%); } 
+            .logo-box {
+                position: absolute; 
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1;
+            }
+            .header-spacer { display: none; }
+
+            /* --- ИСПРАВЛЕНИЕ: ЦВЕТА ПОД ФОТО --- */
+            /* Используем flex и order для перестановки блоков */
+            .product-info {
+                display: flex;
+                flex-direction: column;
+            }
+            .color-selection {
+                order: -1; /* Переносим наверх (перед заголовком) */
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid rgba(0,0,0,0.05); /* Легкий разделитель для красоты */
+                width: 100%;
+            }
+            /* Центрируем содержимое для красоты на планшете */
+            .p-title, .p-price, .p-desc, .color-label { text-align: center; }
+            .colors-row { justify-content: center; }
+            .action-btn { margin: 0 auto; }
+        }
+        
+        @media (max-width: 600px) {
+            /* --- МОБИЛЬНАЯ ВЕРСИЯ --- */
+            .back-link { display: none; } /* Скрываем кнопку назад */
+            
+            .product-page-container { padding: 100px 20px 60px 20px; }
+            .main-image-box { height: 350px; width: 100%; margin-bottom: 20px; }
+            .p-title { font-size: 36px; }
+            .color-selection { width: 100%; margin-bottom: 20px; }
+            .action-btn { width: 100%; max-width: 100%; }
+            
+            footer { display: flex; flex-direction: column; gap: 30px; } 
+            .f-left, .f-center, .f-right { text-align: center; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo-box">
+                <span class="brand-name">ROVERO</span>
+                <div class="brand-div"></div>
+                <span class="brand-sub">CASA</span>
+            </a>
+            
+            <div class="header-spacer"></div>
+        </div>
+    </header>
+
+    <div class="product-page-container">
+        <div class="product-gallery">
+            <div class="main-image-box" onclick="openLightbox()">
+                <img id="mainImage" src="" class="main-image" alt="Product Image">
+            </div>
+        </div>
+
+        <div class="product-info">
+            <h1 class="p-title" id="pTitle">Название товара</h1>
+            <div class="p-price" id="pPrice">от 65 000 ₽ / м²</div>
+            <p class="p-desc" id="pDesc">
+                Описание товара загружается...
+            </p>
+
+            <div class="color-selection">
+                <span class="color-label">Популярные цветовые решения:</span>
+                <div class="colors-row" id="colorContainer">
+                    </div>
+            </div>
+
+            <a href="https://t.me/roverodesign" target="_blank" class="action-btn" style="display: block; text-align: center; text-decoration: none; line-height: 20px;">Больше информации</a>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightboxImg" src="">
+    </div>
+
+    <footer id="footer">
+        <div class="f-left">
+            <a href="https://yandex.ru/maps/?text=Московская+область,+г.+Истра,+ул.+Московская,+д.+5Б" target="_blank" class="f-address" data-hover>
+                г. Истра, Московская область,<br>ул. Московская, д. 5Б
+            </a>
+        </div>
+        <div class="f-center">
+            <a href="#" class="footer-up-link" data-hover onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">
+                <div class="f-logo">ROVERO</div>
+                <span class="f-ussr">Сделано в СССР</span>
+            </a>
+        </div>
+        <div class="f-right">
+            
+            <div class="f-socials">
+                <a href="https://pin.it/2L0sqvX60" target="_blank" class="social-link" data-hover>
+                    <img src="pin.webp" alt="Pinterest">
+                </a>
+    
+                <a href="https://youtube.com/@roverocasa?si=NMpVTXKtrxvTGa6S" target="_blank" class="social-link" data-hover>
+                    <img src="yt.webp" alt="YouTube">
+                </a>
+    
+                <a href="https://vk.com/roverodesign" target="_blank" class="social-link vk-link" data-hover>
+                    <img src="vk.webp" alt="VK">
+                </a>
+    
+                <a href="https://t.me/roverodesign" target="_blank" class="social-link" data-hover>
+                    <img src="tg.webp" alt="Telegram">
+                </a>
+            </div>
+
+            <a href="#" class="f-contact-link" onclick="copyPhone(this, event)" data-hover>+7 (495) 001-49-69</a>
+            <a href="mailto:info@roverodesign.ru" class="h-email" data-hover>info@roverodesign.ru</a>
+            <span class="f-copy">© 2026 MOSCOW</span>
+        </div>
+    </footer>
+    
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <h3 class="m-title">Оставить заявку</h3>
+            <p class="m-sub">Мы рассчитаем стоимость для вашей конфигурации.</p>
+            <form id="requestForm" onsubmit="submitForm(event)">
+                <input type="hidden" name="interested_product" id="interestedProduct" value="">
+                <div class="form-group"><input type="text" name="name" class="form-input" placeholder="Имя" required></div>
+                <div class="form-group"><input type="tel" name="phone" class="form-input" placeholder="Телефон" required></div>
+                <div class="form-group">
+                    <textarea name="comment" class="form-input" placeholder="Комментарий (размеры, пожелания)"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="requestToast" class="request-toast">Заявка отправлена</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // --- DATA ---
+        const productsDB = {
+            'Diamante': {
+                title: 'Diamante',
+                price: 'от 65 000 ₽ / м²',
+                desc: 'Главной особенностью модулей является уникальная геометрия профиля, грани которого словно повторяют огранку драгоценного камня, отсюда и название "Diamante" или же Алмаз. Лаконичные и прямые линии создают визуально чистый, но при этом выразительный силуэт. Такая мебель не перегружает пространство, а структурирует его, добавляя в интерьер ноты сдержанной роскоши и статуса. Коллекция идеально подходит для тех, кто ищет решение, сочетающее в себе высокую функциональность с выразительным художественным образом.',
+                defaultColor: 'Дымчато-серый',
+                image: 'diamante3.webp',
+                colors: {
+                    'Натуральный': ['diamante1.webp'],
+                    'Венге': ['diamante5.webp'],
+                    'Херос': ['diamante4.webp'],
+                    'Дымчато-серый': ['diamante3.webp'],
+                    'Белый лессирующий': ['diamante2.webp']
+                }
+            },
+            'Luce': {
+                title: 'Luce',
+                price: 'от 65 000 ₽ / м²',
+                desc: 'В основе этой коллекции лежит принцип абсолютной рациональности, где каждая деталь подчинена функции. Мы применили интеллектуальный подход к проектированию, создав систему, которая интуитивно подстраивается под сценарии использования. Эргономика здесь возведена в культ, позволяя задействовать полезное пространство с максимальной эффективностью. Визуальная чистота форм подчеркивает технологичность решения, не отвлекая внимание от содержания. Это идеальный выбор для перфекционистов, ценящих в интерьере упорядоченность и безупречную логику.',
+                defaultColor: 'Херос',
+                image: 'luce4.webp',
+                colors: {
+                    'Натуральный': ['luce1.webp'],
+                    'Венге': ['luce5.webp'],
+                    'Херос': ['luce4.webp'],
+                    'Дымчато-серый': ['luce3.webp'],
+                    'Белый лессирующий': ['luce2.webp']
+                }
+            },
+            'Cerchio': {
+                title: 'Cerchio',
+                price: 'от 65 000 ₽ / м²',
+                desc: 'Плавные линии этого профиля полностью меняют восприятие пространства, избавляя его от визуальной агрессии острых углов. Округлая геометрия создает ощущение гармонии и текучести, делая интерьер более мягким и дружелюбным для восприятия. Такая мебель словно обнимает помещение, сглаживая жесткие архитектурные границы и добавляя необходимый уют. Это идеальный выбор для тех, кто стремится к психологическому комфорту и хочет видеть свой дом безопасным местом для расслабления.',
+                defaultColor: 'Белый лессирующий',
+                image: 'cerchio2.webp',
+                colors: {
+                    'Натуральный': ['cerchio1.webp'],
+                    'Венге': ['cerchio5.webp'],
+                    'Херос': ['cerchio4.webp'],
+                    'Дымчато-серый': ['cerchio3.webp'],
+                    'Белый лессирующий': ['cerchio2.webp']
+                }
+            },
+            'Intimita': {
+                title: 'Intimita',
+                price: 'от 65 000 ₽ / м²',
+                desc: 'Эта коллекция представляет собой компактное решение, способное стать изящным украшением любого пространства. Модульная архитектура позволяет создавать легкие композиции, которые не загромождают интерьер, а деликатно дополняют его. Она служит выразительным акцентом, подчеркивая индивидуальный стиль помещения и добавляя ему завершенность. Универсальность конструкции дает возможность использовать ее в любой комнате, от гостиной до спальни. Это идеальный выбор для тех, кто ищет эстетику в деталях и ценит визуальную легкость.',
+                defaultColor: 'Херос',
+                image: 'intimita4.webp',
+                colors: {
+                    'Натуральный': ['intimita1.webp'],
+                    'Венге': ['intimita5.webp'],
+                    'Херос': ['intimita4.webp'],
+                    'Дымчато-серый': ['intimita3.webp'],
+                    'Белый лессирующий': ['intimita2.webp']
+                }
+            },
+            'Armonia': {
+                title: 'Armonia',
+                price: 'от 65 000 ₽ / м²',
+                desc: 'Эта коллекция представляет собой эталон сбалансированного дизайна, где каждый элемент находится строго на своем месте. Модульная система разработана так, чтобы деликатно интегрироваться в любой интерьер, не нарушая его целостности. Она не перетягивает на себя внимание, а служит идеальным фоном, органично связывая воедино остальные предметы обстановки. Пропорции выверены с математической точностью, создавая ощущение спокойствия и упорядоченности. Это отличный выбор для тех, кто ценит гармонию и ищет мебель, способную стать надежной основой жилого пространства.',
+                defaultColor: 'Натуральный',
+                image: 'armonia5.webp',
+                colors: {
+                    'Натуральный': ['armonia5.webp'],
+                    'Венге': ['armonia2.webp'],
+                    'Херос': ['armonia1.webp'],
+                    'Дымчато-серый': ['armonia3.webp'],
+                    'Белый лессирующий': ['armonia4.webp']
+                }
+            },
+            'Sommelier': {
+                title: 'Sommelier',
+                price: 'от 65 000 ₽ / м²',
+                desc: 'Эта модульная система хранения вина превращает частную коллекцию в ключевой элемент архитектурного окружения. Мы разработали конструкцию, которая стирает границу между мебелью и экспозицией, позволяя благородным напиткам задавать атмосферу всего помещения. Гибкость модулей дает возможность интегрировать винные шкафы в любое пространство, создавая эффект профессиональной винотеки прямо у вас дома. Это идеальный выбор для истинных ценителей, желающих окружить себя эстетикой высокой винной культуры.',
+                defaultColor: 'Херос',
+                image: 'sommelier4.webp',
+                colors: {
+                    'Натуральный': ['sommelier1.webp'],
+                    'Венге': ['sommelier5.webp'],
+                    'Херос': ['sommelier4.webp'],
+                    'Дымчато-серый': ['sommelier3.webp'],
+                    'Белый лессирующий': ['sommelier2.webp']
+                }
+            },
+            'Cucina': {
+                title: 'Cucina',
+                price: 'от 65 000 ₽ / м²',
+                desc: 'Данная модульная система превращает кухонное пространство в территорию безупречной эргономики и вдохновения. Лаконичные фасады скрывают за собой сложную техническую начинку, сохраняя визуальную чистоту и порядок даже в моменты активной готовки. Мы спроектировали модули так, чтобы они плавно перетекали в жилую зону, стирая границы между функциональностью и уютом. Это идеальный выбор для тех, кто ищет баланс между кулинарным комфортом и эстетикой современного минимализма.',
+                defaultColor: 'Венге',
+                image: 'cucina5.webp',
+                colors: {
+                    'Натуральный': ['cucina1.webp'],
+                    'Венге': ['cucina5.webp'],
+                    'Херос': ['cucina4.webp'],
+                    'Дымчато-серый': ['cucina3.webp'],
+                    'Белый лессирующий': ['cucina2.webp']
+                }
+            },
+            'Arma': {
+                title: 'Arma',
+                price: 'от 65 000 ₽ / м²',
+                desc: 'Эта коллекция трансформирует утилитарное хранение оружия в благородную экспозицию, достойную статусного кабинета. Архитектура модулей разработана так, чтобы обеспечить надежную фиксацию арсенала, одновременно подчеркивая эстетику инженерной мысли. Мы ушли от брутальности металлических сейфов, предложив решение, которое гармонично интегрируется в жилой интерьер. Это идеальный выбор для коллекционеров, желающих окружить свои ценности достойным и безопасным обрамлением.',
+                defaultColor: 'Херос',
+                image: 'arma5.webp',
+                colors: {
+                    'Натуральный': ['arma2.webp'],
+                    'Венге': ['arma4.webp'],
+                    'Херос': ['arma5.webp'],
+                    'Дымчато-серый': ['arma3.webp'],
+                    'Белый лессирующий': ['arma1.webp']
+                }
+            },
+            'NewModel3': {
+                title: 'Новая Модель 3',
+                price: 'от 65 000 ₽ / м²',
+                desc: 'Описание новой модели. Замените этот текст и настройте цвета и изображения.',
+                defaultColor: 'Натуральный',
+                image: 'diamante.webp',
+                colors: {
+                    'Натуральный': ['diamante.webp'],
+                    'Венге': ['diamante.webp'],
+                    'Херос': ['diamante.webp'],
+                    'Дымчато-серый': ['diamante.webp'],
+                    'Белый лессирующий': ['diamante.webp']
+                }
+            }
+        };
+
+        const colorsDB = [
+            { name: 'Натуральный', hex: '#E5D0B1' },
+            { name: 'Венге', hex: '#3E2F28' },
+            { name: 'Херос', hex: '#664A3A' },
+            { name: 'Дымчато-серый', hex: '#8C8C91' },
+            { name: 'Белый лессирующий', hex: '#F4F1E8' }
+        ];
+
+        // --- INIT ---
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('product') || 'Diamante';
+        const productData = productsDB[productId] || productsDB['Diamante'];
+
+        // DOM Elements
+        const mainImg = document.getElementById('mainImage');
+        const colorContainer = document.getElementById('colorContainer');
+
+        // Setup Info
+        document.getElementById('pTitle').innerText = productData.title;
+        document.getElementById('pPrice').innerText = productData.price;
+        document.getElementById('pDesc').innerText = productData.desc;
+        document.getElementById('interestedProduct').value = productData.title;
+
+        // --- LIGHTBOX ---
+        function openLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = document.getElementById('mainImage').src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // --- LOGIC ---
+
+        // Функция обновления галереи
+        function updateGallery(images) {
+            // Если изображений нет или массив пуст, берем заглушку
+            const safeImages = (images && images.length > 0) ? images : [productData.image];
+            // Устанавливаем главное фото
+            mainImg.src = safeImages[0];
+        }
+
+        // Функция выбора цвета
+        function selectColor(colorName) {
+            // 1. Обновляем активный класс на цветах
+            document.querySelectorAll('.p-color-swatch').forEach(el => {
+                if(el.title === colorName) el.classList.add('active');
+                else el.classList.remove('active');
+            });
+
+            // 2. Получаем изображения для этого цвета
+            // Если для этого цвета нет фото, берем 'Натуральный' или просто заглушку
+            let images = [];
+            if (productData.colors && productData.colors[colorName]) {
+                images = productData.colors[colorName];
+            } else if (productData.colors && productData.colors['Натуральный']) {
+                // Фолбек на натуральный, если выбранного цвета нет в базе фото
+                images = productData.colors['Натуральный'];
+            } else {
+                // Совсем фолбек
+                images = [productData.image];
+            }
+
+            // 3. Обновляем галерею
+            mainImg.classList.add('fade-out');
+            setTimeout(() => {
+                updateGallery(images);
+                mainImg.classList.remove('fade-out');
+            }, 200);
+        }
+
+        // Рендерим палитру цветов
+        colorsDB.forEach((c) => {
+            let d = document.createElement('div');
+            d.className = 'p-color-swatch';
+            d.style.backgroundColor = c.hex;
+            d.title = c.name;
+            
+            if (c.hex === '#FFFFFF' || c.hex === '#F4F1E8') {
+                d.style.border = '1px solid #ddd';
+            }
+
+            d.onclick = () => selectColor(c.name);
+            colorContainer.appendChild(d);
+        });
+
+        // ЗАПУСК: Выбираем цвет по умолчанию (или первый из списка)
+        const startColor = productData.defaultColor || colorsDB[0].name;
+        selectColor(startColor);
+
+        // --- SUPABASE & MODAL LOGIC ---
+        
+        window.ROVERO_SUPABASE_URL = 'https://smymexmkxqqlcpsiyfym.supabase.co';
+        window.ROVERO_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNteW1leG1reHFxbGNwc2l5ZnltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk1Mjg2MDAsImV4cCI6MjA4NTEwNDYwMH0.E7f-juplaPEi6yXn2ENiyXOTsO9T1eyzIVWpLHa1l_c';
+        window.ROVERO_SUPABASE_CLIENT = null;
+
+        (function initSupabase() {
+            var url = window.ROVERO_SUPABASE_URL;
+            var key = window.ROVERO_SUPABASE_ANON_KEY;
+            import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm').then(function(m) {
+                window.ROVERO_SUPABASE_CLIENT = m.createClient(url, key);
+            }).catch(e => console.warn(e));
+        })();
+
+        const modal = document.getElementById('contactModal');
+        function openRequestModal() { 
+            modal.classList.add('active'); 
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() { 
+            modal.classList.remove('active'); 
+            document.body.style.overflow = '';
+        }
+        window.onclick = function(e) { if (e.target == modal) closeModal(); }
+
+        async function submitForm(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.disabled = true; btn.innerText = "ОТПРАВКА...";
+            
+            const payload = {
+                name: form.name.value,
+                phone: form.phone.value,
+                comment: form.comment.value,
+                interested_product: form.interested_product.value
+            };
+
+            try {
+                if(!window.ROVERO_SUPABASE_CLIENT) throw new Error("Supabase not ready");
+                const { error } = await window.ROVERO_SUPABASE_CLIENT.from('requests_rovero').insert(payload);
+                if (error) throw error;
+                
+                closeModal();
+                form.reset();
+                showToast();
+            } catch (err) {
+                console.error(err);
+                btn.innerText = "ОШИБКА";
+                setTimeout(() => btn.innerText = originalText, 2000);
+            } finally {
+                if(btn.innerText !== "ОШИБКА") {
+                    btn.disabled = false; 
+                    btn.innerText = originalText;
+                }
+            }
+        }
+
+        function showToast() {
+            const t = document.getElementById('requestToast');
+            t.classList.add('visible');
+            setTimeout(() => t.classList.remove('visible'), 2500);
+        }
+        
+        /* Copy phone helper */
+        function copyPhone(element, event) {
+            event.preventDefault();
+            const originalText = element.innerText;
+            navigator.clipboard.writeText(originalText).then(() => {
+                element.innerText = "СКОПИРОВАНО"; element.style.color = "#C5A065";
+                setTimeout(() => { element.innerText = originalText; element.style.color = ""; }, 400);
+            }).catch(err => { console.error('Error:', err); });
+        }
+    </script>
+</body>
+</html>
