@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     
     <title>ROVERO | Модульные системы хранения</title>
     
@@ -10,7 +10,6 @@
     <link rel="apple-touch-icon" href="favicon.png">
 
     <meta name="description" content="ROVERO CASA — российский производитель уникальных модульных гардеробных систем из массива дерева.">
-    
     <meta name="keywords" content="гардеробные системы, мебель на заказ москва, rovero, элитные гардеробные, модульные системы хранения">
     
     <meta property="og:title" content="ROVERO — Элитные гардеробные">
@@ -33,6 +32,9 @@
             font-family: 'Montserrat', sans-serif; 
             overflow-x: hidden; 
             line-height: 1.6; 
+            margin: 0;
+            padding: 0;
+            width: 100%;
         }
 
         /* КУРСОР */
@@ -101,16 +103,51 @@
         .nav-item:hover::after { width: 100%; }
 
         /* HERO */
-        .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-        .hero-bg-wrap { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .hero { 
+            height: 100vh; 
+            height: 100dvh;
+            position: relative; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            overflow: hidden; 
+        }
+        .hero-bg-wrap { 
+            position: absolute; 
+            top: 0; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100%; 
+            z-index: 0; 
+        }
         .hero-img { width: 100%; height: 100%; object-fit: cover; filter: blur(4px); transform: scale(1.05); }
         .hero-bottom-fade { position: absolute; bottom: 0; left: 0; width: 100%; height: 40vh; background: linear-gradient(to bottom, transparent 0%, var(--bg-base) 100%); z-index: 2; }
-        .hero-content { position: relative; z-index: 3; padding: 0 20px; display: flex; flex-direction: column; align-items: center; user-select: none; }
+        
+        .hero-content { 
+            position: relative; 
+            z-index: 3; 
+            padding: 0 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            user-select: none; 
+            width: 100%;
+        }
         
         .hero-text-block {
-            background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            padding: 40px 60px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.3); 
-            margin-bottom: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.25); 
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            padding: 40px 60px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+            margin-bottom: 30px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            width: fit-content; 
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
         }
         h1 { font-family: 'Cormorant Garamond'; font-size: 9vw; line-height: 1; margin: 0; letter-spacing: -0.02em; font-weight: 500; text-transform: uppercase; }
         .hero-sub { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; font-weight: 600; }
@@ -129,16 +166,12 @@
         /* MANIFESTO */
         .brand-manifesto { 
             background: var(--bg-base); 
-            /* ИЗМЕНЕНО: Паддинг уменьшен до 50px сверху */
             padding: 50px 50px 100px 50px; 
             text-align: center; 
-            /* ИЗМЕНЕНО: Убрана верхняя граница */
             border-top: none; 
             border-bottom: 1px solid rgba(197, 160, 101, 0.3); 
         }
         .manifesto-title { font-family: 'Cormorant Garamond'; font-size: 42px; margin-bottom: 60px; text-transform: uppercase; display: inline-block; position: relative; user-select: none;}
-        
-        /* ИЗМЕНЕНО: Полоска скрыта */
         .manifesto-title::after { display: none; }
         
         .manifesto-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; max-width: 1200px; margin: 0 auto; }
@@ -157,11 +190,9 @@
             padding-bottom: 80px; 
         }
         
-        /* Добавьте сюда расчет ширины (width) */
         .sys-card { 
             cursor: pointer; 
             margin-bottom: 0px;
-    /* Считаем ширину: (100% ширины минус 2 отступа по 40px) делим на 3 карточки */
             width: calc((100% - 80px) / 3);
         }
         .sys-img-box { height: 600px; margin-bottom: 12px; border-radius: 24px; overflow: hidden; background: #dcd9d0; } 
@@ -194,7 +225,6 @@
         .f-socials { display: flex; gap: 15px; margin-bottom: 15px; }
         .social-link { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
         
-        /* ИЗМЕНЕНО: Стили для картинок в соцсетях */
         .social-link img { 
             width: 100%; 
             height: 100%; 
@@ -236,10 +266,46 @@
             footer { display: flex; flex-direction: column; gap: 30px; } 
             .f-left, .f-center, .f-right { text-align: center; align-items: center; }
             .sys-grid, .manifesto-grid { grid-template-columns: 1fr; } 
-            h1 { font-size: 13vw; } 
+            
+            /* Уменьшаем шрифт и добавляем перенос */
+            h1 { 
+                font-size: 8.5vw; 
+                word-break: break-word;
+            } 
+            .hero-text-block { padding: 30px 25px; }
+            
             .header-inner { padding: 0 20px; }
             .sys-card { 
                 width: 100%; 
+            }
+        }
+        
+        /* ИСПРАВЛЕНИЕ ДЛЯ ГОРИЗОНТАЛЬНОГО РЕЖИМА (IPHONE/ANDROID) */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .hero { 
+                min-height: 100vh;
+                height: auto;
+                align-items: flex-start;  /* Отменяем центрирование */
+                padding-top: 100px;       /* Отступ сверху от шапки */
+                padding-bottom: 40px;
+            }
+            
+            .hero-content {
+                justify-content: flex-start;
+            }
+
+            .hero-text-block { 
+                padding: 20px 30px;
+                margin-bottom: 15px;
+                width: fit-content;
+            }
+
+            h1 {
+                font-size: 12vh; /* Шрифт от высоты экрана, чтобы влезал */
+            }
+            
+            .hero-sub {
+                margin-bottom: 5px;
             }
         }
 
@@ -326,7 +392,7 @@
                 <div class="sys-info"><h3 class="sys-name">Cerchio</h3></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Intimita')">
-                <div class="sys-img-box"><img src="intimita4.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-img-box"><img src="intimitaW.webp" loading="lazy" decoding="async"></div>
                 <div class="sys-info"><h3 class="sys-name">Intimita</h3></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Armonia')">
@@ -334,7 +400,7 @@
                 <div class="sys-info"><h3 class="sys-name">Armonia</h3></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Sommelier')">
-                <div class="sys-img-box"><img src="sommelier4.webp" loading="lazy" decoding="async"></div>
+                <div class="sys-img-box"><img src="sommelierW.webp" loading="lazy" decoding="async"></div>
                 <div class="sys-info"><h3 class="sys-name">Sommelier</h3></div>
             </div>
             <div class="sys-card" data-hover onclick="handleCardClick('Cucina')">
