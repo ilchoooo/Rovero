@@ -285,6 +285,15 @@
             transform: scale(1.5);
             background: rgba(255,255,255,0.1);
         }
+        /* Убираем кастомный курсор на мобилках и планшетах */
+        @media (max-width: 1024px) {
+            .cursor-dot, .cursor-circle {
+                display: none !important;
+            }
+            * {
+                cursor: auto !important; /* Возвращаем стандартный тап */
+            }
+        }
     </style>
 </head>
 <body>
