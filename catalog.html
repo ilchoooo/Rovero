@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>ROVERO | Каталог</title>
+
+    <link rel="icon" href="assets/images/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/icons/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Переиспользуем общие стили из index.css (шрифты, курсор, модалка, футер, хедер) -->
+    <link rel="stylesheet" href="assets/css/index.css?v=8682587">
+    <link rel="stylesheet" href="assets/css/catalog.css">
+    <link rel="stylesheet" href="assets/css/nav_sidebar.css">
+</head>
+
+<body>
+
+    <header id="site-header">
+        <div class="header-inner">
+            <button class="nav-menu-btn" id="menuOpenBtn" aria-label="Открыть меню">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+                <span>Меню</span>
+            </button>
+
+            <a href="index.html" class="logo-box" data-hover><span class="brand-name">ROVERO</span>
+                <div class="brand-div"></div><span class="brand-sub">DESIGN</span>
+            </a>
+
+            <div class="header-right-group">
+                <a href="tel:+74957488944" class="h-phone h-phone-header" onclick="copyPhone(this, event)" data-hover>+7
+                    (495) 748-89-44</a>
+                <a href="favorites.html" class="h-icon" id="headerFavBtn" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                    <span class="fav-badge badge" style="display:none;">0</span>
+                </a>
+                <a href="cart.html" class="h-icon" id="headerCartBtn" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-badge badge" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div id="navOverlay"></div>
+                <div id="navSidebar">
+        <div class="nav-sidebar-head">
+            <span class="nav-sidebar-title">Меню</span>
+            <button class="nav-close-btn" id="navCloseBtn" aria-label="Закрыть">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- НАВИГАЦИЯ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Навигация</div>
+            <div class="nav-section-links">
+                <a href="index.html" class="nav-link">Главная страница</a>
+                <a href="catalog.html" class="nav-link">Каталог товаров</a>
+                <a href="collections.html" class="nav-link">Коллекции мебели</a>
+            </div>
+        </div>
+
+        <!-- КАТЕГОРИИ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Категории</div>
+            <div class="nav-section-links">
+                <a href="catalog.html?cat=СПАЛЬНЯ" class="nav-link">Спальня</a>
+                <a href="catalog.html?cat=КУХНЯ и ВИНОТЕКА" class="nav-link">Кухня и винотека</a>
+                <a href="catalog.html?cat=ГАРДЕРОБНАЯ и ПРИХОЖАЯ" class="nav-link">Гардеробная и прихожая</a>
+                <a href="catalog.html?cat=ГОСТИНАЯ и БИБЛИОТЕКА" class="nav-link">Гостиная и библиотека</a>
+            </div>
+        </div>
+
+        <!-- НАПРАВЛЕНИЯ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Направления</div>
+            <div class="nav-section-links">
+                <a href="bureau.html" class="nav-link">ROVERO Labs</a>
+                <a href="constructor.html" class="nav-link">ROVERO Kids</a>
+            </div>
+        </div>
+
+        <!-- ПОКУПАТЕЛЮ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Покупателю</div>
+            <div class="nav-section-links">
+                <a href="favorites.html" class="nav-link">Избранное</a>
+                <a href="cart.html" class="nav-link">Корзина покупок</a>
+                <a href="request.html" class="nav-link">Оформить заявку</a>
+            </div>
+        </div>
+
+        <!-- О БРЕНДЕ -->
+        <div class="nav-section">
+            <div class="nav-section-label">О нас</div>
+            <div class="nav-section-links">
+                <a href="about.html" class="nav-link">О бренде</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+            </div>
+        </div>
+
+        <!-- КОНТАКТЫ -->
+        <div class="nav-contacts">
+            <a href="tel:+74957488944" class="nav-contact-item">+7 (495) 748-89-44</a>
+            <a href="mailto:info@roverodesign.ru" class="nav-contact-item">info@roverodesign.ru</a>
+        </div>
+    </div>
+
+
+    <main class="catalog-page">
+        <div class="catalog-header-container">
+            <!-- Категории вынесены из фильтров -->
+            <div class="catalog-categories" id="topCategories">
+                <div class="cat-col">
+                    <h4 class="cat-group-link" data-group="СПАЛЬНЯ"
+                        data-cats="Кровати,Прикроватные тумбы,Туалетные столики" data-hover>СПАЛЬНЯ</h4>
+                    <label class="cat-link" data-cat="Кровати" data-hover><input type="checkbox" class="cat-checkbox"
+                            value="Кровати" style="display: none;">Кровати</label>
+                    <label class="cat-link" data-cat="Прикроватные тумбы" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Прикроватные тумбы" style="display: none;">Прикроватные
+                        тумбы</label>
+                    <label class="cat-link" data-cat="Туалетные столики" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Туалетные столики" style="display: none;">Туалетные
+                        столики</label>
+                </div>
+                <div class="cat-col">
+                    <h4 class="cat-group-link" data-group="КУХНЯ и ВИНОТЕКА"
+                        data-cats="Винные стеллажи,Прямые кухни,Угловые кухни,П-образные кухни,Кухни с островом,Кухонные острова"
+                        data-hover>КУХНЯ и ВИНОТЕКА</h4>
+                    <label class="cat-link" data-cat="Винные стеллажи" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Винные стеллажи" style="display: none;">Винные стеллажи</label>
+                    <label class="cat-link" data-cat="Прямые кухни" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Прямые кухни" style="display: none;">Прямые кухни</label>
+                    <label class="cat-link" data-cat="Угловые кухни" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Угловые кухни" style="display: none;">Угловые кухни</label>
+                    <label class="cat-link" data-cat="П-образные кухни" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="П-образные кухни" style="display: none;">П-образные
+                        кухни</label>
+                    <label class="cat-link" data-cat="Кухни с островом" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Кухни с островом" style="display: none;">Кухни с
+                        островом</label>
+                    <label class="cat-link" data-cat="Кухонные острова" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Кухонные острова" style="display: none;">Кухонные
+                        острова</label>
+                </div>
+                <div class="cat-col">
+                    <h4 class="cat-group-link" data-group="ГАРДЕРОБНАЯ и ПРИХОЖАЯ"
+                        data-cats="Гардеробные модули,Прямые гардеробы,Угловые гардеробы,П-образные гардеробы,Гардеробы с островом,Гардеробные острова"
+                        data-hover>ГАРДЕРОБНАЯ и ПРИХОЖАЯ</h4>
+                    <label class="cat-link" data-cat="Гардеробные модули" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Гардеробные модули" style="display: none;">Гардеробные
+                        модули</label>
+                    <label class="cat-link" data-cat="Прямые гардеробы" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Прямые гардеробы" style="display: none;">Прямые
+                        гардеробы</label>
+                    <label class="cat-link" data-cat="Угловые гардеробы" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Угловые гардеробы" style="display: none;">Угловые
+                        гардеробы</label>
+                    <label class="cat-link" data-cat="П-образные гардеробы" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="П-образные гардеробы" style="display: none;">П-образные
+                        гардеробы</label>
+                    <label class="cat-link" data-cat="Гардеробы с островом" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Гардеробы с островом" style="display: none;">Гардеробы с
+                        островом</label>
+                    <label class="cat-link" data-cat="Гардеробные острова" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Гардеробные острова" style="display: none;">Гардеробные
+                        острова</label>
+                </div>
+                <div class="cat-col">
+                    <h4 class="cat-group-link" data-group="ГОСТИНАЯ и БИБЛИОТЕКА"
+                        data-cats="Стеллажи,Комоды,Консоли,Книжные полки" data-hover>ГОСТИНАЯ и БИБЛИОТЕКА</h4>
+                    <label class="cat-link" data-cat="Стеллажи" data-hover><input type="checkbox" class="cat-checkbox"
+                            value="Стеллажи" style="display: none;">Стеллажи</label>
+                    <label class="cat-link" data-cat="Комоды" data-hover><input type="checkbox" class="cat-checkbox"
+                            value="Комоды" style="display: none;">Комоды</label>
+                    <label class="cat-link" data-cat="Консоли" data-hover><input type="checkbox" class="cat-checkbox"
+                            value="Консоли" style="display: none;">Консоли</label>
+                    <label class="cat-link" data-cat="Книжные полки" data-hover><input type="checkbox"
+                            class="cat-checkbox" value="Книжные полки" style="display: none;">Книжные полки</label>
+                </div>
+            </div>
+
+            <div class="catalog-controls-row">
+                <button id="filterBtn" class="control-btn" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="21" x2="4" y2="14"></line>
+                        <line x1="4" y1="10" x2="4" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12" y2="3"></line>
+                        <line x1="20" y1="21" x2="20" y2="16"></line>
+                        <line x1="20" y1="12" x2="20" y2="3"></line>
+                        <line x1="1" y1="14" x2="7" y2="14"></line>
+                        <line x1="9" y1="8" x2="15" y2="8"></line>
+                        <line x1="17" y1="16" x2="23" y2="16"></line>
+                    </svg>
+                    Фильтры
+                </button>
+
+                <div class="catalog-search-wrapper">
+                    <svg class="catalog-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="catalogSearchInput" class="catalog-search-input"
+                        placeholder="Поиск по товарам..." autocomplete="off">
+                    <button class="catalog-search-clear" id="catalogSearchClear" aria-label="Очистить поиск"
+                        title="Очистить">&times;</button>
+                </div>
+
+                <div class="sort-wrapper">
+                    <button id="sortBtn" class="control-btn" data-hover>
+                        Сортировка
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" y1="6" x2="20" y2="6"></line>
+                            <line x1="4" y1="12" x2="14" y2="12"></line>
+                            <line x1="4" y1="18" x2="9" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div id="sortDropdown" class="sort-dropdown">
+                        <div class="sort-option active" data-sort="price-asc" data-hover>По цене (возрастание)</div>
+                        <div class="sort-option" data-sort="price-desc" data-hover>По цене (убывание)</div>
+                        <div class="sort-option" data-sort="name-asc" data-hover>По названию (А-Я)</div>
+                        <div class="sort-option" data-sort="name-desc" data-hover>По названию (Я-А)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="catalog-grid" id="catalogGrid">
+            <!-- Сюда динамически генерируются карточки из JS -->
+        </div>
+    </main>
+
+    <!-- Выезжающая боковая панель Фильтров -->
+    <div class="filter-drawer-overlay" id="filterOverlay"></div>
+    <aside class="filter-drawer" id="filterDrawer">
+        <div class="filter-header">
+            <h3>Фильтры</h3>
+            <button class="close-filter-btn" id="closeFilterBtn" data-hover>×</button>
+        </div>
+
+        <div class="filter-body">
+
+
+            <!-- === КОЛЛЕКЦИИ (аккордеон) === -->
+            <div class="filter-group">
+                <div class="filter-accordion-head" data-acc="collections">
+                    <span class="filter-group-title">Коллекции</span>
+                    <svg class="acc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="filter-accordion-body" id="acc-collections">
+                    <div class="filter-options" id="collectionFilters">
+                        <!-- Чекбоксы перегоняются динамически из itemsDB -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- === ЦЕНА === -->
+            <div class="filter-group">
+                <div class="filter-accordion-head" data-acc="price">
+                    <span class="filter-group-title">Цена</span>
+                    <svg class="acc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="filter-accordion-body" id="acc-price">
+                    <div class="price-slider-wrapper">
+                        <div class="price-inputs">
+                            <input type="number" id="minPriceInput" value="0" min="0" max="5000000">
+                            <span>—</span>
+                            <input type="number" id="maxPriceInput" value="5000000" min="0" max="5000000">
+                            <span>₽</span>
+                        </div>
+                        <div class="range-slider">
+                            <div class="range-track"></div>
+                            <input type="range" id="minPriceRange" min="0" max="5000000" value="0" step="1000">
+                            <input type="range" id="maxPriceRange" min="0" max="5000000" value="5000000" step="1000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="filter-footer">
+            <button class="reset-filter-btn" id="resetFilterBtn" data-hover>Сбросить</button>
+            <button class="apply-filter-btn" id="applyFilterBtn" data-hover>Применить</button>
+        </div>
+    </aside>
+
+    <footer id="footer">
+        <div class="footer-grid">
+            <div class="f-left">
+                <a href="https://yandex.ru/maps/?text=Московская+область,+г.+Истра,+ул.+Московская,+д.+5Б"
+                    target="_blank" class="f-address" data-hover>
+                    г. Истра, Московская область,<br>ул. Московская, д. 5Б
+                </a>
+            </div>
+            <div class="f-center">
+                <a href="#" class="footer-up-link" data-hover
+                    onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">
+                    <div class="f-logo">ROVERO</div>
+                    <span class="f-ussr">Сделано в СССР</span>
+                </a>
+            </div>
+            <div class="f-right">
+                <div class="f-socials">
+                    <a href="https://pin.it/2L0sqvX60" target="_blank" class="social-link" data-hover>
+                        <img src="assets/images/icons/pin.webp" alt="Pinterest">
+                    </a>
+                    <a href="https://vk.com/roverodesign" target="_blank" class="social-link vk-link" data-hover>
+                        <img src="assets/images/icons/vk.webp" alt="VK">
+                    </a>
+                    <a href="https://t.me/roverodesign" target="_blank" class="social-link" data-hover>
+                        <img src="assets/images/icons/tg.webp" alt="Telegram">
+                    </a>
+                    <a href="https://max.ru/join/5EWSTPk9Rqw2J9zZi21fxuXY0fo5J0ws3SGbeObK978" target="_blank"
+                        class="social-link" data-hover>
+                        <img src="assets/images/icons/max.webp" alt="Max">
+                    </a>
+                </div>
+                <a href="#" class="f-contact-link" onclick="copyPhone(this, event)" data-hover>+7 (495) 748-89-44</a>
+                <a href="mailto:info@roverodesign.ru" class="h-email" data-hover>info@roverodesign.ru</a>
+            </div>
+        </div>
+
+        <div class="footer-menu-links">
+            <a href="about.html" class="f-menu-link" data-hover>О бренде</a>
+            <a href="catalog.html" class="f-menu-link" data-hover>Каталог</a>
+            <a href="collections.html" class="f-menu-link" data-hover>Коллекции</a>
+            <a href="bureau.html" class="f-menu-link" data-hover>ROVERO LABS</a>
+            <a href="constructor.html" class="f-menu-link" data-hover>ROVERO Kids</a>
+            <a href="contacts.html" class="f-menu-link" data-hover>Где нас найти</a>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="f-legal-links">
+                <a href="privacy.html" data-hover>Политика конфиденциальности</a>
+                <a href="terms.html" data-hover>Пользовательское соглашение</a>
+                <a href="https://beldweb.ru/" target="_blank" data-hover>Разработка сайта — Beldweb</a>
+            </div>
+            <span class="f-copy">© 2026 MOSCOW</span>
+        </div>
+    </footer>
+
+    <script src="assets/js/catalog_data.js?v=6861"></script>
+    <script src="assets/js/db.js"></script>
+    <!-- Загружаем индексный js для курсора, а потом каталог -->
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/catalog.js?v=6861"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/nav_sidebar.js"></script>
+</body>
+
+</html>

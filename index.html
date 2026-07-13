@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+
+    <title>ROVERO | Модульные системы хранения</title>
+
+    <link rel="icon" href="assets/images/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/icons/favicon.png">
+
+    <meta name="description"
+        content="ROVERO DESIGN — российский производитель уникальных модульных гардеробных систем из массива дерева.">
+    <meta name="keywords"
+        content="гардеробные системы, мебель на заказ москва, rovero, элитные гардеробные, модульные системы хранения">
+
+    <meta property="og:title" content="ROVERO — Элитные гардеробные">
+    <meta property="og:description" content="Инновационный подход к хранению. Персональные проекты под ваш интерьер.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://roverodesign.ru/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/nav_sidebar.css">
+</head>
+
+<body>
+
+    <header id="site-header">
+        <div class="header-inner">
+            <button class="nav-menu-btn" id="menuOpenBtn" aria-label="Открыть меню">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span>Меню</span>
+            </button>
+
+            <a href="#" class="logo-box" data-hover
+                onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;"><span
+                    class="brand-name">ROVERO</span>
+                <div class="brand-div"></div><span class="brand-sub">DESIGN</span>
+            </a>
+
+            <div class="header-right-group">
+                <a href="tel:+74957488944" class="h-phone h-phone-header" onclick="copyPhone(this, event)" data-hover>+7
+                    (495) 748-89-44</a>
+                <a href="favorites.html" class="h-icon" id="headerFavBtn" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                    <span class="fav-badge badge" style="display:none;">0</span>
+                </a>
+                <a href="cart.html" class="h-icon" id="headerCartBtn" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-badge badge" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div id="navOverlay"></div>
+    <div id="navSidebar">
+        <div class="nav-sidebar-head">
+            <span class="nav-sidebar-title">Меню</span>
+            <button class="nav-close-btn" id="navCloseBtn" aria-label="Закрыть">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- НАВИГАЦИЯ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Навигация</div>
+            <div class="nav-section-links">
+                <a href="index.html" class="nav-link">Главная страница</a>
+                <a href="catalog.html" class="nav-link">Каталог товаров</a>
+                <a href="collections.html" class="nav-link">Коллекции мебели</a>
+            </div>
+        </div>
+
+        <!-- КАТЕГОРИИ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Категории</div>
+            <div class="nav-section-links">
+                <a href="catalog.html?cat=СПАЛЬНЯ" class="nav-link">Спальня</a>
+                <a href="catalog.html?cat=КУХНЯ и ВИНОТЕКА" class="nav-link">Кухня и винотека</a>
+                <a href="catalog.html?cat=ГАРДЕРОБНАЯ и ПРИХОЖАЯ" class="nav-link">Гардеробная и прихожая</a>
+                <a href="catalog.html?cat=ГОСТИНАЯ и БИБЛИОТЕКА" class="nav-link">Гостиная и библиотека</a>
+            </div>
+        </div>
+
+        <!-- НАПРАВЛЕНИЯ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Направления</div>
+            <div class="nav-section-links">
+                <a href="bureau.html" class="nav-link">ROVERO Labs</a>
+                <a href="constructor.html" class="nav-link">ROVERO Kids</a>
+            </div>
+        </div>
+
+        <!-- ПОКУПАТЕЛЮ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Покупателю</div>
+            <div class="nav-section-links">
+                <a href="favorites.html" class="nav-link">Избранное</a>
+                <a href="cart.html" class="nav-link">Корзина покупок</a>
+                <a href="request.html" class="nav-link">Оформить заявку</a>
+            </div>
+        </div>
+
+        <!-- О БРЕНДЕ -->
+        <div class="nav-section">
+            <div class="nav-section-label">О нас</div>
+            <div class="nav-section-links">
+                <a href="about.html" class="nav-link">О бренде</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+            </div>
+        </div>
+
+        <!-- КОНТАКТЫ -->
+        <div class="nav-contacts">
+            <a href="tel:+74957488944" class="nav-contact-item">+7 (495) 748-89-44</a>
+            <a href="mailto:info@roverodesign.ru" class="nav-contact-item">info@roverodesign.ru</a>
+        </div>
+    </div>
+
+
+    <section class="main-slider" id="home">
+        <div class="slide">
+            <img src="assets/images/collections/libro/libro_preview.webp" class="slide-img" alt="Luxury Storage">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Домашняя библиотека</span>
+                <h2 class="slide-title">Коллекция<br>«Либро»</h2>
+                <a href="collection.html?name=Либро" class="slide-btn" data-hover>Подробнее</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="assets/images/collections/diamante/diamante_preview.webp" class="slide-img"
+                alt="Diamante Collection">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Инженерное искусство</span>
+                <h2 class="slide-title">Архитектура<br>хранения</h2>
+                <a href="collection.html?name=Диаманте" class="slide-btn" data-hover>Подробнее</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="assets/images/collections/kompatto/kompatto_preview.webp" class="slide-img"
+                alt="Kompatto Collection">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Сделано в России</span>
+                <h2 class="slide-title">Винотека<br>«Компатто»</h2>
+                <a href="collection.html?name=Компатто" class="slide-btn" data-hover>Подробнее</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="assets/images/collections/intimita/intimita_preview.webp" class="slide-img"
+                alt="intimita Collection">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Проект спальни</span>
+                <h2 class="slide-title">Элегантность<br>в деталях</h2>
+                <a href="collection.html?name=Интимита" class="slide-btn" data-hover>Подробнее</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="assets/images/collections/mestolo/mestolo_preview.webp" class="slide-img"
+                alt="mestolo Collection">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Современная классика</span>
+                <h2 class="slide-title">Искусство<br>жизни</h2>
+                <a href="collection.html?name=Местоло" class="slide-btn" data-hover>Подробнее</a>
+            </div>
+        </div>
+
+        <div class="slider-controls">
+            <div class="slider-dots">
+                <div class="dot" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+                <div class="dot" data-index="2"></div>
+                <div class="dot" data-index="3"></div>
+                <div class="dot" data-index="4"></div>
+            </div>
+            <div class="slider-nav">
+                <div class="nav-arrow prev" data-hover>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M19 12H5M5 12L12 19M5 12L12 5"></path>
+                    </svg>
+                </div>
+                <div class="nav-arrow next" data-hover>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <h2 class="collections-title">Коллекции</h2>
+        <div class="collections-carousel-container">
+            <button class="collections-nav-arrow prev-collections" aria-label="Назад">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </button>
+            <div class="cat-grid active" id="grid-collections">
+                <!-- Заполняется динамически через JS из COLLECTIONS_METADATA -->
+            </div>
+            <button class="collections-nav-arrow next-collections" aria-label="Вперед">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="collections-slider-wrap">
+            <div class="collections-slider-track" id="collectionsSliderTrack">
+                <div class="collections-slider-thumb" id="collectionsSliderThumb"></div>
+            </div>
+        </div>
+
+        <a href="collections.html" class="to-catalog-btn" data-hover>ВСЕ КОЛЛЕКЦИИ</a>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- BLOCK: RANDOM PRODUCTS -->
+    <section class="random-products-section">
+        <h2 class="random-products-title">Вдохновение Rovero</h2>
+        <p class="random-products-subtitle">Эксклюзивная подборка товаров</p>
+        <div class="random-products-grid" id="randomProductsGrid">
+            <!-- Заполняется динамически через JS -->
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="catalog.html" class="random-refresh-btn" data-hover>Открыть каталог</a>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <section class="bespoke-banner" id="bespoke">
+        <div class="b-content-wrap">
+            <h2 class="b-title">ROVERO Labs</h2>
+            <p class="b-desc">Не нашли идеальный вариант в каталоге? Или у вас собственное видение интерьера? ROVERO
+                Labs – это конструкторское бюро полного цикла. Мы создаем мебель любой сложности из любых материалов. От
+                доработки вашего проекта до производства «под ключ». Вы обращаетесь к нам на любом этапе – мы реализуем.
+            </p>
+            <a href="bureau.html" class="b-btn" data-hover>Подробнее</a>
+        </div>
+        <div class="bespoke-img-wrap">
+            <img src="assets/images/ui/buro1.webp" class="bespoke-img main-img" loading="lazy" decoding="async"
+                alt="ROVERO Labs чертеж">
+            <img src="assets/images/ui/buro2.webp" class="bespoke-img hover-img" loading="lazy" decoding="async"
+                alt="ROVERO Labs чертеж наведение">
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <section class="kids-constructor-banner" id="kids-constructor">
+        <div class="kc-content-wrap">
+            <h2 class="kc-title">ROVERO Kids</h2>
+            <p class="kc-desc">Миниатюрные модели нашей мебели из разлагаемого пластика с пошаговой инструкцией по
+                сборке. ROVERO Kids – это конструктор для детей и взрослых, который повторяет архитектуру наших реальных
+                изделий. Соберите свою кухню, шкаф или винотеку по подробной инструкции и почувствуйте масштаб нашего
+                дизайна в миниатюре. Экологично, эстетично и увлекательно.</p>
+            <a href="constructor.html" class="kc-btn" data-hover>Подробнее</a>
+        </div>
+        <div class="kids-constructor-img-wrap">
+            <img src="assets/images/ui/kids_constructor.webp" class="kids-constructor-img" loading="lazy"
+                decoding="async" alt="ROVERO Kids">
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <section class="brand-manifesto" id="about">
+        <div class="manifesto-wrapper">
+            <div class="manifesto-visual">
+                <img src="assets/images/ui/about.webp" alt="ROVERO DESIGN" class="manifesto-img-main">
+            </div>
+            <div class="manifesto-content">
+                <span class="manifesto-eyebrow">О бренде</span>
+                <div class="manifesto-text-block">
+                    <p class="manifesto-p">ROVERO DESIGN существует вне привычных категорий. В наших продуктах мы
+                        объединяем монументальность натурального дерева и гибкость современных модульных систем. Это
+                        мебель, которая не имеет аналогов и создается под конкретную архитектуру.</p>
+                    <p class="manifesto-p">Мы гордимся своим происхождением. Российское производство позволяет нам не
+                        зависеть от внешних трендов, а формировать собственный язык дизайна. Мы работаем с помещениями
+                        любой сложности: кухни, гардеробные, кабинеты и санузлы становятся частью единого стиля.</p>
+                    <p class="manifesto-p">Наша философия проста: материал должен говорить сам за себя. Мы используем
+                        только натуральные материалы. Это не маркетинг, а уважение к природе и к вам. Тактильное
+                        удовольствие и абсолютная безопасность - то, что вы получаете вместе с каждым изделием от
+                        ROVERO.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <section class="projects-section" id="projects">
+        <div class="projects-header">
+            <span class="projects-subtitle">Наше портфолио</span>
+            <h2 class="projects-title">Проекты с нашей мебелью</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-tile tile-1">
+                <img src="assets/images/portfolio/1.webp" alt="Проект Армония" class="project-img" loading="lazy">
+            </div>
+            <div class="project-tile tile-2">
+                <img src="assets/images/ui/grid2.webp" alt="Проект Диаманте" class="project-img" loading="lazy">
+            </div>
+            <div class="project-tile tile-3">
+                <img src="assets/images/ui/grid3.webp" alt="Проект Сомелье" class="project-img" loading="lazy">
+            </div>
+            <div class="project-tile tile-4">
+                <img src="assets/images/ui/grid4.webp" alt="Проект Луче" class="project-img" loading="lazy">
+            </div>
+            <div class="project-tile tile-5">
+                <img src="assets/images/ui/grid7.webp" alt="Проект Интимита" class="project-img" loading="lazy">
+            </div>
+            <div class="project-tile tile-6">
+                <img src="assets/images/ui/grid6.webp" alt="Проект Серкио" class="project-img" loading="lazy">
+            </div>
+            <div class="project-tile tile-7">
+                <img src="assets/images/ui/grid8.webp" alt="Проект Rovero" class="project-img" loading="lazy">
+            </div>
+            <div class="project-tile tile-8">
+                <img src="assets/images/ui/grid5.webp" alt="Проект Местоло" class="project-img" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- WHERE TO FIND US & CONTACTS -->
+    <section id="where-to-find" class="contacts-section">
+        <div class="contacts-wrapper">
+            <div class="contacts-right">
+                <div class="contacts-map-container">
+                    <iframe
+                        src="https://yandex.ru/map-widget/v1/?ll=36.864700%2C55.925200&z=15&pt=36.864700,55.925200,pm2rdm&text=%D0%9C%D0%BE%D1%81%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%2C%20%D0%98%D1%81%D1%82%D1%80%D0%B0%2C%20%D1%83%D0%BB.%20%D0%9C%D0%BE%D1%81%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%2C%20%D0%B4.%205%D0%91"
+                        allowfullscreen loading="lazy" title="Адрес ROVERO DESIGN">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="contacts-left">
+                <div class="contacts-header">
+                    <div style="display: flex; flex-direction: column;">
+                        <span class="contacts-subtitle">Свяжитесь с нами</span>
+                        <h2 class="contacts-title">Контакты</h2>
+                    </div>
+                </div>
+
+                <div class="contacts-list">
+                    <!-- Телефон -->
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="contact-card-content">
+                            <span class="contact-card-label">Телефон</span>
+                            <a href="tel:+74957488944" class="contact-card-value" data-hover>+7 (495) 748-89-44</a>
+                            <span class="contact-card-subtext">Звонки принимаем круглосуточно</span>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-card-content">
+                            <span class="contact-card-label">Email</span>
+                            <a href="mailto:info@roverodesign.ru" class="contact-card-value"
+                                data-hover>info@roverodesign.ru</a>
+                            <span class="contact-card-subtext">Ответим в течение одного рабочего дня</span>
+                        </div>
+                    </div>
+
+                    <!-- Адрес производства -->
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="contact-card-content">
+                            <span class="contact-card-label">Адрес производства</span>
+                            <a href="https://yandex.ru/maps/?text=Московская+область,+г.+Истра,+ул.+Московская,+д.+5Б"
+                                target="_blank" class="contact-card-value" data-hover>Истра, ул. Московская, 5Б</a>
+                            <span class="contact-card-subtext">Московская область, ~50 км от МКАД</span>
+                            <a href="https://yandex.ru/maps/?text=Московская+область,+г.+Истра,+ул.+Московская,+д.+5Б"
+                                target="_blank" class="contact-card-route-btn" data-hover>
+                                Построить маршрут →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-grid">
+            <div class="f-left">
+                <a href="https://yandex.ru/maps/?text=Московская+область,+г.+Истра,+ул.+Московская,+д.+5Б"
+                    target="_blank" class="f-address" data-hover>
+                    г. Истра, Московская область,<br>ул. Московская, д. 5Б
+                </a>
+            </div>
+            <div class="f-center">
+                <a href="#" class="footer-up-link" data-hover
+                    onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">
+                    <div class="f-logo">ROVERO</div>
+                    <span class="f-ussr">Сделано в СССР</span>
+                </a>
+            </div>
+            <div class="f-right">
+                <div class="f-socials">
+                    <a href="https://pin.it/2L0sqvX60" target="_blank" class="social-link" data-hover>
+                        <img src="assets/images/icons/pin.webp" alt="Pinterest">
+                    </a>
+                    <a href="https://vk.com/roverodesign" target="_blank" class="social-link vk-link" data-hover>
+                        <img src="assets/images/icons/vk.webp" alt="VK">
+                    </a>
+                    <a href="https://t.me/roverodesign" target="_blank" class="social-link" data-hover>
+                        <img src="assets/images/icons/tg.webp" alt="Telegram">
+                    </a>
+                    <a href="https://max.ru/join/5EWSTPk9Rqw2J9zZi21fxuXY0fo5J0ws3SGbeObK978" target="_blank"
+                        class="social-link" data-hover>
+                        <img src="assets/images/icons/max.webp" alt="Max">
+                    </a>
+                </div>
+                <a href="#" class="f-contact-link" onclick="copyPhone(this, event)" data-hover>+7 (495) 748-89-44</a>
+                <a href="mailto:info@roverodesign.ru" class="h-email" data-hover>info@roverodesign.ru</a>
+            </div>
+        </div>
+
+        <div class="footer-menu-links">
+            <a href="about.html" class="f-menu-link" data-hover>О бренде</a>
+            <a href="catalog.html" class="f-menu-link" data-hover>Каталог</a>
+            <a href="collections.html" class="f-menu-link" data-hover>Коллекции</a>
+            <a href="bureau.html" class="f-menu-link" data-hover>ROVERO Labs</a>
+            <a href="constructor.html" class="f-menu-link" data-hover>ROVERO Kids</a>
+            <a href="contacts.html" class="f-menu-link" data-hover>Где нас найти</a>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="f-legal-links">
+                <a href="privacy.html" data-hover>Политика конфиденциальности</a>
+                <a href="terms.html" data-hover>Пользовательское соглашение</a>
+                <a href="https://beldweb.ru/" target="_blank" data-hover>Разработка сайта — Beldweb</a>
+            </div>
+            <span class="f-copy">© 2026 MOSCOW</span>
+        </div>
+    </footer>
+
+    <!-- Lightbox for Projects -->
+    <div id="projectLightbox" class="project-lightbox" onclick="closeProjectLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="projectLightboxImg" src="" alt="Full Screen Project Image">
+        <div id="projectLightboxCaption" class="lightbox-caption"></div>
+    </div>
+
+    <div id="requestToast" class="request-toast">Заявка отправлена</div>
+
+
+
+    <script src="assets/js/catalog_data.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-text">
+            Мы используем файлы cookie для улучшения работы сайта. Продолжая просмотр, вы соглашаетесь с нашей
+            <a href="cookie.html" data-hover>политикой использования файлов cookie</a>.
+        </div>
+        <button class="cookie-btn" onclick="acceptCookies()" data-hover>Принять</button>
+    </div>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/nav_sidebar.js"></script>
+</body>
+
+</html>

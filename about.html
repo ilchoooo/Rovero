@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>О бренде — ROVERO DESIGN</title>
+    <link rel="icon" href="assets/images/icons/favicon.png" type="image/png">
+    <meta name="description" content="О бренде ROVERO DESIGN. Производство элитной мебели из массива дерева в России.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/nav_sidebar.css">
+    <style>
+        /* PAGE HERO */
+        .page-hero {
+            height: 100vh;
+            height: 100dvh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            background: #0e0d0b;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 80px;
+            max-width: 900px;
+        }
+
+        .page-hero-eyebrow {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .page-hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(52px, 7vw, 100px);
+            font-weight: 400;
+            color: #fff;
+            line-height: 1.05;
+            margin-bottom: 30px;
+        }
+
+        .page-hero-sub {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.65);
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .hero-scroll-hint {
+            position: absolute;
+            right: 80px;
+            bottom: 80px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                opacity: 0.4
+            }
+
+            50% {
+                opacity: 1
+            }
+        }
+
+        /* PRINCIPLES SECTION */
+        .principles-section {
+            background: #fff;
+            padding: 120px 80px;
+        }
+
+        .principles-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .principles-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 4vw, 52px);
+            font-weight: 400;
+            color: #000000;
+            margin: 0;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 300px 300px;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Accordion style expansion via :has() (Desktop Only) */
+        @media (min-width: 901px) {
+            .principles-grid:has(.principle-card:nth-child(3n+1):hover) {
+                grid-template-columns: 1.6fr 0.7fr 0.7fr;
+            }
+
+            .principles-grid:has(.principle-card:nth-child(3n+2):hover) {
+                grid-template-columns: 0.7fr 1.6fr 0.7fr;
+            }
+
+            .principles-grid:has(.principle-card:nth-child(3n):hover) {
+                grid-template-columns: 0.7fr 0.7fr 1.6fr;
+            }
+
+            .principles-grid:has(.principle-card:nth-child(-n+3):hover) {
+                grid-template-rows: 380px 220px;
+            }
+
+            .principles-grid:has(.principle-card:nth-child(n+4):hover) {
+                grid-template-rows: 220px 380px;
+            }
+        }
+
+        .principle-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 101, 0.12);
+            padding: 35px 22px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .principle-card:hover {
+            background: #fff;
+            border-color: var(--gold, #c5a065);
+            box-shadow: 0 20px 40px rgba(197, 160, 101, 0.12);
+        }
+
+        @media (min-width: 901px) {
+            .principles-grid:has(.principle-card:hover) .principle-card:not(:hover) {
+                opacity: 0.45;
+            }
+        }
+
+        .principle-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            color: var(--gold, #c5a065);
+            line-height: 1;
+            margin-bottom: 12px;
+            font-weight: 300;
+            font-style: italic;
+            opacity: 0.85;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.3, 1);
+            transform-origin: left top;
+        }
+
+        .principle-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: var(--text-main, #000);
+            opacity: 1;
+            transition: opacity 0.15s ease 0.1s;
+        }
+
+        .principle-content-small {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.15s ease 0.1s, visibility 0.15s ease 0.1s;
+        }
+
+        .principle-card:hover .principle-content-small {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.1s ease, visibility 0.1s ease;
+        }
+
+        @media (min-width: 901px) {
+            .principles-grid:has(.principle-card:hover) .principle-card:not(:hover) .principle-content-small {
+                opacity: 0 !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+                transition: opacity 0.1s ease !important, visibility 0.1s ease !important;
+            }
+
+            .principles-grid:has(.principle-card:hover) .principle-card:not(:hover) .principle-title {
+                opacity: 0 !important;
+                pointer-events: none !important;
+                transition: opacity 0.1s ease !important;
+            }
+        }
+
+        .principle-desc-short {
+            font-size: 12px;
+            color: var(--text-muted, #777);
+            line-height: 1.7;
+        }
+
+        .principle-desc-expanded {
+            position: absolute;
+            top: 121px;
+            left: 22px;
+            right: 22px;
+            bottom: 22px;
+            max-height: none;
+            overflow: visible;
+            visibility: hidden;
+            transition: visibility 0.1s ease;
+        }
+
+        .principle-card:hover .principle-desc-expanded {
+            visibility: visible;
+            transition: visibility 0s;
+        }
+
+        .principle-desc-main {
+            font-size: 12px;
+            color: var(--text-main, #000);
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+
+        .principle-card:hover .principle-desc-main {
+            opacity: 1;
+            transition: opacity 0.2s ease 0.2s;
+        }
+
+        .principle-desc-more {
+            font-size: 12px;
+            color: var(--text-muted, #777);
+            line-height: 1.5;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+
+        .principle-card:hover .principle-desc-more {
+            opacity: 1;
+            transition: opacity 0.25s ease 0.35s;
+        }
+
+        /* TWO COLUMN HOVER VIEW WITH IMAGES */
+        .principle-expanded-wrapper {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 24px;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .principle-expanded-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .principle-expanded-visual {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .principle-card-img {
+            width: 100%;
+            height: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            opacity: 0;
+            transform: scale(0.95);
+            border: 1px solid rgba(197, 160, 101, 0.15);
+            transition: opacity 0.4s ease 0.25s, transform 0.4s ease 0.25s;
+        }
+
+        .principle-card:hover .principle-card-img {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* CTA */
+        .philosophy-cta {
+            background: var(--bg-base);
+            padding: 120px 80px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .cta-sub {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #141414;
+            color: #fff;
+            padding: 18px 55px;
+            text-decoration: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: 0.3s;
+            margin: 0 10px;
+        }
+
+        .cta-btn:hover {
+            background: var(--gold);
+        }
+
+        .cta-btn.outline {
+            background: transparent;
+            color: #141414;
+            border: 1px solid #141414;
+        }
+
+        .cta-btn.outline:hover {
+            background: #141414;
+            color: #fff;
+        }
+
+
+        @media (max-width: 900px) {
+
+
+            .page-hero-content {
+                padding: 40px 20px 60px 20px;
+            }
+
+            .page-hero-title {
+                font-size: clamp(34px, 8vw, 54px);
+                margin-bottom: 20px;
+            }
+
+            .page-hero-sub {
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .hero-scroll-hint {
+                display: none;
+            }
+
+            .principles-section {
+                padding: 60px 20px;
+            }
+
+            .principles-header {
+                margin-bottom: 40px;
+            }
+
+            .principles-title {
+                font-size: clamp(28px, 6vw, 38px);
+            }
+
+            .principles-grid {
+                display: flex !important;
+                flex-direction: row !important;
+                overflow-x: auto !important;
+                scroll-snap-type: x mandatory !important;
+                scroll-behavior: smooth !important;
+                -webkit-overflow-scrolling: touch !important;
+                gap: 20px !important;
+                padding: 10px 20px 40px 20px !important;
+                margin: 0 -20px !important;
+                scrollbar-width: none !important;
+                width: auto !important;
+                max-width: none !important;
+                box-sizing: border-box !important;
+            }
+
+            .principles-grid::-webkit-scrollbar {
+                display: none !important;
+            }
+
+            .principle-card {
+                flex: 0 0 290px !important;
+                width: 290px !important;
+                scroll-snap-align: start !important;
+                min-height: 300px !important;
+                height: auto !important;
+                padding: 28px 24px !important;
+                background: rgba(255, 255, 255, 0.95) !important;
+                box-shadow: 0 10px 25px rgba(197, 160, 101, 0.06) !important;
+                border: 1px solid rgba(197, 160, 101, 0.12) !important;
+                transform: none !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: flex-start !important;
+                align-items: flex-start !important;
+                opacity: 1 !important;
+            }
+
+            .principle-card:hover {
+                transform: none !important;
+                box-shadow: 0 10px 25px rgba(197, 160, 101, 0.06) !important;
+                border-color: rgba(197, 160, 101, 0.12) !important;
+            }
+
+            .principle-card .principle-content-small {
+                display: none !important;
+            }
+
+            .principle-card .principle-desc-expanded {
+                display: block !important;
+                position: static !important;
+                visibility: visible !important;
+                max-height: none !important;
+                opacity: 1 !important;
+                margin-top: 15px !important;
+                overflow: visible !important;
+                transition: none !important;
+            }
+
+            .principle-desc-main {
+                opacity: 1 !important;
+                font-size: 13px !important;
+                font-weight: 500 !important;
+                margin-bottom: 8px !important;
+                color: var(--text-main) !important;
+                transition: none !important;
+            }
+
+            .principle-desc-more {
+                opacity: 1 !important;
+                font-size: 12px !important;
+                color: var(--text-muted, #777) !important;
+                line-height: 1.6 !important;
+                transition: none !important;
+            }
+
+            .principle-expanded-wrapper {
+                display: block !important;
+                grid-template-columns: none !important;
+                gap: 0 !important;
+            }
+
+            .principle-expanded-visual {
+                display: none !important;
+            }
+
+            .philosophy-cta {
+                padding: 60px 20px;
+            }
+
+            .cta-title {
+                font-size: clamp(28px, 7vw, 42px);
+                margin-bottom: 15px;
+            }
+
+            .cta-sub {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cta-btn {
+                display: block !important;
+                margin: 12px 0 !important;
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+                padding: 16px 20px;
+            }
+        }
+
+        /* BRAND MANIFESTO CAROUSEL REDESIGN */
+        .brand-manifesto {
+            background: var(--bg-base);
+            padding: 120px 80px;
+        }
+
+        .manifesto-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .manifesto-main-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 4vw, 52px);
+            font-weight: 400;
+            color: #000000;
+            text-transform: none;
+            margin: 0;
+        }
+
+        .manifesto-wrapper {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 80px;
+            max-width: 1300px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .manifesto-visual-slider {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+            aspect-ratio: 4 / 3;
+        }
+
+        .manifesto-visual-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .manifesto-slide-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+            transform: scale(1.05);
+        }
+
+        .manifesto-slide-img.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+            position: relative;
+        }
+
+        .manifesto-content-slider {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 101, 0.1);
+            padding: 45px 50px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.02);
+        }
+
+        .manifesto-slides {
+            position: relative;
+            height: 220px;
+        }
+
+        .manifesto-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            filter: blur(4px);
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.3, 1),
+                visibility 0.6s cubic-bezier(0.25, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.25, 1, 0.3, 1),
+                filter 0.6s cubic-bezier(0.25, 1, 0.3, 1);
+            transform: translateX(15px);
+        }
+
+        .manifesto-slide.active {
+            opacity: 1;
+            visibility: visible;
+            filter: blur(0);
+            transform: translateX(0);
+            position: absolute;
+        }
+
+        .manifesto-slide-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 500;
+            color: #000000;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .manifesto-slide-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px;
+            font-style: italic;
+            color: var(--text-main);
+            line-height: 1.7;
+            border-left: 2px solid var(--gold);
+            padding-left: 25px;
+            margin: 0;
+        }
+
+        /* Carousel Navigation Controls */
+        .manifesto-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-left: 27px;
+            /* Align perfectly with paragraph text border */
+            margin-top: 10px;
+        }
+
+        .manifesto-nav-btn {
+            background: transparent;
+            border: none;
+            color: #141414;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.6;
+        }
+
+        .manifesto-nav-btn:hover {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.05);
+            transform: scale(1.05);
+        }
+
+        .manifesto-dots {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .manifesto-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-sizing: border-box;
+        }
+
+        .manifesto-dot.active {
+            background: var(--gold, #c5a065);
+            transform: scale(1.4);
+            box-shadow: 0 0 8px rgba(197, 160, 101, 0.3);
+        }
+
+        .manifesto-dot:hover:not(.active) {
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        @media (max-width: 900px) {
+            .brand-manifesto {
+                padding: 60px 20px;
+            }
+
+            .manifesto-header {
+                margin-bottom: 40px;
+            }
+
+            .manifesto-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .manifesto-visual-slider {
+                aspect-ratio: 4/3;
+                width: 100%;
+                max-width: 520px;
+            }
+
+            .manifesto-content-slider {
+                gap: 25px;
+                padding: 30px 24px;
+                border-radius: 16px;
+            }
+
+            .manifesto-slides {
+                height: auto;
+                min-height: 220px;
+            }
+
+            .manifesto-slide.active {
+                position: relative;
+            }
+
+            .manifesto-slide-title {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            .manifesto-slide-text {
+                font-size: 16px;
+                line-height: 1.6;
+                padding-left: 20px;
+            }
+
+            .manifesto-nav {
+                justify-content: center !important;
+                padding-left: 0 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="site-header">
+        <div class="header-inner">
+            <button class="nav-menu-btn" id="menuOpenBtn" aria-label="Открыть меню">
+                <div class="hamburger"><span></span><span></span><span></span></div>
+                <span>Меню</span>
+            </button>
+            <a href="index.html" class="logo-box" data-hover>
+                <span class="brand-name">ROVERO</span>
+                <div class="brand-div"></div>
+                <span class="brand-sub">DESIGN</span>
+            </a>
+            <div class="header-right-group">
+                <a href="tel:+74957488944" class="h-phone h-phone-header" data-hover>+7 (495) 748-89-44</a>
+                <a href="favorites.html" class="h-icon" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="cart.html" class="h-icon" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-badge badge" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div id="navOverlay"></div>
+    <div id="navSidebar">
+        <div class="nav-sidebar-head">
+            <span class="nav-sidebar-title">Меню</span>
+            <button class="nav-close-btn" id="navCloseBtn" aria-label="Закрыть">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- НАВИГАЦИЯ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Навигация</div>
+            <div class="nav-section-links">
+                <a href="index.html" class="nav-link">Главная страница</a>
+                <a href="catalog.html" class="nav-link">Каталог товаров</a>
+                <a href="collections.html" class="nav-link">Коллекции мебели</a>
+            </div>
+        </div>
+
+        <!-- КАТЕГОРИИ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Категории</div>
+            <div class="nav-section-links">
+                <a href="catalog.html?cat=СПАЛЬНЯ" class="nav-link">Спальня</a>
+                <a href="catalog.html?cat=КУХНЯ и ВИНОТЕКА" class="nav-link">Кухня и винотека</a>
+                <a href="catalog.html?cat=ГАРДЕРОБНАЯ и ПРИХОЖАЯ" class="nav-link">Гардеробная и прихожая</a>
+                <a href="catalog.html?cat=ГОСТИНАЯ и БИБЛИОТЕКА" class="nav-link">Гостиная и библиотека</a>
+            </div>
+        </div>
+
+        <!-- НАПРАВЛЕНИЯ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Направления</div>
+            <div class="nav-section-links">
+                <a href="bureau.html" class="nav-link">ROVERO Labs</a>
+                <a href="constructor.html" class="nav-link">ROVERO Kids</a>
+            </div>
+        </div>
+
+        <!-- ПОКУПАТЕЛЮ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Покупателю</div>
+            <div class="nav-section-links">
+                <a href="favorites.html" class="nav-link">Избранное</a>
+                <a href="cart.html" class="nav-link">Корзина покупок</a>
+                <a href="request.html" class="nav-link">Оформить заявку</a>
+            </div>
+        </div>
+
+        <!-- О БРЕНДЕ -->
+        <div class="nav-section">
+            <div class="nav-section-label">О нас</div>
+            <div class="nav-section-links">
+                <a href="about.html" class="nav-link">О бренде</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+            </div>
+        </div>
+
+        <!-- КОНТАКТЫ -->
+        <div class="nav-contacts">
+            <a href="tel:+74957488944" class="nav-contact-item">+7 (495) 748-89-44</a>
+            <a href="mailto:info@roverodesign.ru" class="nav-contact-item">info@roverodesign.ru</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="page-hero">
+        <img src="assets/images/ui/about_bg.webp" class="page-hero-bg" alt="ROVERO Philosophy">
+        <div class="page-hero-content">
+            <span class="page-hero-eyebrow">ROVERO DESIGN</span>
+            <h1 class="page-hero-title">Пространство<br>со смыслом</h1>
+            <p class="page-hero-sub">Мы создаем среду, где строгая инженерная логика встречается с живой фактурой
+                натурального массива. Каждый объект становится самостоятельным акцентом, формируя пространство с ярко
+                выраженным характером и безупречной эргономикой.</p>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- CHAPTER 1 -->
+    <!-- ABOUT BRAND -->
+    <section class="brand-manifesto" id="about">
+        <div class="manifesto-header">
+            <h2 class="manifesto-main-title">О бренде</h2>
+        </div>
+        <div class="manifesto-wrapper">
+            <!-- Left Side: Slideshow of Images -->
+            <div class="manifesto-visual-slider">
+                <div class="manifesto-visual-track">
+                    <img src="assets/images/ui/about1.webp" alt="Уникальность" class="manifesto-slide-img active">
+                    <img src="assets/images/ui/about2.webp" alt="Производство" class="manifesto-slide-img">
+                    <img src="assets/images/ui/about3.webp" alt="Опыт" class="manifesto-slide-img">
+                    <img src="assets/images/ui/about4.webp" alt="Материалы" class="manifesto-slide-img">
+                    <img src="assets/images/ui/about5.webp" alt="Команда" class="manifesto-slide-img">
+                </div>
+            </div>
+
+            <!-- Right Side: Content of Active Slide -->
+            <div class="manifesto-content-slider">
+                <div class="manifesto-slides">
+                    <!-- Slide 1 -->
+                    <div class="manifesto-slide active">
+                        <h3 class="manifesto-slide-title">УНИКАЛЬНОСТЬ</h3>
+                        <p class="manifesto-slide-text">«ROVERO DESIGN существует вне привычных категорий. Мы объединили
+                            монументальность натурального дерева и гибкость модульных систем — результат не имеет
+                            аналогов на рынке. Каждая модель создается под конкретную архитектуру помещения, становясь
+                            его органичной частью, а не просто предметом интерьера.»</p>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="manifesto-slide">
+                        <h3 class="manifesto-slide-title">ПРОИЗВОДСТВО</h3>
+                        <p class="manifesto-slide-text">«Мы гордимся своим происхождением. Российское производство
+                            позволяет нам не зависеть от внешних трендов, а формировать собственный язык дизайна. Мы
+                            работаем с помещениями любой сложности: кухни, гардеробные, кабинеты и санузлы становятся
+                            частью единого стиля.»</p>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="manifesto-slide">
+                        <h3 class="manifesto-slide-title">ОПЫТ</h3>
+                        <p class="manifesto-slide-text">«За 20 лет работы мы прошли путь от небольшой мастерской до
+                            полноценного производства с собственной конструкторской лабораторией. Этот опыт научил нас
+                            главному: идеальная мебель рождается на пересечении инженерной точности, понимания
+                            материалов и внимания к деталям. Мы продолжа учиться и развиваться с каждым проектом.»</p>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="manifesto-slide">
+                        <h3 class="manifesto-slide-title">МАТЕРИАЛЫ</h3>
+                        <p class="manifesto-slide-text">«Наша философия проста: материал должен говорить сам за себя. Мы
+                            используем только натуральное дерево и премиальные масла — никаких компромиссов в пользу
+                            синтетики. Это не маркетинг, а уважение к природе и к вам. Тактильное удовольствие и
+                            абсолютная безопасность — то, что вы чувствуете с первого прикосновения.»</p>
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="manifesto-slide">
+                        <h3 class="manifesto-slide-title">КОМАНДА</h3>
+                        <p class="manifesto-slide-text">«ROVERO — это команда дизайнеров, инженеров-конструкторов и
+                            мастеров с многолетним опытом. Каждый специалист глубоко понимает свою задачу: от первого
+                            эскиза до финишной шлифовки. Мы не просто производим мебель — мы создаем вещи, в которые
+                            вложена экспертиза, страсть к своему делу и личная ответственность за результат.»</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="manifesto-nav">
+                    <button class="manifesto-nav-btn prev" onclick="changeManifestoSlide(-1)"
+                        aria-label="Предыдущий слайд">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="manifesto-dots">
+                        <span class="manifesto-dot active" onclick="setManifestoSlide(0)"></span>
+                        <span class="manifesto-dot" onclick="setManifestoSlide(1)"></span>
+                        <span class="manifesto-dot" onclick="setManifestoSlide(2)"></span>
+                        <span class="manifesto-dot" onclick="setManifestoSlide(3)"></span>
+                        <span class="manifesto-dot" onclick="setManifestoSlide(4)"></span>
+                    </div>
+                    <button class="manifesto-nav-btn next" onclick="changeManifestoSlide(1)"
+                        aria-label="Следующий слайд">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- PRINCIPLES -->
+    <section class="principles-section">
+        <div class="principles-header">
+            <h2 class="principles-title">Наши принципы</h2>
+        </div>
+        <div class="principles-grid">
+            <!-- Card 1 -->
+            <div class="principle-card">
+                <div class="principle-num">01</div>
+                <div class="principle-title">Решения под задачу</div>
+                <div class="principle-content-small">
+                    <div class="principle-desc-short">Гибкость в материалах, конструкциях и бюджетах. Никаких
+                        ограничений рамками.</div>
+                </div>
+                <div class="principle-desc-expanded">
+                    <div class="principle-expanded-wrapper">
+                        <div class="principle-expanded-text">
+                            <p class="principle-desc-main">Гибкость в материалах, конструкциях и бюджетах. Никаких
+                                ограничений рамками.</p>
+                            <p class="principle-desc-more">Мы создаём интерьеры любой сложности, адаптируясь под ваши
+                                потребности, бюджет и визуальную концепцию. Каждый проект — это индивидуальный подход,
+                                где выбор материалов и конструкций диктуется функциональными требованиями, а не
+                                шаблонами. Готовность искать оптимальные решения — основа нашей работы.</p>
+                        </div>
+                        <div class="principle-expanded-visual">
+                            <img src="assets/images/ui/principles1.webp" alt="Решения под задачу"
+                                class="principle-card-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="principle-card">
+                <div class="principle-num">02</div>
+                <div class="principle-title">Архитектурный подход</div>
+                <div class="principle-content-small">
+                    <div class="principle-desc-short">Минимализм, где каждая линия оправдана, а форма следует за
+                        функцией.</div>
+                </div>
+                <div class="principle-desc-expanded">
+                    <div class="principle-expanded-wrapper">
+                        <div class="principle-expanded-text">
+                            <p class="principle-desc-main">Минимализм, где каждая линия оправдана, а форма следует за
+                                функцией.</p>
+                            <p class="principle-desc-more">Мы проектируем мебель как часть архитектуры пространства.
+                                Чистота линий, продуманная геометрия и отсутствие лишних деталей создают минималистичную
+                                эстетику. Наш стиль — это баланс между визуальной легкостью и инженерной
+                                основательностью, где каждая деталь оправдана и работает на общую композицию.</p>
+                        </div>
+                        <div class="principle-expanded-visual">
+                            <img src="assets/images/ui/principles2.webp" alt="Архитектурный подход"
+                                class="principle-card-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="principle-card">
+                <div class="principle-num">03</div>
+                <div class="principle-title">Продуманная эргономика</div>
+                <div class="principle-content-small">
+                    <div class="principle-desc-short">Удобство, которое чувствуется в повседневном использовании.</div>
+                </div>
+                <div class="principle-desc-expanded">
+                    <div class="principle-expanded-wrapper">
+                        <div class="principle-expanded-text">
+                            <p class="principle-desc-main">Удобство, которое чувствуется в повседневном использовании.
+                            </p>
+                            <p class="principle-desc-more">Красота не должна идти в ущерб удобству. Мы тщательно
+                                прорабатываем внутреннее наполнение: высоту полок, глубину ящиков, расположение зон
+                                хранения. Каждый сантиметр пространства работает на ваш комфорт, делая повседневное
+                                использование мебели интуитивным и приятным.</p>
+                        </div>
+                        <div class="principle-expanded-visual">
+                            <img src="assets/images/ui/principles3.webp" alt="Продуманная эргономика"
+                                class="principle-card-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="principle-card">
+                <div class="principle-num">04</div>
+                <div class="principle-title">Долговечность</div>
+                <div class="principle-content-small">
+                    <div class="principle-desc-short">Инвестиция в вещи, которые переживут тренды и останутся
+                        актуальными.</div>
+                </div>
+                <div class="principle-desc-expanded">
+                    <div class="principle-expanded-wrapper">
+                        <div class="principle-expanded-text">
+                            <p class="principle-desc-main">Инвестиция в вещи, которые переживут тренды и останутся
+                                актуальными.</p>
+                            <p class="principle-desc-more">Массив дерева — материал вне времени. Он не стареет, а
+                                приобретает благородную патину. Мы создаем вещи, которые сохраняют свою красоту и
+                                функциональность десятилетиями, становясь только ценнее с каждым годом.</p>
+                        </div>
+                        <div class="principle-expanded-visual">
+                            <img src="assets/images/ui/principles4.webp" alt="Долговечность" class="principle-card-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="principle-card">
+                <div class="principle-num">05</div>
+                <div class="principle-title">Российское производство</div>
+                <div class="principle-content-small">
+                    <div class="principle-desc-short">Локальная экспертиза, глобальное качество.</div>
+                </div>
+                <div class="principle-desc-expanded">
+                    <div class="principle-expanded-wrapper">
+                        <div class="principle-expanded-text">
+                            <p class="principle-desc-main">Локальная экспертиза, глобальное качество.</p>
+                            <p class="principle-desc-more">Полный цикл разработки и изготовления сосредоточен в России.
+                                Это дает нам независимость от внешних факторов, позволяет гибко управлять качеством на
+                                каждом этапе и создавать продукт по нашим собственным высоким стандартам.</p>
+                        </div>
+                        <div class="principle-expanded-visual">
+                            <img src="assets/images/ui/principles5.webp" alt="Российское производство"
+                                class="principle-card-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="principle-card">
+                <div class="principle-num">06</div>
+                <div class="principle-title">Пространство под вас</div>
+                <div class="principle-content-small">
+                    <div class="principle-desc-short">Мебель, которая подстраивается под помещение, а не наоборот.</div>
+                </div>
+                <div class="principle-desc-expanded">
+                    <div class="principle-expanded-wrapper">
+                        <div class="principle-expanded-text">
+                            <p class="principle-desc-main">Мебель, которая подстраивается под помещение, а не наоборот.
+                            </p>
+                            <p class="principle-desc-more">Мы не продаём стандарт. Каждый проект адаптируется к реальным
+                                размерам вашего помещения. Мы работаем с вашим пространством, а не против него.</p>
+                        </div>
+                        <div class="principle-expanded-visual">
+                            <img src="assets/images/ui/principles6.webp" alt="Пространство под вас"
+                                class="principle-card-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- CTA -->
+    <section class="philosophy-cta">
+        <h2 class="cta-title">Готовы к диалогу?</h2>
+        <p class="cta-sub">Расскажите нам о своём пространстве — мы предложим решение.</p>
+        <a href="request.html" class="cta-btn" data-hover>Оставить заявку</a>
+        <a href="catalog.html" class="cta-btn outline" data-hover>Смотреть каталог</a>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-grid">
+            <div class="f-left">
+                <a href="https://yandex.ru/maps/?text=Московская+область,+г.+Истра,+ул.+Московская,+д.+5Б"
+                    target="_blank" class="f-address" data-hover>
+                    г. Истра, Московская область,<br>ул. Московская, д. 5Б
+                </a>
+            </div>
+            <div class="f-center">
+                <a href="#" class="footer-up-link" data-hover
+                    onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">
+                    <div class="f-logo">ROVERO</div>
+                    <span class="f-ussr">Сделано в СССР</span>
+                </a>
+            </div>
+            <div class="f-right">
+                <div class="f-socials">
+                    <a href="https://pin.it/2L0sqvX60" target="_blank" class="social-link" data-hover><img
+                            src="assets/images/icons/pin.webp" alt="Pinterest"></a>
+                    <a href="https://vk.com/roverodesign" target="_blank" class="social-link vk-link" data-hover><img
+                            src="assets/images/icons/vk.webp" alt="VK"></a>
+                    <a href="https://t.me/roverodesign" target="_blank" class="social-link" data-hover><img
+                            src="assets/images/icons/tg.webp" alt="Telegram"></a>
+                    <a href="https://max.ru/join/5EWSTPk9Rqw2J9zZi21fxuXY0fo5J0ws3SGbeObK978" target="_blank"
+                        class="social-link" data-hover><img src="assets/images/icons/max.webp" alt="Max"></a>
+                </div>
+                <a href="#" class="f-contact-link" onclick="copyPhone(this, event)" data-hover>+7 (495) 748-89-44</a>
+                <a href="mailto:info@roverodesign.ru" class="h-email" data-hover>info@roverodesign.ru</a>
+            </div>
+        </div>
+        <div class="footer-menu-links">
+            <a href="about.html" class="f-menu-link" data-hover>О бренде</a>
+            <a href="catalog.html" class="f-menu-link" data-hover>Каталог</a>
+            <a href="collections.html" class="f-menu-link" data-hover>Коллекции</a>
+            <a href="bureau.html" class="f-menu-link" data-hover>ROVERO LABS</a>
+            <a href="constructor.html" class="f-menu-link" data-hover>ROVERO Kids</a>
+            <a href="contacts.html" class="f-menu-link" data-hover>Где нас найти</a>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="f-legal-links">
+                <a href="privacy.html" data-hover>Политика конфиденциальности</a>
+                <a href="terms.html" data-hover>Пользовательское соглашение</a>
+                <a href="https://beldweb.ru/" target="_blank" data-hover>Разработка сайта — Beldweb</a>
+            </div>
+            <span class="f-copy">© 2026 MOSCOW</span>
+        </div>
+    </footer>
+
+    <script src="assets/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-text">Мы используем файлы cookie. <a href="cookie.html" data-hover>Подробнее</a>.</div>
+        <button class="cookie-btn" onclick="acceptCookies()" data-hover>Принять</button>
+    </div>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/nav_sidebar.js"></script>
+    <script>
+        let currentManifestoSlide = 0;
+        const totalManifestoSlides = 5;
+
+        function updateManifestoCarousel() {
+            // Update active images
+            const images = document.querySelectorAll('.manifesto-slide-img');
+            images.forEach((img, idx) => {
+                if (idx === currentManifestoSlide) {
+                    img.classList.add('active');
+                } else {
+                    img.classList.remove('active');
+                }
+            });
+
+            // Update active text slides
+            const slides = document.querySelectorAll('.manifesto-slide');
+            slides.forEach((slide, idx) => {
+                if (idx === currentManifestoSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Update dots
+            const dots = document.querySelectorAll('.manifesto-dot');
+            dots.forEach((dot, idx) => {
+                if (idx === currentManifestoSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function changeManifestoSlide(direction) {
+            currentManifestoSlide = (currentManifestoSlide + direction + totalManifestoSlides) % totalManifestoSlides;
+            updateManifestoCarousel();
+        }
+
+        function setManifestoSlide(index) {
+            currentManifestoSlide = index;
+            updateManifestoCarousel();
+        }
+
+        // Touch swipe support for brand-manifesto mobile view
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const slider = document.querySelector('.manifesto-visual-slider');
+            if (!slider) return;
+
+            let startX = 0;
+            let startY = 0;
+            let isSwipe = false;
+
+            slider.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isSwipe = false;
+            }, { passive: true });
+
+            slider.addEventListener('touchmove', (e) => {
+                if (startX === 0 || startY === 0) return;
+
+                const diffX = e.touches[0].clientX - startX;
+                const diffY = e.touches[0].clientY - startY;
+
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+                    isSwipe = true;
+                }
+            }, { passive: true });
+
+            slider.addEventListener('touchend', (e) => {
+                if (startX === 0 || startY === 0) return;
+
+                const diffX = e.changedTouches[0].clientX - startX;
+                const diffY = e.changedTouches[0].clientY - startY;
+
+                if (isSwipe && Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+                    const direction = diffX > 0 ? -1 : 1;
+                    changeManifestoSlide(direction);
+                }
+
+                startX = 0;
+                startY = 0;
+                isSwipe = false;
+            }, { passive: true });
+        });
+    </script>
+</body>
+
+</html>

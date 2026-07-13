@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+
+    <title>ROVERO Kids - Архитектура в деталях</title>
+    <meta name="description"
+        content="ROVERO Kids — премиальный модульный конструктор из безопасного пластика для детей. Сотни элементов, архитектурная логика сборки и яркая палитра — игрушка, которая развивает мышление.">
+
+    <link rel="icon" href="assets/images/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/icons/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/nav_sidebar.css">
+
+    <style>
+        /* ===========================
+           ROVERO KIDS — PAGE STYLES
+           =========================== */
+
+        :root {
+            --kids-cream: #F5EFE4;
+        }
+
+        /* HERO */
+        .kids-hero {
+            display: flex;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding-top: 80px;
+            background: #ffffff;
+        }
+
+        .kids-hero-left {
+            width: 55%;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 60px 80px 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .kids-hero-eyebrow {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .kids-hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(52px, 6vw, 80px);
+            font-weight: 400;
+            line-height: 1.05;
+            color: var(--text-main);
+            margin: 0 0 12px 0;
+            letter-spacing: -0.01em;
+        }
+
+        .kids-hero-title em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .kids-hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(22px, 2.5vw, 30px);
+            font-weight: 400;
+            color: var(--text-muted);
+            margin: 0 0 30px 0;
+            letter-spacing: 0.02em;
+        }
+
+        .kids-hero-desc {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #5a5a5a;
+            max-width: 460px;
+            margin-bottom: 50px;
+        }
+
+        .kids-hero-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .kids-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--text-main);
+            color: #fff;
+            padding: 16px 36px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .kids-btn-primary:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(197, 160, 101, 0.3);
+        }
+
+        .kids-btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            color: var(--text-main);
+            padding: 15px 30px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .kids-btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* HERO RIGHT — like collections.html */
+        .kids-hero-right {
+            flex: 1;
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .kids-hero-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.82);
+        }
+
+        .kids-hero-badge {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(197, 160, 101, 0.3);
+            border-radius: 16px;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+            z-index: 3;
+            backdrop-filter: blur(8px);
+        }
+
+        .kids-badge-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(197, 160, 101, 0.12);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .kids-badge-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .kids-badge-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* STAT STRIP */
+        .kids-stats {
+            background: #ffffff;
+            padding: 40px 80px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .kids-stat-item {
+            text-align: center;
+            padding: 20px;
+            border-right: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .kids-stat-item:last-child {
+            border-right: none;
+        }
+
+        .kids-stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 400;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .kids-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Responsive utility classes */
+        @media (max-width: 768px) {
+            .hide-mobile {
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hide-desktop {
+                display: none !important;
+            }
+        }
+
+        /* SHARED TYPOGRAPHY */
+        .kids-section-eyebrow {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .kids-section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--text-main);
+            margin: 0 0 30px 0;
+        }
+
+        .kids-section-title em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        /* PHILOSOPHY */
+        .kids-philosophy {
+            padding: 120px 80px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: stretch;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .kids-philosophy-text {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .kids-philosophy-features {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .kids-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .kids-feature-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        .kids-feature-text {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .kids-philosophy-card {
+            position: relative;
+            height: 100%;
+        }
+
+        .kids-philosophy-card::before {
+            display: none;
+        }
+
+        .kids-cert-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+            height: 100%;
+        }
+
+        .kids-cert-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px 24px;
+            border: 1px solid rgba(197, 160, 101, 0.12);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .kids-cert-item:hover,
+        .kids-cert-item.active {
+            border-color: var(--gold);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(197, 160, 101, 0.15);
+        }
+
+        .kids-cert-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(197, 160, 101, 0.08);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .kids-cert-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .kids-cert-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .kids-philosophy-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .kids-philosophy-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 769px) {
+            .kids-philosophy-content {
+                height: 465px;
+                padding-top: 0;
+                box-sizing: border-box;
+            }
+        }
+
+        /* MODULES */
+        .kids-modules {
+            background: #ffffff;
+            padding: 120px 80px;
+        }
+
+        .kids-modules-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .kids-modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .kids-module-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(197, 160, 101, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .kids-module-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 50px rgba(197, 160, 101, 0.1);
+        }
+
+        .kids-module-visual {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .kids-module-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .kids-module-card:hover .kids-module-visual img {
+            transform: scale(1.05);
+        }
+
+        .kids-module-info {
+            padding: 28px 28px 32px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .kids-module-tag {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .kids-module-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin: 0 0 10px 0;
+        }
+
+        .kids-module-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .kids-module-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: auto;
+            padding-top: 15px;
+        }
+
+        /* MATERIALS */
+        .kids-materials {
+            padding: 120px 80px;
+            background: #fff;
+        }
+
+        .kids-materials-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .kids-materials-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: end;
+            margin-bottom: 60px;
+        }
+
+        .kids-materials-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .kids-palette-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+        }
+
+        .kids-swatch {
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .kids-swatch:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .kids-swatch-color {
+            height: 80px;
+            width: 100%;
+        }
+
+        .kids-swatch-label {
+            padding: 10px 12px;
+            background: #fff;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .kids-swatch-name {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .kids-swatch-sub {
+            font-size: 9px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* PROCESS */
+        .kids-process {
+            background: #ffffff;
+            padding: 120px 80px;
+        }
+
+        .kids-process-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .kids-process-header .kids-section-eyebrow {
+            color: rgba(197, 160, 101, 0.8);
+        }
+
+        .kids-process-header .kids-section-title {
+            color: var(--text-main);
+        }
+
+        .kids-process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .kids-process-steps::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: calc(12.5% + 20px);
+            right: calc(12.5% + 20px);
+            height: 1px;
+            background: rgba(197, 160, 101, 0.2);
+        }
+
+        .kids-step {
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .kids-step-num {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 1px solid rgba(197, 160, 101, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            color: var(--gold);
+            margin: 0 auto 28px;
+            background: rgba(197, 160, 101, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .kids-step-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .kids-step-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* CONSULTATION */
+        .kids-consultation {
+            padding: 120px 80px;
+            background: #ffffff;
+        }
+
+        .kids-consultation-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .kids-consultation-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .kids-consultation-promise {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .kids-promise-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .kids-promise-check {
+            width: 20px;
+            height: 20px;
+            background: rgba(197, 160, 101, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--gold);
+        }
+
+        .kids-form {
+            background: #fff;
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(197, 160, 101, 0.12);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+        }
+
+        .kids-form-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .kids-form-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .kids-form-field {
+            margin-bottom: 16px;
+        }
+
+        .kids-form-label {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .kids-form-input,
+        .kids-form-select,
+        .kids-form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: var(--text-main);
+            background: var(--kids-cream);
+            transition: all 0.3s ease;
+            appearance: none;
+            outline: none;
+        }
+
+        .kids-form-input:focus,
+        .kids-form-select:focus,
+        .kids-form-textarea:focus {
+            border-color: var(--gold);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(197, 160, 101, 0.08);
+        }
+
+        .kids-form-textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .kids-form-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--text-main);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .kids-form-submit:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(197, 160, 101, 0.25);
+        }
+
+        .kids-form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .kids-form-consent {
+            font-size: 10px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-top: 14px;
+        }
+
+        .kids-form-consent a {
+            color: var(--text-muted);
+            text-decoration: underline;
+        }
+
+        .kids-form-success {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .kids-form-success.show {
+            display: block;
+        }
+
+        .kids-success-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(197, 160, 101, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--gold);
+        }
+
+        .kids-success-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .kids-success-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* FAQ */
+        .kids-faq {
+            padding: 100px 80px;
+            background: #fff;
+        }
+
+        .kids-faq-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .kids-faq-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .kids-faq-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+        }
+
+        .kids-faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .kids-faq-question-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+
+        .kids-faq-question:hover .kids-faq-question-text {
+            color: var(--gold);
+        }
+
+        .kids-faq-toggle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .kids-faq-item.open .kids-faq-toggle {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
+            transform: rotate(45deg);
+        }
+
+        .kids-faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .kids-faq-answer-inner {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            padding-bottom: 24px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .kids-hero {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .kids-hero-left {
+                width: 100%;
+                padding: 120px 40px 60px;
+            }
+
+            .kids-hero-right {
+                position: relative;
+                top: 0;
+                height: 50vw;
+                min-height: 320px;
+            }
+
+            .kids-modules-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .kids-palette-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .kids-process-steps {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+
+            .kids-process-steps::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .kids-hero {
+                padding-top: 70px !important;
+                min-height: 100dvh !important;
+                flex-direction: column-reverse !important;
+                box-sizing: border-box !important;
+            }
+
+            .kids-hero-left {
+                padding: 30px 24px !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+            }
+
+            .kids-hero-eyebrow {
+                font-size: 9px !important;
+                letter-spacing: 2px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .kids-hero-title {
+                font-size: 38px !important;
+                line-height: 1.1 !important;
+                margin-bottom: 16px !important;
+            }
+
+            .kids-hero-desc {
+                font-size: 13px !important;
+                line-height: 1.65 !important;
+                margin-bottom: 24px !important;
+            }
+
+            .kids-hero-right {
+                height: 40dvh !important;
+                min-height: 240px !important;
+                width: 100% !important;
+                position: relative !important;
+                top: 0 !important;
+            }
+
+            .kids-stats {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 40px 24px;
+            }
+
+            .kids-philosophy-mobile-header {
+                padding: 60px 24px 0 !important;
+                box-sizing: border-box !important;
+            }
+
+            .kids-philosophy {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 32px !important;
+                padding: 20px 24px 80px !important;
+                max-width: 100% !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+            }
+
+            .kids-philosophy>div:first-child {
+                max-width: 100% !important;
+                width: 100% !important;
+                overflow: hidden !important;
+            }
+
+            .kids-philosophy-card {
+                max-width: 100% !important;
+                width: 100% !important;
+                overflow: hidden !important;
+            }
+
+            .kids-cert-grid {
+                display: flex !important;
+                flex-direction: row !important;
+                overflow-x: auto !important;
+                white-space: nowrap !important;
+                gap: 16px !important;
+                padding: 4px 4px 16px 4px !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            .kids-cert-grid::-webkit-scrollbar {
+                display: none !important;
+            }
+
+            .kids-cert-item {
+                flex: 0 0 240px !important;
+                min-width: 240px !important;
+                height: auto !important;
+                padding: 24px 20px !important;
+                border-radius: 12px !important;
+                white-space: normal !important;
+            }
+
+            .kids-cert-icon {
+                width: 38px !important;
+                height: 38px !important;
+                margin-bottom: 12px !important;
+                border-radius: 8px !important;
+            }
+
+            .kids-cert-title {
+                font-size: 13px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .kids-cert-desc {
+                font-size: 11px !important;
+                line-height: 1.45 !important;
+            }
+
+            .kids-philosophy-content {
+                height: auto !important;
+            }
+
+            .kids-modules {
+                padding: 80px 24px;
+            }
+
+            .kids-modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kids-materials {
+                padding: 80px 24px;
+            }
+
+            .kids-materials-header {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .kids-palette-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .kids-process {
+                padding: 80px 24px;
+            }
+
+            .kids-process-steps {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .kids-consultation {
+                padding: 80px 24px;
+            }
+
+            .kids-consultation-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .kids-faq {
+                padding: 80px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="site-header">
+        <div class="header-inner">
+            <button class="nav-menu-btn" id="menuOpenBtn" aria-label="Открыть меню">
+                <div class="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+                <span>Меню</span>
+            </button>
+
+            <a href="index.html" class="logo-box" data-hover>
+                <span class="brand-name">ROVERO</span>
+                <div class="brand-div"></div>
+                <span class="brand-sub">KIDS</span>
+            </a>
+
+            <div class="header-right-group">
+                <a href="tel:+74957488944" class="h-phone h-phone-header" data-hover>+7 (495) 748-89-44</a>
+                <a href="favorites.html" class="h-icon" id="headerFavBtn" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                    <span class="fav-badge badge" style="display:none;">0</span>
+                </a>
+                <a href="cart.html" class="h-icon" id="headerCartBtn" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-badge badge" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div id="navOverlay"></div>
+    <div id="navSidebar">
+        <div class="nav-sidebar-head">
+            <span class="nav-sidebar-title">Меню</span>
+            <button class="nav-close-btn" id="navCloseBtn" aria-label="Закрыть">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-label">Навигация</div>
+            <div class="nav-section-links">
+                <a href="index.html" class="nav-link">Главная страница</a>
+                <a href="catalog.html" class="nav-link">Каталог товаров</a>
+                <a href="collections.html" class="nav-link">Коллекции мебели</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-label">Категории</div>
+            <div class="nav-section-links">
+                <a href="catalog.html?cat=СПАЛЬНЯ" class="nav-link">Спальня</a>
+                <a href="catalog.html?cat=КУХНЯ и ВИНОТЕКА" class="nav-link">Кухня и винотека</a>
+                <a href="catalog.html?cat=ГАРДЕРОБНАЯ и ПРИХОЖАЯ" class="nav-link">Гардеробная и прихожая</a>
+                <a href="catalog.html?cat=ГОСТИНАЯ и БИБЛИОТЕКА" class="nav-link">Гостиная и библиотека</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-label">Направления</div>
+            <div class="nav-section-links">
+                <a href="bureau.html" class="nav-link">ROVERO Labs</a>
+                <a href="constructor.html" class="nav-link">ROVERO Kids</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-label">Покупателю</div>
+            <div class="nav-section-links">
+                <a href="favorites.html" class="nav-link">Избранное</a>
+                <a href="cart.html" class="nav-link">Корзина покупок</a>
+                <a href="request.html" class="nav-link">Оформить заявку</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-label">О нас</div>
+            <div class="nav-section-links">
+                <a href="about.html" class="nav-link">О бренде</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+            </div>
+        </div>
+        <div class="nav-contacts">
+            <a href="tel:+74957488944" class="nav-contact-item">+7 (495) 748-89-44</a>
+            <a href="mailto:info@roverodesign.ru" class="nav-contact-item">info@roverodesign.ru</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="kids-hero">
+        <div class="kids-hero-left">
+            <span class="kids-hero-eyebrow">ROVERO Kids — Архитектура в деталях</span>
+            <h1 class="kids-hero-title">Собери <br class="hide-mobile"><em>свой</em> <br class="hide-mobile">интерьер.
+            </h1>
+            <p class="kids-hero-desc">ROVERO Kids — это не просто игрушка. Это система из соединяемых пластиковых
+                элементов, разработанных с той же архитектурной логикой, что и мебель ROVERO. Для тех, кто хочет не
+                просто играть – а создавать.</p>
+            <div class="kids-hero-actions">
+                <a href="#modules" class="kids-btn-primary">
+                    Смотреть наборы
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="kids-hero-right">
+            <img src="assets/images/ui/kids_constructor.webp" alt="ROVERO Kids — детский конструктор из пластика"
+                loading="eager">
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- PHILOSOPHY -->
+    <!-- PHILOSOPHY / APPROACH -->
+    <section style="background:#fff;">
+        <!-- Mobile Section Header (visible on mobile only) -->
+        <div class="kids-philosophy-mobile-header hide-desktop">
+            <span class="kids-section-eyebrow" style="margin-bottom: 12px;">Наш подход</span>
+            <h2 class="kids-section-title" id="approachTitleMobile"
+                style="transition: opacity 0.3s ease; margin-bottom: 0;">Дизайн в миниатюре</h2>
+        </div>
+        <div class="kids-philosophy">
+            <!-- Left side: 4 interactive cards -->
+            <div>
+                <div class="kids-philosophy-card">
+                    <div class="kids-cert-grid">
+                        <!-- Card 1 (Default Active) -->
+                        <div class="kids-cert-item active" data-approach="1" style="cursor: pointer;">
+                            <div class="kids-cert-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                                    </path>
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                </svg>
+                            </div>
+                            <div class="kids-cert-title">Наш подход</div>
+                            <div class="kids-cert-desc">Архитектурный конструктор нового формата</div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="kids-cert-item" data-approach="2" style="cursor: pointer;">
+                            <div class="kids-cert-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.25 2 6a7 7 0 0 1-7 7h-2.7L11 20z">
+                                    </path>
+                                    <path d="M19 2c-2.26 4.33-5.27 7.14-8 10"></path>
+                                </svg>
+                            </div>
+                            <div class="kids-cert-title">Материалы</div>
+                            <div class="kids-cert-desc">Экологичный подход.<br>Безопасно для здоровья</div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="kids-cert-item" data-approach="3" style="cursor: pointer;">
+                            <div class="kids-cert-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="kids-cert-title">Возраст 6+</div>
+                            <div class="kids-cert-desc">Детям — игра.<br>Взрослым — медитация.</div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="kids-cert-item" data-approach="4" style="cursor: pointer;">
+                            <div class="kids-cert-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                                    <rect x="2" y="7" width="20" height="5"></rect>
+                                    <line x1="12" y1="22" x2="12" y2="7"></line>
+                                    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                                    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                                </svg>
+                            </div>
+                            <div class="kids-cert-title">Идеальный подарок</div>
+                            <div class="kids-cert-desc">Премиальная подача,<br>готовая к вручению.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side: Changing text content -->
+            <div class="kids-philosophy-content">
+                <div class="hide-mobile">
+                    <span class="kids-section-eyebrow" id="approachEyebrow" style="transition: opacity 0.3s ease;">Наш
+                        подход</span>
+                    <h2 class="kids-section-title" id="approachTitle" style="transition: opacity 0.3s ease;">Дизайн в
+                        миниатюре</h2>
+                </div>
+                <p class="kids-philosophy-text" id="approachText"
+                    style="transition: opacity 0.3s ease; min-height: 120px;">В основе ROVERO Kids лежит та же модульная
+                    логика, что и в наших мебельных коллекциях. Это значит, что детали одной серии взаимозаменяемы: вы
+                    можете перестраивать объекты, менять конфигурации и адаптировать пространство под свои задачи. Этот
+                    конструктор поощряет креативное мышление. Он дает свободу комбинировать элементы, искать
+                    нестандартные решения и проектировать интерьеры, ломая привычные шаблоны. Создавайте свои
+                    собственные правила.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- MODULES -->
+    <section class="kids-modules" id="modules">
+        <div class="kids-modules-header">
+            <span class="kids-section-eyebrow">Наборы конструктора</span>
+            <h2 class="kids-section-title" style="text-align:center;">Большой дизайн в <br
+                    class="hide-mobile"><em>малом</em> масштабе</h2>
+        </div>
+        <div class="kids-modules-grid">
+            <div class="kids-module-card">
+                <div class="kids-module-visual">
+                    <img src="assets/images/product/Kids/IntimitaKIDS/1.webp" alt="Набор ИНТИМИТА Kids"
+                        style="width:100%;height:100%;object-fit:cover;display:block;">
+                </div>
+                <div class="kids-module-info">
+                    <span class="kids-module-tag">Спальный набор</span>
+                    <h3 class="kids-module-name">ИНТИМИТА Kids</h3>
+                    <p class="kids-module-desc">Кровать, тумбы и туалетный столик в миниатюре. Уют спальни, который
+                        можно держать в руках.</p>
+                    <div class="kids-module-price">В разработке</div>
+                </div>
+            </div>
+
+            <div class="kids-module-card">
+                <div class="kids-module-visual">
+                    <img src="assets/images/product/Kids/MestoloKIDS/1.webp" alt="Набор МЕСТОЛО Kids"
+                        style="width:100%;height:100%;object-fit:cover;display:block;">
+                </div>
+                <div class="kids-module-info">
+                    <span class="kids-module-tag">Кухонный набор</span>
+                    <h3 class="kids-module-name">МЕСТОЛО Kids</h3>
+                    <p class="kids-module-desc">Кухня с островом — сердце дома в уменьшенном масштабе. Та же геометрия,
+                        те же принципы, тот же характер.</p>
+                    <div class="kids-module-price">В разработке</div>
+                </div>
+            </div>
+
+            <div class="kids-module-card">
+                <div class="kids-module-visual">
+                    <img src="assets/images/product/Kids/ArpioneKIDS/1.webp" alt="Набор АРПИОНЕ Kids"
+                        style="width:100%;height:100%;object-fit:cover;display:block;">
+                </div>
+                <div class="kids-module-info">
+                    <span class="kids-module-tag">Набор хранения</span>
+                    <h3 class="kids-module-name">АРПИОНЕ Kids</h3>
+                    <p class="kids-module-desc">Настольный стеллаж для хранения мелочей. Настольный стеллаж для мелочей
+                        в миниатюре. Архитектура порядка, которую вы собираете своими руками.</p>
+                    <div class="kids-module-price">В разработке</div>
+                </div>
+            </div>
+
+            <div class="kids-module-card">
+                <div class="kids-module-visual">
+                    <img src="assets/images/product/Kids/LuceKIDS/1.webp" alt="Набор ЛУЧЕ Kids"
+                        style="width:100%;height:100%;object-fit:cover;display:block;">
+                </div>
+                <div class="kids-module-info">
+                    <span class="kids-module-tag">Гардеробный набор</span>
+                    <h3 class="kids-module-name">ЛУЧЕ Kids</h3>
+                    <p class="kids-module-desc">Гардеробный стеллаж в миниатюре. Открытая система хранения, собранная из
+                        деталей. Эстетика порядка, которую можно держать в руках.</p>
+                    <div class="kids-module-price">В разработке</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- FAQ -->
+    <section class="kids-faq">
+        <div class="kids-faq-inner">
+            <div class="kids-faq-header">
+                <span class="kids-section-eyebrow">Частые вопросы</span>
+                <h2 class="kids-section-title" style="text-align:center;">Всё, что вы хотели спросить <br
+                        class="hide-mobile">о <em>ROVERO Kids</em></h2>
+            </div>
+
+            <div class="kids-faq-item">
+                <div class="kids-faq-question" onclick="toggleFaq(this)">
+                    <span class="kids-faq-question-text">Сколько времени занимает сборка?</span>
+                    <div class="kids-faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg></div>
+                </div>
+                <div class="kids-faq-answer">
+                    <div class="kids-faq-answer-inner">В среднем от 2 до 4 часов в спокойном темпе. Мы не ставим рекорды
+                        скорости — удовольствие в самом процессе. Некоторые собирают за один вечер, другие растягивают
+                        на несколько дней, наслаждаясь каждой деталью.</div>
+                </div>
+            </div>
+
+            <div class="kids-faq-item">
+                <div class="kids-faq-question" onclick="toggleFaq(this)">
+                    <span class="kids-faq-question-text">Нужен ли клей или инструменты для сборки?</span>
+                    <div class="kids-faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg></div>
+                </div>
+                <div class="kids-faq-answer">
+                    <div class="kids-faq-answer-inner">Нет. Все детали соединяются без клея и инструментов. Конструкция
+                        продумана так, чтобы сборка была интуитивной и не требовала специальных навыков.</div>
+                </div>
+            </div>
+
+            <div class="kids-faq-item">
+                <div class="kids-faq-question" onclick="toggleFaq(this)">
+                    <span class="kids-faq-question-text">Что такое PLA пластик? Это безопасно?</span>
+                    <div class="kids-faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg></div>
+                </div>
+                <div class="kids-faq-answer">
+                    <div class="kids-faq-answer-inner">PLA — это биоразлагаемый пластик на основе кукурузного крахмала и
+                        сахарного тростника. Он безопасен, не выделяет вредных веществ и разлагается в природных
+                        условиях. Мы выбрали его, потому что ROVERO — это про уважение к материалу, даже в миниатюре.
+                    </div>
+                </div>
+            </div>
+
+            <div class="kids-faq-item">
+                <div class="kids-faq-question" onclick="toggleFaq(this)">
+                    <span class="kids-faq-question-text">Можно ли купить конструктор отдельно, без мебели?</span>
+                    <div class="kids-faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg></div>
+                </div>
+                <div class="kids-faq-answer">
+                    <div class="kids-faq-answer-inner">Сейчас конструктор — это эксклюзивный бонус для клиентов ROVERO
+                        DESIGN. Мы дарим его к каждому заказу мебели, чтобы собрать живую обратную связь и довести
+                        продукт до совершенства. Отдельная продажа появится в будущем, но пока первыми его оценивают
+                        именно наши клиенты.</div>
+                </div>
+            </div>
+
+            <div class="kids-faq-item">
+                <div class="kids-faq-question" onclick="toggleFaq(this)">
+                    <span class="kids-faq-question-text">Как ухаживать за собранной моделью?</span>
+                    <div class="kids-faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg></div>
+                </div>
+                <div class="kids-faq-answer">
+                    <div class="kids-faq-answer-inner">Достаточно протирать сухой или слегка влажной тканью. Избегайте
+                        прямых солнечных лучей и высокой влажности — как и с любой мебелью, бережное обращение продлит
+                        жизнь объекту.</div>
+                </div>
+            </div>
+
+            <div class="kids-faq-item">
+                <div class="kids-faq-question" onclick="toggleFaq(this)">
+                    <span class="kids-faq-question-text">Это игрушка или декор?</span>
+                    <div class="kids-faq-toggle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg></div>
+                </div>
+                <div class="kids-faq-answer">
+                    <div class="kids-faq-answer-inner">И то, и другое. Для ребенка это увлекательная игра и первый шаг в
+                        мир дизайна. Для взрослого — коллекционный объект, который можно поставить на полку, в кабинет
+                        или использовать как архитектурный макет.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <footer id="footer">
+        <div class="footer-grid">
+            <div class="f-left">
+                <a href="https://yandex.ru/maps/?text=Московская+область,+г.+Истра,+ул.+Московская,+д.+5Б"
+                    target="_blank" class="f-address" data-hover>
+                    г. Истра, Московская область,<br>ул. Московская, д. 5Б
+                </a>
+            </div>
+            <div class="f-center">
+                <a href="#" class="footer-up-link" data-hover
+                    onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">
+                    <div class="f-logo">ROVERO</div>
+                    <span class="f-ussr">Сделано в СССР</span>
+                </a>
+            </div>
+            <div class="f-right">
+                <div class="f-socials">
+                    <a href="https://pin.it/2L0sqvX60" target="_blank" class="social-link" data-hover><img
+                            src="assets/images/icons/pin.webp" alt="Pinterest"></a>
+                    <a href="https://vk.com/roverodesign" target="_blank" class="social-link vk-link" data-hover><img
+                            src="assets/images/icons/vk.webp" alt="VK"></a>
+                    <a href="https://t.me/roverodesign" target="_blank" class="social-link" data-hover><img
+                            src="assets/images/icons/tg.webp" alt="Telegram"></a>
+                    <a href="https://max.ru/join/5EWSTPk9Rqw2J9zZi21fxuXY0fo5J0ws3SGbeObK978" target="_blank"
+                        class="social-link" data-hover><img src="assets/images/icons/max.webp" alt="Max"></a>
+                </div>
+                <a href="#" class="f-contact-link" data-hover>+7 (495) 748-89-44</a>
+                <a href="mailto:info@roverodesign.ru" class="h-email" data-hover>info@roverodesign.ru</a>
+            </div>
+        </div>
+        <div class="footer-menu-links">
+            <a href="about.html" class="f-menu-link" data-hover>О бренде</a>
+            <a href="catalog.html" class="f-menu-link" data-hover>Каталог</a>
+            <a href="collections.html" class="f-menu-link" data-hover>Коллекции</a>
+            <a href="bureau.html" class="f-menu-link" data-hover>ROVERO Labs</a>
+            <a href="constructor.html" class="f-menu-link" data-hover>ROVERO Kids</a>
+            <a href="contacts.html" class="f-menu-link" data-hover>Где нас найти</a>
+        </div>
+        <div class="footer-bottom">
+            <div class="f-legal-links">
+                <a href="privacy.html" data-hover>Политика конфиденциальности</a>
+                <a href="terms.html" data-hover>Пользовательское соглашение</a>
+                <a href="https://beldweb.ru/" target="_blank" data-hover>Разработка сайта — Beldweb</a>
+            </div>
+            <span class="f-copy">© 2026 MOSCOW</span>
+        </div>
+    </footer>
+
+    <div id="requestToast" class="request-toast">Заявка отправлена</div>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-text">
+            Мы используем файлы cookie для улучшения работы сайта. Продолжая просмотр, вы соглашаетесь с нашей
+            <a href="cookie.html" data-hover>политикой использования файлов cookie</a>.
+        </div>
+        <button class="cookie-btn" onclick="acceptCookies()" data-hover>Принять</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/nav_sidebar.js"></script>
+
+    <script>
+        // FAQ accordion
+        function toggleFaq(questionEl) {
+            const item = questionEl.parentElement;
+            const answer = item.querySelector('.kids-faq-answer');
+            const isOpen = item.classList.contains('open');
+
+            // Close all other open items
+            document.querySelectorAll('.kids-faq-item.open').forEach(el => {
+                el.classList.remove('open');
+                const ans = el.querySelector('.kids-faq-answer');
+                if (ans) ans.style.maxHeight = null;
+            });
+
+            if (!isOpen) {
+                item.classList.add('open');
+                if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
+            } else {
+                item.classList.remove('open');
+                if (answer) answer.style.maxHeight = null;
+            }
+        }
+
+        // Approach interactive tabs
+        const approachData = {
+            1: {
+                eyebrow: "Наш подход",
+                title: "Дизайн в миниатюре",
+                text: "В основе ROVERO Kids лежит та же модульная логика, что и в наших мебельных коллекциях. Это значит, что детали одной серии взаимозаменяемы: вы можете перестраивать объекты, менять конфигурации и адаптировать пространство под свои задачи. Этот конструктор поощряет креативное мышление. Он дает свободу комбинировать элементы, искать нестандартные решения и проектировать интерьеры, ломая привычные шаблоны. Создавайте свои собственные правила."
+            },
+            2: {
+                eyebrow: "Материалы",
+                title: "Природа в основе",
+                text: "Мы используем биоразлагаемый PLA пластик — материал на основе кукурузного крахмала и сахарного тростника. Он безопасен, прочен, не имеет запаха и разлагается в природных условиях.<br><br>ROVERO — это про уважение к материалу. Даже в миниатюре."
+            },
+            3: {
+                eyebrow: "Возраст 6+",
+                title: "Для всех, кто любит создавать",
+                text: "Мы не делим ROVERO Kids на «детское» и «взрослое». Ребенок увидит здесь увлекательную игру и первый шаг в мир дизайна. Взрослый — возможность замедлиться, сосредоточиться на процессе и создать что-то осязаемое своими руками.<br><br>Это конструктор без спешки. Только вы, детали и удовольствие от того, как из разрозненных частей рождается цельное произведение."
+            },
+            4: {
+                eyebrow: "Идеальный подарок",
+                title: "Упаковка как часть дизайна",
+                text: "Каждый набор ROVERO Kids поставляется в стильной фирменной упаковке. Его не нужно дополнительно оборачивать в бумагу или прятать в коробки — он полностью готов к вручению и выглядит как самостоятельный дизайнерский объект. Это подарок, который приятно не только получать, но и дарить.<br><br>А для наших заказчиков это еще и приятный сюрприз. К каждому заказу ROVERO DESIGN мы бесплатно прилагаем набор с миниатюрой вашего интерьера. Собирайте свой будущий дом, пока мы изготавливаем его в реальном масштабе."
+            }
+        };
+
+        document.querySelectorAll('.kids-cert-item[data-approach]').forEach(item => {
+            item.addEventListener('click', () => {
+                const id = item.dataset.approach;
+                const data = approachData[id];
+                if (!data) return;
+
+                // Active class on tabs
+                document.querySelectorAll('.kids-cert-item[data-approach]').forEach(el => el.classList.remove('active'));
+                item.classList.add('active');
+
+                // Fade animation for content
+                const titleEl = document.getElementById('approachTitle');
+                const titleMobileEl = document.getElementById('approachTitleMobile');
+                const textEl = document.getElementById('approachText');
+                const eyebrowEl = document.getElementById('approachEyebrow');
+
+                if (titleEl) titleEl.style.opacity = 0;
+                if (titleMobileEl) titleMobileEl.style.opacity = 0;
+                if (eyebrowEl) eyebrowEl.style.opacity = 0;
+                textEl.style.opacity = 0;
+
+                setTimeout(() => {
+                    if (titleEl) titleEl.innerHTML = data.title;
+                    if (titleMobileEl) titleMobileEl.innerHTML = data.title;
+                    if (eyebrowEl) eyebrowEl.innerHTML = data.eyebrow;
+                    textEl.innerHTML = data.text;
+                    if (titleEl) titleEl.style.opacity = 1;
+                    if (titleMobileEl) titleMobileEl.style.opacity = 1;
+                    if (eyebrowEl) eyebrowEl.style.opacity = 1;
+                    textEl.style.opacity = 1;
+                }, 200);
+            });
+        });
+
+        // Header scroll
+        const siteHeader = document.getElementById('site-header');
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            siteHeader.classList.toggle('scrolled', currentScroll > 80);
+            siteHeader.classList.toggle('header-hidden', currentScroll > lastScroll && currentScroll > 200);
+            lastScroll = currentScroll;
+        }, { passive: true });
+
+        // Cookies
+        function acceptCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+            localStorage.setItem('cookiesAccepted', '1');
+        }
+        if (localStorage.getItem('cookiesAccepted')) {
+            const cb = document.getElementById('cookieBanner');
+            if (cb) cb.style.display = 'none';
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+
+        // Kids form submit
+        async function handleKidsFormSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('kidsSubmitBtn');
+            const origText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Отправляем...';
+
+            const name = document.getElementById('kidsName').value.trim();
+            const phone = document.getElementById('kidsPhone').value.trim();
+            const age = document.getElementById('kidsAge').value || 'Не указан';
+            const comment = document.getElementById('kidsComment').value.trim();
+
+            let ok = false;
+            try {
+                const SUPABASE_URL = 'https://msyikgbodtfovbqwdpxs.supabase.co';
+                const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zeWlrZ2JvZHRmb3ZicXdkcHhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzNzY5MDcsImV4cCI6MjA2Mzk1MjkwN30.KY1EMGvPLuFZE4MKf6cGioVs_p8Oyi5Mq3t_Bw-FE50';
+                const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                const { error } = await supabase.from('consultation_requests').insert([{
+                    name, phone,
+                    comment: `[ROVERO Kids] Возраст: ${age}. ${comment}`,
+                    source: 'kids'
+                }]);
+                ok = !error;
+            } catch (err) {
+                console.error('Kids form error:', err);
+            }
+
+            if (ok) {
+                document.getElementById('kidsFormBody').style.display = 'none';
+                document.getElementById('kidsFormSuccess').classList.add('show');
+            } else {
+                alert('Произошла ошибка. Пожалуйста, позвоните нам напрямую.');
+                btn.disabled = false;
+                btn.textContent = origText;
+            }
+        }
+
+        // Entrance animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.kids-module-card, .kids-cert-item, .kids-step, .kids-swatch').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.08}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.08}s`;
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

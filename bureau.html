@@ -1,0 +1,2972 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>ROVERO Labs - Конструкторское бюро</title>
+    <link rel="icon" href="assets/images/icons/favicon.png" type="image/png">
+    <meta name="description"
+        content="Услуги конструкторского бюро ROVERO. Профессиональное проектирование мебели, чертежи, 3D-моделирование и полный цикл производства.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/nav_sidebar.css">
+    <style>
+        /* PAGE & BLUEPRINT BACKGROUND SYSTEM */
+        .bureau-body {
+            background-color: #ffffff;
+            color: var(--text-main);
+        }
+
+        .blueprint-grid {
+            background-image:
+                linear-gradient(rgba(197, 160, 101, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(197, 160, 101, 0.12) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* PAGE HERO */
+        .bureau-hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding-top: 120px;
+            padding-bottom: 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .bureau-hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 40px;
+            align-items: stretch;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-left-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-tag {
+            font-size: 9px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 25px;
+            font-weight: 500;
+            border: 1px solid rgba(197, 160, 101, 0.25);
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(48px, 5.5vw, 76px);
+            font-weight: 300;
+            color: var(--text-main);
+            line-height: 1.05;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 40px;
+            letter-spacing: 0.2px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-fill {
+            background-color: var(--text-main);
+            color: #fff;
+            padding: 16px 38px;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--text-main);
+        }
+
+        .btn-fill:hover {
+            background-color: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(197, 160, 101, 0.15);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            padding: 16px 38px;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(20, 20, 20, 0.15);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            background-color: rgba(20, 20, 20, 0.02);
+            transform: translateY(-3px);
+        }
+
+        .hero-right-visual {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .hero-visual-frame {
+            position: relative;
+            width: 100%;
+            margin-top: 54px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .frame-header {
+            display: none;
+        }
+
+        .blueprint-img-wrapper {
+            position: relative;
+            width: 100%;
+            flex-grow: 1;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.04);
+        }
+
+        .blueprint-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 1;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .blueprint-img.hover-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        @media (min-width: 901px) {
+            .hero-visual-frame:hover .blueprint-img.hover-img {
+                opacity: 1;
+            }
+
+            .hero-visual-frame:hover .blueprint-img {
+                transform: scale(1.03);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-visual-frame.active-tap .blueprint-img.hover-img {
+                opacity: 1;
+            }
+
+            .hero-visual-frame.active-tap .blueprint-img {
+                transform: scale(1.03);
+            }
+        }
+
+        /* Стили для одиночных изображений-эскизов (без эффекта смены) */
+        .hero-blueprint-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.04);
+        }
+
+        .hero-blueprint-img:hover {
+            opacity: 1;
+        }
+
+        /* SECTION HEADERS */
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 0 20px;
+        }
+
+        .section-eyebrow {
+            font-size: 9px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+            display: block;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(36px, 4vw, 54px);
+            font-weight: 300;
+            text-transform: uppercase;
+            color: var(--text-main);
+            letter-spacing: 0.02em;
+        }
+
+        /* SECTION GAP */
+        .bureau-section {
+            padding: 120px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* STEPPER / FULL CYCLE */
+        .stepper-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        .stepper-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 20px;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 101, 0.12);
+            padding: 35px 22px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .step-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 12px;
+            font-weight: 300;
+            font-style: italic;
+            opacity: 0.85;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.3, 1);
+            transform-origin: left top;
+        }
+
+        .step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            opacity: 1;
+            transition: opacity 0.15s ease 0.1s;
+        }
+
+        .step-content-small {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .step-desc-short {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .step-desc-expanded {
+            visibility: hidden;
+            transition: visibility 0.1s ease;
+        }
+
+        .step-desc-main {
+            font-size: 12px;
+            color: var(--text-main);
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+
+        .step-desc-more {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+
+        /* АНИМАЦИИ НА ДЕСКТОПЕ (КОЛОНКИ-АККОРДЕОН) */
+        @media (min-width: 1025px) {
+            .stepper-grid {
+                display: flex;
+                width: 100%;
+                gap: 20px;
+            }
+
+            .step-card {
+                position: relative;
+                flex: 1;
+                height: 300px;
+                transition: flex 0.6s cubic-bezier(0.25, 1, 0.3, 1), background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+            }
+
+            /* Растягиваем активную плашку */
+            .step-card:hover {
+                flex: 4.5;
+                background: #fff;
+                border-color: var(--gold);
+                box-shadow: 0 20px 40px rgba(197, 160, 101, 0.12);
+            }
+
+            /* Сжимаем остальные плашки */
+            .stepper-grid:has(.step-card:hover) .step-card:not(:hover) {
+                flex: 0.6;
+                opacity: 0.45;
+            }
+
+            /* Фиксированная ширина для маленького контента на десктопе, чтобы не сжимался */
+            .step-content-small {
+                width: 125px;
+                flex-shrink: 0;
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 0.15s ease 0.1s, visibility 0.15s ease 0.1s;
+            }
+
+            /* Скрываем маленький контент на активной плашке почти моментально */
+            .step-card:hover .step-content-small {
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.1s ease, visibility 0.1s ease;
+            }
+
+            /* Прячем маленький контент на сжатых плашках почти моментально */
+            .stepper-grid:has(.step-card:hover) .step-card:not(:hover) .step-content-small {
+                opacity: 0 !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+                transition: opacity 0.1s ease !important, visibility 0.1s ease !important;
+            }
+
+            /* Прячем заголовок на сжатых плашках почти моментально */
+            .stepper-grid:has(.step-card:hover) .step-card:not(:hover) .step-title {
+                opacity: 0 !important;
+                pointer-events: none !important;
+                transition: opacity 0.1s ease !important;
+            }
+
+            /* Позиционируем подробную информацию абсолютно на месте малого текста с одинаковыми полями слева и справа */
+            .step-desc-expanded {
+                position: absolute;
+                top: 121px;
+                left: 22px;
+                right: 22px;
+                max-height: none;
+                overflow: visible;
+                visibility: hidden;
+                transition: visibility 0.1s ease;
+            }
+
+            /* Активируем видимость подробного блока при наведении */
+            .step-card:hover .step-desc-expanded {
+                visibility: visible;
+                transition: visibility 0s;
+            }
+
+            /* Показываем текст с мини-карточки первым */
+            .step-card:hover .step-desc-main {
+                opacity: 1;
+                transition: opacity 0.2s ease 0.2s;
+            }
+
+            /* Показываем подробный текст вторым */
+            .step-card:hover .step-desc-more {
+                opacity: 1;
+                transition: opacity 0.25s ease 0.35s;
+            }
+        }
+
+        /* НА ТАБЛЕТАХ И МОБИЛЬНЫХ (ВЕРТИКАЛЬНОЕ РАСКРЫТИЕ) */
+        @media (max-width: 1024px) {
+            .step-card {
+                min-height: 200px;
+                height: auto;
+                transition: all 0.4s ease;
+            }
+
+            .step-card:hover {
+                background: #fff;
+                border-color: var(--gold);
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(197, 160, 101, 0.08);
+            }
+
+            .step-desc-expanded {
+                max-height: 0;
+                overflow: hidden;
+                transition: opacity 0.4s ease, max-height 0.4s ease;
+            }
+
+            .step-card:hover .step-desc-expanded {
+                opacity: 1;
+                visibility: visible;
+                max-height: 300px;
+                margin-top: 15px;
+            }
+
+            .step-desc-main,
+            .step-desc-more {
+                opacity: 1;
+                transition: none;
+            }
+        }
+
+        /* FOR DESIGNERS */
+        .designers-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: stretch;
+        }
+
+        .designers-left {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .designer-benefit {
+            border-left: 2px solid var(--gold);
+            padding-left: 30px;
+        }
+
+        .benefit-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            letter-spacing: 0.01em;
+        }
+
+        .benefit-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .designers-right-visual {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .designers-header {
+            text-align: left;
+            max-width: 1400px;
+            margin: 0 auto 40px auto;
+            padding: 0 50px;
+        }
+
+        .designers-btn-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+        }
+
+        /* PROJECTS GALLERY */
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        .bureau-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: auto !important;
+            column-gap: 30px;
+            row-gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .project-card {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.3, 1);
+            height: 100%;
+        }
+
+        .project-card:hover .proj-img-wrap {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border-color: var(--gold);
+        }
+
+        .proj-img-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 1px solid rgba(197, 160, 101, 0.35);
+            aspect-ratio: 4 / 3;
+            margin-bottom: 2px;
+            width: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.25, 1, 0.3, 1);
+            transform: translateZ(0);
+        }
+
+        .proj-img-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+        }
+
+        .proj-img {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* CAROUSEL BUTTONS (MATCHING PRODUCT.HTML MAIN-NAV-BTN EXACTLY) */
+        .proj-carousel-btn {
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            color: #141414;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            padding: 0;
+            pointer-events: auto;
+        }
+
+        .project-card:hover .proj-carousel-btn {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .proj-carousel-btn:hover {
+            background: #141414;
+            color: #fff;
+        }
+
+        .proj-carousel-btn.prev {
+            left: 20px;
+        }
+
+        .proj-carousel-btn.next {
+            right: 20px;
+        }
+
+        /* CAROUSEL DOTS NAVIGATION */
+        .proj-dots {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 15;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: opacity 0.3s ease;
+        }
+
+        .proj-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.3, 1);
+        }
+
+        .proj-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.15);
+        }
+
+        .proj-dot.active {
+            background: var(--gold, #c5a065);
+            transform: scale(1.3);
+            box-shadow: 0 0 8px rgba(197, 160, 101, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .proj-carousel-btn {
+                display: none !important;
+            }
+        }
+
+        /* PROJECT LIGHTBOX STYLES (MATCHING PRODUCT.HTML LIGHTBOX EXACTLY) */
+        .project-lightbox .lightbox-content {
+            max-width: 85%;
+            max-height: 85%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .project-lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .project-lightbox img {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-lightbox .lightbox-nav-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 101000;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .project-lightbox .lightbox-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        .project-lightbox .lightbox-nav-btn.prev {
+            left: 40px;
+        }
+
+        .project-lightbox .lightbox-nav-btn.next {
+            right: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .project-lightbox .lightbox-nav-btn {
+                display: flex !important;
+                width: 44px;
+                height: 44px;
+                background: rgba(0, 0, 0, 0.5);
+                color: #fff;
+                border-radius: 50%;
+            }
+
+            .project-lightbox .lightbox-nav-btn.prev {
+                left: 15px;
+            }
+
+            .project-lightbox .lightbox-nav-btn.next {
+                right: 15px;
+            }
+
+            .project-lightbox .lightbox-content {
+                max-width: 95%;
+            }
+        }
+
+        .proj-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+            padding: 0 10px;
+            flex: none;
+        }
+
+        .proj-title-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .proj-tag {
+            display: none;
+        }
+
+        .proj-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin: 0;
+            letter-spacing: 0.01em;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        /* SECTION BACKGROUND COLORS (LIKE MAIN PAGE) */
+        #full-cycle {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 250px, #ffffff 100%);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.1);
+        }
+
+        #for-designers {
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(197, 160, 101, 0.1);
+        }
+
+        #projects,
+        #sketch-projects {
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(197, 160, 101, 0.1);
+        }
+
+        #initiation-form {
+            background-color: #ffffff;
+            border-top: 1px solid rgba(197, 160, 101, 0.1);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.1);
+        }
+
+        /* INITIATION FORM */
+        .initiation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            background: #ffffff;
+            color: var(--text-main);
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .initiation-left {
+            padding: 80px 60px;
+            border-right: 1px solid rgba(197, 160, 101, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .initiation-tag {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .initiation-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 4vw, 56px);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+        }
+
+        .initiation-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .initiation-right-form {
+            padding: 80px 80px;
+            background: #ffffff;
+        }
+
+        .bureau-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-size: 9px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .form-group:focus-within .form-label {
+            color: var(--gold);
+        }
+
+        .form-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(20, 20, 20, 0.15);
+            color: var(--text-main);
+            padding: 14px 0px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 0;
+        }
+
+        .form-input::placeholder {
+            color: rgba(20, 20, 20, 0.35);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-bottom-color: var(--gold);
+            background: transparent;
+            padding-left: 5px;
+        }
+
+        .form-input:focus::placeholder {
+            transform: translateY(-4px);
+            opacity: 0.5;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .form-input.textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .form-consent {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .form-consent input[type="checkbox"] {
+            margin-top: 4px;
+            accent-color: var(--gold);
+            cursor: pointer;
+        }
+
+        .form-consent label {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .form-consent a {
+            color: var(--text-main);
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .form-consent a:hover {
+            color: var(--gold);
+        }
+
+        .form-submit-btn {
+            background: var(--gold);
+            color: #fff;
+            border: 1px solid var(--gold);
+            padding: 20px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0;
+            margin-top: 15px;
+        }
+
+        .form-submit-btn:hover {
+            background: transparent;
+            color: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(197, 160, 101, 0.15);
+        }
+
+        .form-submit-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .form-submit-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* TOAST NOTIFICATION */
+        .toast-notify {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #141414;
+            color: #fff;
+            border-left: 3px solid var(--gold);
+            padding: 18px 30px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10000;
+        }
+
+        .toast-notify.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* RESPONSIVENESS */
+        @media (max-width: 1200px) {
+            .stepper-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .step-card {
+                min-height: 200px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .pricing-grid .price-card:last-child {
+                grid-column: span 2;
+            }
+
+            .initiation-container {
+                grid-template-columns: 1fr;
+            }
+
+            .initiation-left {
+                border-right: none;
+                border-bottom: 1px solid rgba(197, 160, 101, 0.15);
+                padding: 60px 40px;
+            }
+
+            .initiation-right-form {
+                padding: 60px 40px;
+            }
+        }
+
+        @media (max-width: 990px) {
+
+            /* Запрет горизонтального скролла на уровне всей страницы */
+            html,
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+
+            .bureau-hero {
+                min-height: auto;
+                padding-top: 110px;
+                padding-bottom: 60px;
+            }
+
+            .bureau-hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 30px;
+            }
+
+            .hero-right-visual {
+                order: 1;
+            }
+
+            .hero-left-content {
+                order: 2;
+            }
+
+            /* STEPPER HORIZONTAL SCROLL SNAP ON TABLET & MOBILE */
+            .stepper-container {
+                padding: 0 0 0 30px;
+                overflow: hidden;
+                /* Скрываем выходящий контент */
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .stepper-grid {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+                gap: 20px;
+                padding: 10px 30px 40px 0;
+                margin: 0;
+                grid-template-columns: none;
+                /* Disable grid */
+                width: 100%;
+                /* Ограничиваем флекс-контейнер */
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .stepper-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .stepper-grid {
+                -ms-overflow-style: none;
+                /* IE and Edge */
+                scrollbar-width: none;
+                /* Firefox */
+            }
+
+            .step-card {
+                flex: 0 0 290px;
+                width: 290px;
+                scroll-snap-align: start;
+                min-height: 300px;
+                height: auto;
+                padding: 28px 24px;
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 10px 25px rgba(197, 160, 101, 0.06);
+                box-sizing: border-box;
+                transform: none !important;
+                /* Disable desk animations */
+            }
+
+            .step-card:hover {
+                transform: none !important;
+                box-shadow: 0 10px 25px rgba(197, 160, 101, 0.06) !important;
+                border-color: rgba(197, 160, 101, 0.12) !important;
+            }
+
+            .step-card .step-content-small {
+                display: none !important;
+            }
+
+            .step-card .step-desc-expanded {
+                display: block !important;
+                position: static !important;
+                visibility: visible !important;
+                max-height: none !important;
+                opacity: 1 !important;
+                margin-top: 15px;
+                overflow: visible !important;
+            }
+
+            .step-desc-main {
+                opacity: 1 !important;
+                font-size: 13px !important;
+                font-weight: 500 !important;
+                margin-bottom: 8px !important;
+                color: var(--text-main) !important;
+            }
+
+            .step-desc-more {
+                opacity: 0.8 !important;
+                font-size: 12px !important;
+                line-height: 1.5 !important;
+                color: var(--text-muted) !important;
+            }
+
+            .designers-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 30px;
+            }
+
+            .designers-header {
+                padding: 0 30px;
+                margin-bottom: 30px;
+            }
+
+            .designer-benefit {
+                border-left: 2px solid var(--gold);
+                padding-left: 20px;
+            }
+
+            .designers-right-visual {
+                height: auto;
+            }
+
+            .hero-blueprint-img {
+                position: relative;
+                height: auto;
+                aspect-ratio: 4 / 3;
+            }
+
+            .bureau-projects-grid {
+                grid-template-columns: 1fr 1fr;
+                column-gap: 24px;
+                row-gap: 54px;
+            }
+
+            .proj-img-wrap {
+                aspect-ratio: 4 / 3;
+                margin-bottom: 2px;
+            }
+
+            .project-card {
+                height: 100%;
+            }
+
+            .proj-info {
+                padding: 0 8px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                text-align: center;
+                flex: none;
+                min-height: auto;
+            }
+
+            .proj-dots {
+                bottom: 10px;
+                padding: 4px 8px;
+                gap: 5px;
+            }
+
+            .proj-dot {
+                width: 6px;
+                height: 6px;
+            }
+
+            .proj-title-wrap {
+                gap: 4px;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .proj-title {
+                font-family: 'Montserrat', sans-serif !important;
+                font-size: 13px !important;
+                font-weight: 500;
+                color: var(--text-main);
+                line-height: 1.4;
+                letter-spacing: 0.02em;
+                text-align: center;
+            }
+
+            .proj-tag {
+                display: none;
+            }
+
+            .projects-container {
+                padding: 0 30px;
+            }
+
+            .initiation-container {
+                margin: 0 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .designers-header {
+                padding: 0 20px;
+            }
+
+            .bureau-section {
+                padding: 60px 0;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .section-eyebrow {
+                font-size: 8px;
+                letter-spacing: 3px;
+                margin-bottom: 12px;
+            }
+
+            .section-title {
+                font-size: clamp(28px, 6vw, 36px);
+            }
+
+            .hero-title {
+                font-size: clamp(32px, 8vw, 44px);
+                line-height: 1.15;
+                margin-bottom: 20px;
+            }
+
+            .hero-desc {
+                font-size: 14px;
+                line-height: 1.6;
+                margin-bottom: 30px;
+            }
+
+            .hero-tag {
+                margin-bottom: 15px;
+            }
+
+            /* Removed mobile frame header and frame padding overrides */
+            .hero-visual-frame {
+                margin-top: 0;
+            }
+
+            .blueprint-img-wrapper {
+                aspect-ratio: 4 / 3;
+                height: auto;
+            }
+
+            .blueprint-img {
+                position: relative;
+            }
+
+            .blueprint-img.hover-img {
+                position: absolute;
+            }
+
+            .designers-btn-wrap {
+                margin-top: 30px;
+                padding: 0 30px;
+            }
+
+            .designers-btn-wrap .btn-fill {
+                width: 100%;
+                text-align: center;
+            }
+
+            .bureau-projects-grid {
+                column-gap: 16px;
+                row-gap: 44px;
+            }
+
+            .proj-title {
+                font-family: 'Montserrat', sans-serif !important;
+                font-size: 13px !important;
+                font-weight: 500;
+                color: var(--text-main);
+                line-height: 1.4;
+                letter-spacing: 0.02em;
+                text-align: center;
+            }
+
+            .proj-tag {
+                display: none;
+            }
+
+            .proj-img-wrap {
+                aspect-ratio: 4 / 3;
+                margin-bottom: 2px;
+            }
+
+            .proj-info {
+                padding: 0 6px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                text-align: center;
+                flex: none;
+                min-height: auto;
+            }
+
+            .initiation-container {
+                margin: 0 20px;
+            }
+
+            .initiation-left,
+            .initiation-right-form {
+                padding: 40px 24px;
+            }
+
+            .initiation-title {
+                font-size: clamp(28px, 6vw, 36px);
+                margin-bottom: 15px;
+            }
+
+            .initiation-desc {
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .bureau-form {
+                gap: 20px;
+            }
+
+            .form-group {
+                gap: 6px;
+            }
+
+            .form-input {
+                padding: 10px 0;
+                font-size: 13px;
+            }
+
+            .form-consent label {
+                font-size: 10px;
+                line-height: 1.4;
+            }
+
+            .form-submit-btn {
+                padding: 16px 30px;
+                font-size: 10px;
+                letter-spacing: 2px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid .price-card:last-child {
+                grid-column: span 1;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 12px;
+            }
+
+            .btn-fill,
+            .btn-outline {
+                text-align: center;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bureau-section {
+                padding: 45px 0;
+            }
+
+            .bureau-hero {
+                padding-top: 95px;
+                padding-bottom: 35px;
+            }
+
+            .stepper-container {
+                padding: 0 0 0 20px;
+                overflow: hidden;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .stepper-grid {
+                gap: 15px;
+                padding: 10px 20px 30px 0;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .step-card {
+                flex: 0 0 260px;
+                width: 260px;
+                padding: 22px 18px;
+                min-height: 270px;
+            }
+
+            .designers-btn-wrap {
+                padding: 0 20px;
+            }
+
+            .initiation-container {
+                margin: 0 15px;
+            }
+
+            .bureau-projects-grid {
+                column-gap: 12px;
+                row-gap: 36px;
+            }
+
+            .proj-title {
+                font-family: 'Montserrat', sans-serif !important;
+                font-size: 13px !important;
+                font-weight: 500;
+                color: var(--text-main);
+                line-height: 1.4;
+                letter-spacing: 0.02em;
+                text-align: center;
+            }
+
+            .proj-tag {
+                display: none;
+            }
+
+            .proj-img-wrap {
+                aspect-ratio: 4 / 3;
+                margin-bottom: 2px;
+            }
+
+            .proj-info {
+                padding: 0 4px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                text-align: center;
+                flex: none;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body class="bureau-body">
+
+    <!-- HEADER -->
+    <header id="site-header">
+        <div class="header-inner">
+            <button class="nav-menu-btn" id="menuOpenBtn" aria-label="Открыть меню">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span>Меню</span>
+            </button>
+
+            <a href="index.html" class="logo-box" data-hover>
+                <span class="brand-name">ROVERO</span>
+                <div class="brand-div"></div>
+                <span class="brand-sub">LABS</span>
+            </a>
+
+            <div class="header-right-group">
+                <a href="tel:+74957488944" class="h-phone h-phone-header" onclick="copyPhone(this, event)" data-hover>+7
+                    (495) 748-89-44</a>
+                <a href="favorites.html" class="h-icon" id="headerFavBtn" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                    <span class="fav-badge badge" style="display:none;">0</span>
+                </a>
+                <a href="cart.html" class="h-icon" id="headerCartBtn" data-hover>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-badge badge" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SIDEBAR NAVIGATION MENU -->
+    <div id="navOverlay"></div>
+    <div id="navSidebar">
+        <div class="nav-sidebar-head">
+            <span class="nav-sidebar-title">Меню</span>
+            <button class="nav-close-btn" id="navCloseBtn" aria-label="Закрыть">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- НАВИГАЦИЯ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Навигация</div>
+            <div class="nav-section-links">
+                <a href="index.html" class="nav-link">Главная страница</a>
+                <a href="catalog.html" class="nav-link">Каталог товаров</a>
+                <a href="collections.html" class="nav-link">Коллекции мебели</a>
+            </div>
+        </div>
+
+        <!-- КАТЕГОРИИ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Категории</div>
+            <div class="nav-section-links">
+                <a href="catalog.html?cat=СПАЛЬНЯ" class="nav-link">Спальня</a>
+                <a href="catalog.html?cat=КУХНЯ и ВИНОТЕКА" class="nav-link">Кухня и винотека</a>
+                <a href="catalog.html?cat=ГАРДЕРОБНАЯ и ПРИХОЖАЯ" class="nav-link">Гардеробная и прихожая</a>
+                <a href="catalog.html?cat=ГОСТИНАЯ и БИБЛИОТЕКА" class="nav-link">Гостиная и библиотека</a>
+            </div>
+        </div>
+
+        <!-- НАПРАВЛЕНИЯ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Направления</div>
+            <div class="nav-section-links">
+                <a href="bureau.html" class="nav-link">ROVERO Labs</a>
+                <a href="constructor.html" class="nav-link">ROVERO Kids</a>
+            </div>
+        </div>
+
+        <!-- ПОКУПАТЕЛЮ -->
+        <div class="nav-section">
+            <div class="nav-section-label">Покупателю</div>
+            <div class="nav-section-links">
+                <a href="favorites.html" class="nav-link">Избранное</a>
+                <a href="cart.html" class="nav-link">Корзина покупок</a>
+                <a href="request.html" class="nav-link">Оформить заявку</a>
+            </div>
+        </div>
+
+        <!-- О БРЕНДЕ -->
+        <div class="nav-section">
+            <div class="nav-section-label">О нас</div>
+            <div class="nav-section-links">
+                <a href="about.html" class="nav-link">О бренде</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+            </div>
+        </div>
+
+        <!-- КОНТАКТЫ -->
+        <div class="nav-contacts">
+            <a href="tel:+74957488944" class="nav-contact-item">+7 (495) 748-89-44</a>
+            <a href="mailto:info@roverodesign.ru" class="nav-contact-item">info@roverodesign.ru</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="blueprint-grid">
+
+        <!-- HERO SECTION -->
+        <section class="bureau-hero">
+            <div class="bureau-hero-container">
+                <div class="hero-left-content">
+                    <span class="hero-tag">Проектирование</span>
+                    <h1 class="hero-title">Конструкторское<br>бюро Rovero Labs</h1>
+                    <p class="hero-desc">Любая мебель на заказ: от идеи до сборки. Полный цикл производства и честные
+                        цены от производителя без скрытых наценок. Разрабатываем точные чертежи и реализуем сложные
+                        архитектурные замыслы.</p>
+                    <div class="hero-buttons">
+                        <a href="#initiation-form" class="btn-fill" data-hover>Начать проект</a>
+                        <a href="#projects" class="btn-outline" data-hover>Наши проекты</a>
+                    </div>
+                </div>
+                <div class="hero-right-visual">
+                    <div class="hero-visual-frame">
+                        <div class="blueprint-img-wrapper">
+                            <!-- ФОТО №1 (По умолчанию) -->
+                            <img src="assets/images/bureau/bureauhero.webp" alt="Чертеж Rovero"
+                                class="blueprint-img main-img">
+
+                            <!-- ФОТО №2 (При наведении) -->
+                            <img src="assets/images/bureau/bureauhero2.webp" alt="Чертеж Rovero"
+                                class="blueprint-img hover-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FULL CYCLE SECTION -->
+        <section class="bureau-section" id="full-cycle">
+            <div class="section-header">
+                <span class="section-eyebrow">Процесс</span>
+                <h2 class="section-title">Полный цикл</h2>
+            </div>
+            <div class="stepper-container">
+                <div class="stepper-grid">
+                    <div class="step-card">
+                        <div class="step-num">01</div>
+                        <div class="step-title">Идея</div>
+                        <div class="step-content-small">
+                            <div class="step-desc-short">Погружение в ваши задачи и создание первых концептуальных
+                                эскизов.</div>
+                        </div>
+                        <div class="step-desc-expanded">
+                            <p class="step-desc-main">Погружение в ваши задачи и создание первых концептуальных эскизов.
+                            </p>
+                            <p class="step-desc-more">Всё начинается с диалога. Мы обсуждаем ваш образ жизни и
+                                функциональные требования, чтобы понять, как мебель будет работать именно для вас. На
+                                этом этапе рождаются первые наброски, подбираются материалы и формируется визуальный
+                                язык будущего интерьера.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">02</div>
+                        <div class="step-title">Замер</div>
+                        <div class="step-content-small">
+                            <div class="step-desc-short">Точное измерение помещения для идеальной посадки будущей
+                                мебели.</div>
+                        </div>
+                        <div class="step-desc-expanded">
+                            <p class="step-desc-main">Точное измерение помещения для идеальной посадки будущей мебели.
+                            </p>
+                            <p class="step-desc-more">Чтобы мебель встала безупречно, мы изучаем пространство до
+                                мельчайших деталей. Наши специалисты выезжают на объект, фиксируют все особенности
+                                геометрии помещения и инженерные нюансы, исключая любые сюрпризы на этапе монтажа.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">03</div>
+                        <div class="step-title">Проект</div>
+                        <div class="step-content-small">
+                            <div class="step-desc-short">Создание детальной 3D-модели и фотореалистичной визуализации.
+                            </div>
+                        </div>
+                        <div class="step-desc-expanded">
+                            <p class="step-desc-main">Создание детальной 3D-модели и фотореалистичной визуализации.</p>
+                            <p class="step-desc-more">Переводим идеи в точную цифровую модель. Мы создаем детальные
+                                визуализации, чтобы вы могли заранее оценить не только внешний вид, но и эргономику,
+                                текстуру материалов и то, как мебель будет взаимодействовать со светом в вашем доме.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">04</div>
+                        <div class="step-title">Чертежи</div>
+                        <div class="step-content-small">
+                            <div class="step-desc-short">Инженерный расчет и подготовка полной технической документации.
+                            </div>
+                        </div>
+                        <div class="step-desc-expanded">
+                            <p class="step-desc-main">Инженерный расчет и подготовка полной технической документации.
+                            </p>
+                            <p class="step-desc-more">За внешней эстетикой всегда стоит точный расчет. Наши инженеры
+                                разрабатывают детальную техническую документацию, продумывая каждый узел и соединение.
+                                Это гарантия того, что изделие будет не только красивым, но и безупречно надежным в
+                                повседневном использовании.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">05</div>
+                        <div class="step-title">Производство</div>
+                        <div class="step-content-small">
+                            <div class="step-desc-short">Изготовление изделия со строгим контролем качества на каждом
+                                этапе.</div>
+                        </div>
+                        <div class="step-desc-expanded">
+                            <p class="step-desc-main">Изготовление изделия со строгим контролем качества на каждом
+                                этапе.</p>
+                            <p class="step-desc-more">Соединяем точность современных технологий и тепло ручной работы.
+                                Мы бережно обрабатываем материалы, строго контролируем качество на каждом этапе и
+                                наносим финишные покрытия, которые подчеркивают естественную красоту текстуры.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">06</div>
+                        <div class="step-title">Доставка</div>
+                        <div class="step-content-small">
+                            <div class="step-desc-short">Бережная упаковка и безопасная транспортировка до объекта.
+                            </div>
+                        </div>
+                        <div class="step-desc-expanded">
+                            <p class="step-desc-main">Бережная упаковка и безопасная транспортировка до объекта.</p>
+                            <p class="step-desc-more">Мы относимся к логистике с тем же вниманием, что и к созданию.
+                                Каждая деталь упаковывается по строгим стандартам безопасности и аккуратно доставляется
+                                на объект, чтобы полностью исключить любые повреждения в пути.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">07</div>
+                        <div class="step-title">Сборка</div>
+                        <div class="step-content-small">
+                            <div class="step-desc-short">Профессиональный монтаж и точная подгонка каждой детали.</div>
+                        </div>
+                        <div class="step-desc-expanded">
+                            <p class="step-desc-main">Профессиональный монтаж и точная подгонка каждой детали.</p>
+                            <p class="step-desc-more">Финальный аккорд, где проект обретает жизнь. Опытные специалисты
+                                бережно собирают мебель, выверяют геометрию, настраивают фурнитуру и интегрируют
+                                подсветку, добиваясь безупречной работы каждого элемента. Вам остается только
+                                наслаждаться результатом.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOR DESIGNERS SECTION -->
+        <section class="bureau-section" id="for-designers">
+            <div class="designers-header">
+                <span class="section-eyebrow">Сотрудничество</span>
+                <h2 class="section-title">Для дизайнеров</h2>
+            </div>
+            <div class="designers-container">
+                <div class="designers-left">
+                    <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 30px;">
+                        Станьте партнером ROVERO DESIGN. Мы берем на себя всю техническую часть: от чертежа до
+                        реализации.</p>
+
+                    <div class="designer-benefit">
+                        <div class="benefit-title">Разработка документации</div>
+                        <div class="benefit-desc">Детальные чертежи и проработка узлов любой сложности под ваши
+                            дизайн-проекты.</div>
+                    </div>
+                    <div class="designer-benefit">
+                        <div class="benefit-title">Подготовка 3D-моделей</div>
+                        <div class="benefit-desc">Предоставляем готовые 3D-модели наших систем для ваших визуализаций.
+                        </div>
+                    </div>
+                    <div class="designer-benefit">
+                        <div class="benefit-title">Подбор материалов</div>
+                        <div class="benefit-desc">Поможем подобрать финиши и проверим жизнеспособность нестандартных
+                            идей.</div>
+                    </div>
+                    <div class="designer-benefit">
+                        <div class="benefit-title">Производство и надзор</div>
+                        <div class="benefit-desc">Авторский надзор на всех этапах сборки, гарантирующий точное
+                            соответствие проекту.</div>
+                    </div>
+                </div>
+                <div class="designers-right-visual">
+                    <img src="assets/images/bureau/bureauintro.webp" alt="CAD Проектирование"
+                        class="hero-blueprint-img">
+                </div>
+            </div>
+            <div class="designers-btn-wrap">
+                <a href="#initiation-form" class="btn-fill" data-hover>Оформить партнерство</a>
+            </div>
+        </section>
+
+        <!-- OUR PROJECTS GALLERY -->
+        <section class="bureau-section" id="projects">
+            <div class="section-header">
+                <span class="section-eyebrow">Портфолио</span>
+                <h2 class="section-title">Фото с наших объектов</h2>
+            </div>
+            <div class="projects-container">
+                <div class="bureau-projects-grid">
+                    <!-- Card 1: Mestolo -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/projects/project1/1+.webp"
+                                    alt="Кухонные системы Mestolo 1" class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project1/2+.webp"
+                                    alt="Кухонные системы Mestolo 2" class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project1/3+.webp"
+                                    alt="Кухонные системы Mestolo 3" class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project1/4+.webp"
+                                    alt="Кухонные системы Mestolo 4" class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project1/5+.webp"
+                                    alt="Кухонные системы Mestolo 5" class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Стеновые панели</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Intimita -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/projects/project2/1+.webp"
+                                    alt="Системы хранения Intimita 1" class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project2/2+.webp"
+                                    alt="Системы хранения Intimita 2" class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project2/3+.webp"
+                                    alt="Системы хранения Intimita 3" class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project2/4+.webp"
+                                    alt="Системы хранения Intimita 4" class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project2/5+.webp"
+                                    alt="Системы хранения Intimita 5" class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Бар-ресторан</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Sommelier -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/projects/project3/1+.webp" alt="Винотеки Sommelier 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project3/2+.webp" alt="Винотеки Sommelier 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project3/3+.webp" alt="Винотеки Sommelier 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project3/4+.webp" alt="Винотеки Sommelier 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project3/5+.webp" alt="Винотеки Sommelier 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Гардеробная комната</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Luce -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/projects/project4/1+.webp" alt="Стеллажи Luce 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project4/2+.webp" alt="Стеллажи Luce 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project4/3+.webp" alt="Стеллажи Luce 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project4/4+.webp" alt="Стеллажи Luce 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project4/5+.webp" alt="Стеллажи Luce 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Кухонный гарнитур</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Diamante -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/projects/project5/1+.webp" alt="Мебель Diamante 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project5/2+.webp" alt="Мебель Diamante 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project5/3+.webp" alt="Мебель Diamante 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project5/4+.webp" alt="Мебель Diamante 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project5/5+.webp" alt="Мебель Diamante 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Винная комната</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Armonia -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/projects/project6/1+.webp" alt="Гардеробные Armonia 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project6/2+.webp" alt="Гардеробные Armonia 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project6/3+.webp" alt="Гардеробные Armonia 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project6/4+.webp" alt="Гардеробные Armonia 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project6/5+.webp" alt="Гардеробные Armonia 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Кабинет</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Kompatto -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/projects/project7/1+.webp" alt="Системы Kompatto 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project7/2+.webp" alt="Системы Kompatto 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project7/3+.webp" alt="Системы Kompatto 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project7/4+.webp" alt="Системы Kompatto 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project7/5+.webp" alt="Системы Kompatto 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Библиотека</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 8: Arpione -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/projects/project8/1+.webp" alt="Рабочие зоны Arpione 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project8/2+.webp" alt="Рабочие зоны Arpione 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project8/3+.webp" alt="Рабочие зоны Arpione 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project8/4+.webp" alt="Рабочие зоны Arpione 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/projects/project8/5+.webp" alt="Рабочие зоны Arpione 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Гардеробная комната</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR SKETCH PROJECTS GALLERY -->
+        <section class="bureau-section" id="sketch-projects">
+            <div class="section-header">
+                <span class="section-eyebrow">Чертежи и эскизы</span>
+                <h2 class="section-title">Наши эскизные проекты</h2>
+            </div>
+            <div class="projects-container">
+                <div class="bureau-projects-grid">
+                    <!-- Card 1: Riserva -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/sketch/sketch1/sketch11.webp" alt="Эскиз Riserva 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch1/sketch12.webp" alt="Эскиз Riserva 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch1/sketch13.webp" alt="Эскиз Riserva 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch1/sketch14.webp" alt="Эскиз Riserva 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch1/sketch15.webp" alt="Эскиз Riserva 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Бар-ресторан</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Cerchio -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/sketch/sketch2/sketch21.webp" alt="Эскиз Cerchio 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch2/sketch22.webp" alt="Эскиз Cerchio 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch2/sketch23.webp" alt="Эскиз Cerchio 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch2/sketch24.webp" alt="Эскиз Cerchio 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch2/sketch25.webp" alt="Эскиз Cerchio 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Гардеробная комната</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Libro -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/sketch/sketch3/sketch31.webp" alt="Эскиз Libro 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch3/sketch32.webp" alt="Эскиз Libro 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch3/sketch33.webp" alt="Эскиз Libro 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch3/sketch34.webp" alt="Эскиз Libro 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch3/sketch35.webp" alt="Эскиз Libro 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Винная комната</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Matina -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/sketch/sketch4/sketch41.webp" alt="Эскиз Matina 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch4/sketch42.webp" alt="Эскиз Matina 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch4/sketch43.webp" alt="Эскиз Matina 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch4/sketch44.webp" alt="Эскиз Matina 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch4/sketch45.webp" alt="Эскиз Matina 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Двери</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Scelta -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/sketch/sketch5/sketch51.webp" alt="Эскиз Scelta 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch5/sketch52.webp" alt="Эскиз Scelta 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch5/sketch53.webp" alt="Эскиз Scelta 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch5/sketch54.webp" alt="Эскиз Scelta 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch5/sketch55.webp" alt="Эскиз Scelta 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Прихожая</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Freddo -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/sketch/sketch6/sketch61.webp" alt="Эскиз Freddo 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch6/sketch62.webp" alt="Эскиз Freddo 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch6/sketch63.webp" alt="Эскиз Freddo 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch6/sketch64.webp" alt="Эскиз Freddo 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch6/sketch65.webp" alt="Эскиз Freddo 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Гостиная</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Mestolo (Duplicate) -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/sketch/sketch7/sketch71.webp" alt="Эскиз Mestolo 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch7/sketch72.webp" alt="Эскиз Mestolo 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch7/sketch73.webp" alt="Эскиз Mestolo 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch7/sketch74.webp" alt="Эскиз Mestolo 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch7/sketch75.webp" alt="Эскиз Mestolo 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Бильярдная комната</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 8: Intimita (Duplicate) -->
+                    <div class="project-card" onclick="openProjectLightbox(this)" data-current-slide="0">
+                        <div class="proj-img-wrap">
+                            <button class="proj-carousel-btn prev" onclick="changeProjectSlide(event, this, -1)"
+                                aria-label="Предыдущий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="proj-carousel-btn next" onclick="changeProjectSlide(event, this, 1)"
+                                aria-label="Следующий слайд" data-hover>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="proj-img-track">
+                                <img src="assets/images/bureau/sketch/sketch8/sketch81.webp" alt="Эскиз Intimita 1"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch8/sketch82.webp" alt="Эскиз Intimita 2"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch8/sketch83.webp" alt="Эскиз Intimita 3"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch8/sketch84.webp" alt="Эскиз Intimita 4"
+                                    class="proj-img project-img">
+                                <img src="assets/images/bureau/sketch/sketch8/sketch85.webp" alt="Эскиз Intimita 5"
+                                    class="proj-img project-img">
+                            </div>
+                            <div class="proj-dots">
+                                <span class="proj-dot active" onclick="setProjectSlide(event, this, 0)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 1)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 2)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 3)"></span>
+                                <span class="proj-dot" onclick="setProjectSlide(event, this, 4)"></span>
+                            </div>
+                        </div>
+                        <div class="proj-info">
+                            <div class="proj-title-wrap">
+                                <h3 class="proj-title project-name">Лестница</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INITIATION FORM -->
+        <section class="bureau-section" id="initiation-form">
+            <div class="initiation-container">
+                <div class="initiation-left">
+                    <span class="initiation-tag">Обратная связь</span>
+                    <h2 class="initiation-title">Инициировать<br>проект</h2>
+                    <p class="initiation-desc">Введите параметры и описание вашей задачи, чтобы получить консультацию
+                        нашего инженера и предварительный расчет проекта.</p>
+                </div>
+                <div class="initiation-right-form">
+                    <form class="bureau-form" onsubmit="handleBureauSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="client-name">Ваше имя</label>
+                                <input class="form-input" id="client-name" placeholder="Александр Иванов" type="text"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="client-phone">Способ связи</label>
+                                <input class="form-input" id="client-phone" placeholder="Почта, Telegram или другой"
+                                    type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="project-desc">Описание вашего проекта</label>
+                            <textarea class="form-input textarea" id="project-desc"
+                                placeholder="Кратко опишите требования к мебели, габариты и желаемые материалы..."
+                                required></textarea>
+                        </div>
+                        <div class="form-consent">
+                            <input type="checkbox" id="client-consent" required>
+                            <label for="client-consent">Я даю согласие на обработку <a href="consent.html"
+                                    target="_blank">персональных данных</a> в соответствии с политикой
+                                конфиденциальности</label>
+                        </div>
+                        <button class="form-submit-btn" type="submit" data-hover>
+                            <span>Передать данные</span>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="footer-grid">
+            <div class="f-left">
+                <a href="https://yandex.ru/maps/?text=Московская+область,+г.+Истра,+ул.+Московская,+д.+5Б"
+                    target="_blank" class="f-address" data-hover>
+                    г. Истра, Московская область,<br>ул. Московская, д. 5Б
+                </a>
+            </div>
+            <div class="f-center">
+                <a href="#" class="footer-up-link" data-hover
+                    onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">
+                    <div class="f-logo">ROVERO</div>
+                    <span class="f-ussr">Сделано в СССР</span>
+                </a>
+            </div>
+            <div class="f-right">
+                <div class="f-socials">
+                    <a href="https://pin.it/2L0sqvX60" target="_blank" class="social-link" data-hover>
+                        <img src="assets/images/icons/pin.webp" alt="Pinterest">
+                    </a>
+                    <a href="https://vk.com/roverodesign" target="_blank" class="social-link vk-link" data-hover>
+                        <img src="assets/images/icons/vk.webp" alt="VK">
+                    </a>
+                    <a href="https://t.me/roverodesign" target="_blank" class="social-link" data-hover>
+                        <img src="assets/images/icons/tg.webp" alt="Telegram">
+                    </a>
+                    <a href="https://max.ru/join/5EWSTPk9Rqw2J9zZi21fxuXY0fo5J0ws3SGbeObK978" target="_blank"
+                        class="social-link" data-hover>
+                        <img src="assets/images/icons/max.webp" alt="Max">
+                    </a>
+                </div>
+                <a href="#" class="f-contact-link" onclick="copyPhone(this, event)" data-hover>+7 (495) 748-89-44</a>
+                <a href="mailto:info@roverodesign.ru" class="h-email" data-hover>info@roverodesign.ru</a>
+            </div>
+        </div>
+
+        <div class="footer-menu-links">
+            <a href="about.html" class="f-menu-link" data-hover>О бренде</a>
+            <a href="catalog.html" class="f-menu-link" data-hover>Каталог</a>
+            <a href="collections.html" class="f-menu-link" data-hover>Коллекции</a>
+            <a href="bureau.html" class="f-menu-link" data-hover>ROVERO LABS</a>
+            <a href="constructor.html" class="f-menu-link" data-hover>ROVERO Kids</a>
+            <a href="contacts.html" class="f-menu-link" data-hover>Где нас найти</a>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="f-legal-links">
+                <a href="privacy.html" data-hover>Политика конфиденциальности</a>
+                <a href="terms.html" data-hover>Пользовательское соглашение</a>
+                <a href="https://beldweb.ru/" target="_blank" data-hover>Разработка сайта — Beldweb</a>
+            </div>
+            <span class="f-copy">© 2026 MOSCOW</span>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-text">Мы используем файлы cookie. <a href="cookie.html" data-hover>Подробнее</a>.</div>
+        <button class="cookie-btn" onclick="acceptCookies()" data-hover>Принять</button>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toastNotification" class="toast-notify">Данные проекта успешно отправлены</div>
+
+    <!-- Lightbox for Projects -->
+    <div id="projectLightbox" class="project-lightbox" onclick="closeProjectLightbox()">
+        <span class="lightbox-close">&times;</span>
+
+        <button class="lightbox-nav-btn prev" id="projectLightboxPrevBtn"
+            onclick="changeLightboxProjectSlide(event, -1)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="projectLightboxImg" src="" alt="Full Screen Project Image">
+        </div>
+
+        <button class="lightbox-nav-btn next" id="projectLightboxNextBtn"
+            onclick="changeLightboxProjectSlide(event, 1)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+
+        <div id="projectLightboxCaption" class="lightbox-caption"></div>
+    </div>
+
+    <!-- JS SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/nav_sidebar.js"></script>
+
+    <script>
+        // Form submission handler
+        async function handleBureauSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const btn = form.querySelector('button');
+            const origText = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = 'ОТПРАВКА…';
+
+            const name = document.getElementById('client-name').value;
+            const phone = document.getElementById('client-phone').value;
+            const desc = document.getElementById('project-desc').value;
+
+            const payload = {
+                name: name,
+                phone: phone,
+                comment: `[Заявка из КБ] Требования: ${desc}`,
+                interested_product: 'Конструкторское бюро (Проектирование)'
+            };
+
+            let ok = false;
+            try {
+                ok = await saveRequestToSupabase(payload);
+            } catch (err) {
+                console.error('Supabase submit error:', err);
+            }
+
+            if (ok) {
+                // Show toast notification
+                const toast = document.getElementById('toastNotification');
+                toast.classList.add('show');
+
+                // Clear form
+                form.reset();
+
+                // Hide toast after 4 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000);
+            } else {
+                btn.innerText = 'ОШИБКА — ПОПРОБУЙТЕ ЕЩЁ';
+            }
+
+            setTimeout(() => {
+                btn.innerText = origText;
+                btn.disabled = false;
+            }, 2500);
+        }
+
+        // Update pagination dots for the active slide
+        function updateCarouselDots(card, index) {
+            const dots = card.querySelectorAll('.proj-dot');
+            dots.forEach((dot, idx) => {
+                if (idx === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Set slide index directly (e.g. on dot click)
+        function setProjectSlide(event, dot, index) {
+            if (event) event.stopPropagation(); // Prevent opening lightbox
+
+            const card = dot.closest('.project-card');
+            if (!card) return;
+
+            const track = card.querySelector('.proj-img-track');
+            if (!track) return;
+
+            card.setAttribute('data-current-slide', index);
+            track.style.transform = `translateX(-${index * 100}%)`;
+
+            updateCarouselDots(card, index);
+        }
+
+        // Project card carousel navigation
+        function changeProjectSlide(event, button, direction) {
+            if (event) event.stopPropagation(); // Prevent opening lightbox
+
+            const card = button.closest('.project-card');
+            if (!card) return;
+
+            const track = card.querySelector('.proj-img-track');
+            if (!track) return;
+
+            const images = track.querySelectorAll('.proj-img');
+            const totalSlides = images.length;
+            if (totalSlides <= 1) return;
+
+            let currentIndex = parseInt(card.getAttribute('data-current-slide') || '0', 10);
+            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+
+            card.setAttribute('data-current-slide', currentIndex);
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            updateCarouselDots(card, currentIndex);
+        }
+
+        // Project lightbox navigation logic (with scrolling/syncing back to the card slider)
+        let activeLightboxTile = null;
+        let currentLightboxImages = [];
+        let currentLightboxIndex = 0;
+        let currentLightboxName = '';
+
+        function openProjectLightbox(tile) {
+            // Prevent lightbox from opening if a touch/swipe was recently completed
+            if (tile.dataset.preventClick === 'true') {
+                tile.dataset.preventClick = 'false';
+                return;
+            }
+
+            const lightbox = document.getElementById('projectLightbox');
+            const lightboxImg = document.getElementById('projectLightboxImg');
+            const lightboxCaption = document.getElementById('projectLightboxCaption');
+
+            if (!lightbox || !lightboxImg) return;
+
+            activeLightboxTile = tile;
+
+            // Find all images within this project card
+            const images = Array.from(tile.querySelectorAll('.project-img'));
+            currentLightboxImages = images.map(img => img.src);
+
+            // Find the current slide index
+            const currentSlideAttr = tile.getAttribute('data-current-slide') || '0';
+            currentLightboxIndex = parseInt(currentSlideAttr, 10);
+
+            const nameEl = tile.querySelector('.project-name');
+            currentLightboxName = nameEl ? nameEl.innerText : '';
+
+            // Set initial state
+            updateLightboxUI();
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectLightbox() {
+            const lightbox = document.getElementById('projectLightbox');
+            if (lightbox) {
+                lightbox.classList.remove('active');
+            }
+            document.body.style.overflow = '';
+            activeLightboxTile = null;
+        }
+
+        function updateLightboxUI() {
+            const lightboxImg = document.getElementById('projectLightboxImg');
+            const lightboxCaption = document.getElementById('projectLightboxCaption');
+
+            if (lightboxImg && currentLightboxImages.length > 0) {
+                lightboxImg.src = currentLightboxImages[currentLightboxIndex];
+            }
+
+            if (lightboxCaption) {
+                lightboxCaption.innerText = currentLightboxName;
+            }
+        }
+
+        function changeLightboxProjectSlide(event, direction) {
+            if (event) event.stopPropagation(); // Avoid closing lightbox
+            if (currentLightboxImages.length <= 1) return;
+
+            currentLightboxIndex = (currentLightboxIndex + direction + currentLightboxImages.length) % currentLightboxImages.length;
+            updateLightboxUI();
+
+            // Sync this back to the project card so that when the lightbox closes, the card slider is also on the correct image!
+            if (activeLightboxTile) {
+                activeLightboxTile.setAttribute('data-current-slide', currentLightboxIndex);
+                const track = activeLightboxTile.querySelector('.proj-img-track');
+                if (track) {
+                    track.style.transform = `translateX(-${currentLightboxIndex * 100}%)`;
+                }
+                updateCarouselDots(activeLightboxTile, currentLightboxIndex);
+            }
+        }
+
+        // Touch swipe handling for mobile devices
+        document.addEventListener('DOMContentLoaded', () => {
+            // Toggle hero visual blueprint image on mobile tap
+            const heroFrame = document.querySelector('.hero-visual-frame');
+            if (heroFrame) {
+                heroFrame.addEventListener('click', () => {
+                    if (window.innerWidth <= 900) {
+                        heroFrame.classList.toggle('active-tap');
+                    }
+                });
+            }
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                const imgWrap = card.querySelector('.proj-img-wrap');
+                if (!imgWrap) return;
+
+                let startX = 0;
+                let startY = 0;
+                let isSwipe = false;
+
+                imgWrap.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                    isSwipe = false;
+                }, { passive: true });
+
+                imgWrap.addEventListener('touchmove', (e) => {
+                    if (startX === 0 || startY === 0) return;
+
+                    const diffX = e.touches[0].clientX - startX;
+                    const diffY = e.touches[0].clientY - startY;
+
+                    // If horizontal movement is greater than vertical and exceeds a small noise threshold, mark as swiping
+                    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+                        isSwipe = true;
+                    }
+                }, { passive: true });
+
+                imgWrap.addEventListener('touchend', (e) => {
+                    if (startX === 0 || startY === 0) return;
+
+                    const diffX = e.changedTouches[0].clientX - startX;
+                    const diffY = e.changedTouches[0].clientY - startY;
+
+                    // A swipe is confirmed if it is horizontal, exceeds the threshold (40px), and has been marked as swipe
+                    if (isSwipe && Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+                        // Prevent triggering click/lightbox
+                        e.preventDefault();
+                        card.dataset.preventClick = 'true';
+
+                        const direction = diffX > 0 ? -1 : 1;
+
+                        const track = card.querySelector('.proj-img-track');
+                        const images = track ? track.querySelectorAll('.proj-img') : [];
+                        const totalSlides = images.length;
+
+                        if (totalSlides > 1) {
+                            let currentIndex = parseInt(card.getAttribute('data-current-slide') || '0', 10);
+                            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+
+                            card.setAttribute('data-current-slide', currentIndex);
+                            if (track) track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                            updateCarouselDots(card, currentIndex);
+                        }
+                    }
+
+                    // Clean up and reset swipe values
+                    startX = 0;
+                    startY = 0;
+                    isSwipe = false;
+                }, { passive: false });
+            });
+        });
+
+        // Global exposure to overwrite the functions from index.js
+        window.openProjectLightbox = openProjectLightbox;
+        window.closeProjectLightbox = closeProjectLightbox;
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('projectLightbox');
+            if (lightbox && lightbox.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    changeLightboxProjectSlide(e, -1);
+                } else if (e.key === 'ArrowRight') {
+                    changeLightboxProjectSlide(e, 1);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

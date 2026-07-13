@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Коллекции — ROVERO DESIGN</title>
+  <link rel="icon" href="assets/images/icons/favicon.png" type="image/png">
+  <meta name="description" content="Все коллекции ROVERO DESIGN — авторская мебель из массива дерева.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="stylesheet" href="assets/css/nav_sidebar.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      background: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      color: #1a1a1a;
+      overflow-x: hidden
+    }
+
+    .cl-page {
+      display: flex;
+      min-height: 100vh;
+      padding-top: 80px
+    }
+
+    .cl-left {
+      width: 55%;
+      padding: 60px 80px 80px;
+      flex-shrink: 0
+    }
+
+    .cl-eyebrow {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block
+    }
+
+    .cl-page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 400;
+      line-height: 1.05;
+      color: #1a1a1a;
+      margin-bottom: 60px
+    }
+
+    .cl-list {
+      list-style: none
+    }
+
+    .cl-item {
+      border-top: 1px solid rgba(197, 160, 101, 0.15)
+    }
+
+    .cl-item:last-child {
+      border-bottom: 1px solid rgba(197, 160, 101, 0.15)
+    }
+
+    .cl-item-link {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 26px 0;
+      text-decoration: none;
+      color: #1a1a1a;
+      transition: color 0.25s
+    }
+
+    .cl-item-link:hover,
+    .cl-item-link.active {
+      color: var(--gold)
+    }
+
+    .cl-item-left {
+      display: flex;
+      align-items: baseline;
+      gap: 22px
+    }
+
+    .cl-item-num {
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: rgba(0, 0, 0, 0.25);
+      min-width: 24px;
+      flex-shrink: 0;
+      transition: color 0.25s
+    }
+
+    .cl-item-link:hover .cl-item-num,
+    .cl-item-link.active .cl-item-num {
+      color: var(--gold)
+    }
+
+    .cl-item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.2vw, 46px);
+      font-weight: 400;
+      line-height: 1;
+      transition: transform 0.3s ease
+    }
+
+    .cl-item-link:hover .cl-item-name,
+    .cl-item-link.active .cl-item-name {
+      transform: translateX(8px)
+    }
+
+    .cl-item-cat {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.3);
+      text-align: right;
+      max-width: 200px;
+      line-height: 1.5;
+      transition: color 0.25s
+    }
+
+    .cl-item-link:hover .cl-item-cat,
+    .cl-item-link.active .cl-item-cat {
+      color: rgba(0, 0, 0, 0.5)
+    }
+
+    .cl-right {
+      flex: 1;
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 80px);
+      overflow: hidden;
+      background: #ffffff;
+      cursor: pointer
+    }
+
+    .cl-img-slot {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none
+    }
+
+    .cl-img-slot.visible {
+      opacity: 1
+    }
+
+    .cl-img-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.88)
+    }
+
+    .cl-right-default {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease
+    }
+
+    .cl-right-default.hidden {
+      opacity: 0;
+      pointer-events: none
+    }
+
+    .cl-right-default-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: rgba(0, 0, 0, 0.25);
+      letter-spacing: 2px
+    }
+
+    .cl-img-caption {
+      position: absolute;
+      bottom: 50px;
+      left: 50px;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s 0.1s ease, transform 0.4s 0.1s ease
+    }
+
+    .cl-right:has(.cl-img-slot.visible) .cl-img-caption {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .cl-caption-tag {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px
+    }
+
+    .cl-caption-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1
+    }
+
+    /* GALLERY CONTROLS ON RIGHT SIDE */
+    .cl-gallery-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+      padding: 0;
+    }
+
+    .cl-gallery-control:hover {
+      background: rgba(197, 160, 101, 0.8);
+      border-color: var(--gold);
+      color: #ffffff;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .cl-prev-btn {
+      left: 30px;
+    }
+
+    .cl-next-btn {
+      right: 30px;
+    }
+
+    /* Show controls on hover of the right container */
+    .cl-right:hover .cl-gallery-control {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* PAGINATION INDICATORS AT THE TOP OF IMAGES */
+    .cl-indicators {
+      position: absolute;
+      top: 30px;
+      left: 50px;
+      right: 50px;
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cl-right:hover .cl-indicators {
+      opacity: 1;
+    }
+
+    .cl-indicator-bar {
+      flex: 1;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cl-indicator-bar.active {
+      background: var(--gold);
+      box-shadow: 0 0 8px rgba(197, 160, 101, 0.6);
+    }
+
+    .cl-production {
+      background: #ffffff;
+      padding: 100px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      border-top: 1px solid rgba(197, 160, 101, 0.15)
+    }
+
+    .cl-production-tag {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 20px
+    }
+
+    .cl-production-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 300;
+      color: var(--text-main);
+      line-height: 1.1;
+      margin-bottom: 30px
+    }
+
+    .cl-production-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 460px;
+      margin-bottom: 40px
+    }
+
+    .cl-production-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .cl-production-btn {
+      display: inline-block;
+      padding: 16px 40px;
+      text-decoration: none;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: 0.3s;
+      text-align: center
+    }
+
+    .cl-production-btn.primary {
+      background: var(--gold);
+      color: #fff;
+      font-weight: 600
+    }
+
+    .cl-production-btn.secondary {
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      color: var(--text-main)
+    }
+
+    .cl-production-btn.secondary:hover {
+      background: #fcfcfc;
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .cl-production-btn:hover {
+      opacity: 0.8
+    }
+
+    .cl-production-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px
+    }
+
+    .cl-production-images img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      filter: brightness(0.8);
+      border-radius: 16px;
+    }
+
+    .cl-production-images img:last-child {
+      margin-top: 40px
+    }
+
+    @media(max-width:900px) {
+      .cl-page {
+        flex-direction: column;
+        height: auto
+      }
+
+      .cl-right {
+        display: none
+      }
+
+      .cl-left {
+        width: 100%;
+        padding: 40px 25px 60px
+      }
+
+      .cl-production {
+        grid-template-columns: 1fr;
+        padding: 60px 25px;
+        gap: 40px
+      }
+
+      .cl-production-title {
+        font-size: 32px;
+        margin-bottom: 20px
+      }
+
+      .cl-production-desc {
+        margin-bottom: 30px
+      }
+
+      .cl-production-images img:last-child {
+        margin-top: 20px
+      }
+
+      .cl-production-btns {
+        flex-direction: column;
+        gap: 12px
+      }
+
+      .cl-production-btns .cl-production-btn {
+        width: 100%
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="site-header">
+    <div class="header-inner">
+      <button class="nav-menu-btn" id="menuOpenBtn" aria-label="Открыть меню">
+        <div class="hamburger"><span></span><span></span><span></span></div>
+        <span>Меню</span>
+      </button>
+      <a href="index.html" class="logo-box" data-hover>
+        <span class="brand-name">ROVERO</span>
+        <div class="brand-div"></div><span class="brand-sub">DESIGN</span>
+      </a>
+      <div class="header-right-group">
+        <a href="tel:+74957488944" class="h-phone h-phone-header" data-hover>+7 (495) 748-89-44</a>
+        <a href="favorites.html" class="h-icon" data-hover>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+            </path>
+          </svg>
+        </a>
+        <a href="cart.html" class="h-icon" data-hover>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge badge" style="display:none;">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div id="navOverlay"></div>
+  <div id="navSidebar">
+    <div class="nav-sidebar-head">
+      <span class="nav-sidebar-title">Меню</span>
+      <button class="nav-close-btn" id="navCloseBtn" aria-label="Закрыть">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- НАВИГАЦИЯ -->
+    <div class="nav-section">
+      <div class="nav-section-label">Навигация</div>
+      <div class="nav-section-links">
+        <a href="index.html" class="nav-link">Главная страница</a>
+        <a href="catalog.html" class="nav-link">Каталог товаров</a>
+        <a href="collections.html" class="nav-link">Коллекции мебели</a>
+      </div>
+    </div>
+
+    <!-- КАТЕГОРИИ -->
+    <div class="nav-section">
+      <div class="nav-section-label">Категории</div>
+      <div class="nav-section-links">
+        <a href="catalog.html?cat=СПАЛЬНЯ" class="nav-link">Спальня</a>
+        <a href="catalog.html?cat=КУХНЯ и ВИНОТЕКА" class="nav-link">Кухня и винотека</a>
+        <a href="catalog.html?cat=ГАРДЕРОБНАЯ и ПРИХОЖАЯ" class="nav-link">Гардеробная и прихожая</a>
+        <a href="catalog.html?cat=ГОСТИНАЯ и БИБЛИОТЕКА" class="nav-link">Гостиная и библиотека</a>
+      </div>
+    </div>
+
+    <!-- НАПРАВЛЕНИЯ -->
+    <div class="nav-section">
+      <div class="nav-section-label">Направления</div>
+      <div class="nav-section-links">
+        <a href="bureau.html" class="nav-link">ROVERO Labs</a>
+        <a href="constructor.html" class="nav-link">ROVERO Kids</a>
+      </div>
+    </div>
+
+    <!-- ПОКУПАТЕЛЮ -->
+    <div class="nav-section">
+      <div class="nav-section-label">Покупателю</div>
+      <div class="nav-section-links">
+        <a href="favorites.html" class="nav-link">Избранное</a>
+        <a href="cart.html" class="nav-link">Корзина покупок</a>
+        <a href="request.html" class="nav-link">Оформить заявку</a>
+      </div>
+    </div>
+
+    <!-- О БРЕНДЕ -->
+    <div class="nav-section">
+      <div class="nav-section-label">О нас</div>
+      <div class="nav-section-links">
+        <a href="about.html" class="nav-link">О бренде</a>
+        <a href="contacts.html" class="nav-link">Контакты</a>
+      </div>
+    </div>
+
+    <!-- КОНТАКТЫ -->
+    <div class="nav-contacts">
+      <a href="tel:+74957488944" class="nav-contact-item">+7 (495) 748-89-44</a>
+      <a href="mailto:info@roverodesign.ru" class="nav-contact-item">info@roverodesign.ru</a>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="cl-page">
+    <div class="cl-left">
+      <span class="cl-eyebrow">ROVERO DESIGN</span>
+      <h1 class="cl-page-title">Все<br>коллекции</h1>
+      <ul class="cl-list" id="clList">
+        <!-- Заполняется динамически из COLLECTIONS_METADATA в catalog_data.js -->
+      </ul>
+    </div>
+
+    <div class="cl-right" id="clRight">
+      <!-- Prev/Next arrows for browsing photos -->
+      <button class="cl-gallery-control cl-prev-btn" id="clPrevBtn" aria-label="Предыдущее фото">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+      <button class="cl-gallery-control cl-next-btn" id="clNextBtn" aria-label="Следующее фото">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+
+      <!-- Gallery indicator bars -->
+      <div class="cl-indicators" id="clIndicators">
+        <div class="cl-indicator-bar active" data-index="0"></div>
+        <div class="cl-indicator-bar" data-index="1"></div>
+        <div class="cl-indicator-bar" data-index="2"></div>
+        <div class="cl-indicator-bar" data-index="3"></div>
+        <div class="cl-indicator-bar" data-index="4"></div>
+      </div>
+
+      <div class="cl-right-default" id="clDefault">
+        <span class="cl-right-default-text">Наведите на коллекцию</span>
+      </div>
+      <div class="cl-img-caption" id="clCaption">
+        <div class="cl-caption-tag" id="clCaptionTag"></div>
+        <div class="cl-caption-name" id="clCaptionName"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- О ПРОИЗВОДСТВЕ -->
+  <section class="cl-production">
+    <div>
+      <span class="cl-production-tag">О производстве</span>
+      <h2 class="cl-production-title">Каждая коллекция —<br>это отдельный<br>диалог с деревом</h2>
+      <p class="cl-production-desc">Мы не просто производим мебель — мы создаём системы, которые живут с вами. Каждая
+        коллекция ROVERO разработана под конкретную задачу: хранение, приготовление пищи, сон, вино, книги. Материал
+        один — массив дерева. Характеры разные.</p>
+      <div class="cl-production-btns">
+        <a href="request.html" data-hover class="cl-production-btn primary">Оставить заявку</a>
+        <a href="about.html" data-hover class="cl-production-btn secondary">О бренде</a>
+      </div>
+    </div>
+    <div class="cl-production-images">
+      <img src="assets/images/collections/diamante/diamante_car_2.webp" alt="">
+      <img src="assets/images/collections/mestolo/mestolo_car_3.webp" alt="">
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-grid">
+      <div class="f-left">
+        <a href="https://yandex.ru/maps/?text=Московская+область,+г.+Истра,+ул.+Московская,+д.+5Б" target="_blank"
+          class="f-address" data-hover>г. Истра, Московская область,<br>ул. Московская, д. 5Б</a>
+      </div>
+      <div class="f-center">
+        <a href="#" class="footer-up-link" data-hover
+          onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">
+          <div class="f-logo">ROVERO</div>
+          <span class="f-ussr">Сделано в СССР</span>
+        </a>
+      </div>
+      <div class="f-right">
+        <div class="f-socials">
+          <a href="https://pin.it/2L0sqvX60" target="_blank" class="social-link" data-hover><img
+              src="assets/images/icons/pin.webp" alt="Pinterest"></a>
+          <a href="https://vk.com/roverodesign" target="_blank" class="social-link vk-link" data-hover><img
+              src="assets/images/icons/vk.webp" alt="VK"></a>
+          <a href="https://t.me/roverodesign" target="_blank" class="social-link" data-hover><img
+              src="assets/images/icons/tg.webp" alt="Telegram"></a>
+          <a href="https://max.ru/join/5EWSTPk9Rqw2J9zZi21fxuXY0fo5J0ws3SGbeObK978" target="_blank" class="social-link"
+            data-hover><img src="assets/images/icons/max.webp" alt="Max"></a>
+        </div>
+        <a href="#" class="f-contact-link" onclick="copyPhone(this,event)" data-hover>+7 (495) 748-89-44</a>
+        <a href="mailto:info@roverodesign.ru" class="h-email" data-hover>info@roverodesign.ru</a>
+      </div>
+    </div>
+    <div class="footer-menu-links">
+      <a href="about.html" class="f-menu-link" data-hover>О бренде</a>
+      <a href="catalog.html" class="f-menu-link" data-hover>Каталог</a>
+      <a href="collections.html" class="f-menu-link" data-hover>Коллекции</a>
+      <a href="bureau.html" class="f-menu-link" data-hover>ROVERO LABS</a>
+      <a href="constructor.html" class="f-menu-link" data-hover>ROVERO Kids</a>
+      <a href="contacts.html" class="f-menu-link" data-hover>Контакты</a>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="f-legal-links">
+        <a href="privacy.html" data-hover>Политика конфиденциальности</a>
+        <a href="terms.html" data-hover>Пользовательское соглашение</a>
+        <a href="https://beldweb.ru/" target="_blank" data-hover>Разработка сайта — Beldweb</a>
+      </div>
+      <span class="f-copy">© 2026 MOSCOW</span>
+    </div>
+  </footer>
+
+  <div id="cookieBanner" class="cookie-banner">
+    <div class="cookie-text">Мы используем файлы cookie. <a href="cookie.html">Подробнее</a>.</div>
+    <button class="cookie-btn" onclick="acceptCookies()">Принять</button>
+  </div>
+
+  <script src="assets/js/catalog_data.js"></script>
+  <script src="assets/js/index.js"></script>
+  <script>
+    (function () {
+      const listContainer = document.getElementById('clList');
+      if (listContainer && typeof COLLECTIONS_METADATA !== 'undefined') {
+        listContainer.innerHTML = '';
+        Object.keys(COLLECTIONS_METADATA)
+          .sort((a, b) => a.localeCompare(b, 'ru'))
+          .forEach((name, idx) => {
+            const data = COLLECTIONS_METADATA[name];
+            const imgPath = data.collectionsImg || '';
+            const tags = data.collectionsTags || '';
+            const num = String(idx + 1).padStart(2, '0');
+
+            const li = document.createElement('li');
+            li.className = 'cl-item';
+            li.innerHTML = `
+              <a class="cl-item-link" href="collection.html?name=${encodeURIComponent(name)}" data-img="${imgPath}" data-name="${name}">
+                <span class="cl-item-left">
+                  <span class="cl-item-num">${num}</span>
+                  <span class="cl-item-name">${name}</span>
+                </span>
+                <span class="cl-item-cat">${tags}</span>
+              </a>
+            `;
+            listContainer.appendChild(li);
+          });
+      }
+
+      const right = document.getElementById('clRight');
+      const def = document.getElementById('clDefault');
+      const capTag = document.getElementById('clCaptionTag');
+      const capName = document.getElementById('clCaptionName');
+      const links = Array.from(document.querySelectorAll('.cl-item-link'));
+      const base = 'assets/images/collections/';
+      const slots = {};
+
+      // Pre-create image slots with 5 images per collection
+      links.forEach(link => {
+        const imgFile = link.dataset.img; // e.g., "armonia/armonia1.webp" or "assets/images/collections/sommelier/sommelierintro.jpeg"
+        if (slots[imgFile]) return;
+
+        const div = document.createElement('div');
+        div.className = 'cl-img-slot';
+
+        // Support full paths by stripping the common prefix
+        let cleanPath = imgFile;
+        if (cleanPath.startsWith('assets/images/collections/')) {
+          cleanPath = cleanPath.replace('assets/images/collections/', '');
+        }
+
+        const parts = cleanPath.split('/');
+        const folder = parts[0];
+        const fileWithExt = parts.length > 1 ? parts[1] : parts[0];
+        const nameWithoutNum = fileWithExt.replace(/\d+\.\w+$/, '');
+        const ext = fileWithExt.split('.').pop();
+
+        // Determine which image index is default
+        const defaultNumMatch = fileWithExt.match(/(\d+)\.\w+$/);
+        const defaultNum = defaultNumMatch ? parseInt(defaultNumMatch[1]) : 1;
+        div.dataset.activeImageIndex = defaultNum - 1; // 0-indexed index
+
+        const defaultSrc = imgFile.startsWith('assets/') ? imgFile : `${base}${cleanPath}`;
+
+        // Load 5 images
+        for (let i = 1; i <= 5; i++) {
+          const img = document.createElement('img');
+          const src = (i === defaultNum) ? defaultSrc : `${base}${folder}/${nameWithoutNum}${i}.${ext}`;
+          img.src = src;
+          img.alt = `${link.dataset.name} ${i}`;
+          img.style.position = 'absolute';
+          img.style.inset = '0';
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.objectFit = 'cover';
+          img.style.transition = 'opacity 0.5s ease-in-out';
+
+          const isActive = (i === defaultNum);
+          img.style.opacity = isActive ? '1' : '0';
+          img.style.zIndex = isActive ? '2' : '1';
+
+          // Fallback if image fails to load
+          img.onerror = () => {
+            if (src !== defaultSrc) {
+              img.src = defaultSrc;
+            }
+          };
+
+          div.appendChild(img);
+        }
+
+        right.insertBefore(div, document.getElementById('clCaption'));
+        slots[imgFile] = div;
+      });
+
+      const prevBtn = document.getElementById('clPrevBtn');
+      const nextBtn = document.getElementById('clNextBtn');
+      const indicatorBars = Array.from(document.querySelectorAll('.cl-indicator-bar'));
+
+      let active = null;
+      let hideTimer = null;
+      let cycleInterval = null;
+      let currentIndex = 0;
+      let isHoveringAny = false;
+
+      function setCollectionSlide(slot, slideIdx) {
+        if (!slot) return;
+        const imgs = Array.from(slot.querySelectorAll('img'));
+        imgs.forEach((img, idx) => {
+          if (idx === slideIdx) {
+            img.style.opacity = '1';
+            img.style.zIndex = '2';
+          } else {
+            img.style.opacity = '0';
+            img.style.zIndex = '1';
+          }
+        });
+        slot.dataset.activeImageIndex = slideIdx;
+
+        // Sync indicator bars
+        indicatorBars.forEach((bar, idx) => {
+          if (idx === slideIdx) {
+            bar.classList.add('active');
+          } else {
+            bar.classList.remove('active');
+          }
+        });
+      }
+
+      function showItem(index) {
+        if (active) {
+          active.classList.remove('visible');
+        }
+        links.forEach(l => l.classList.remove('active'));
+
+        currentIndex = index;
+        const link = links[index];
+        const imgFile = link.dataset.img;
+        const name = link.dataset.name;
+
+        const targetSlot = slots[imgFile];
+        targetSlot.classList.add('visible');
+        active = targetSlot;
+        link.classList.add('active');
+
+        // Sync slide and indicators for this collection
+        const activeSlideIdx = parseInt(targetSlot.dataset.activeImageIndex || 0);
+        setCollectionSlide(targetSlot, activeSlideIdx);
+
+        capTag.textContent = 'Коллекция';
+        capName.textContent = name;
+        def.classList.add('hidden');
+      }
+
+      // Prev / Next button click handlers
+      function navigateSlide(direction) {
+        if (!active) return;
+        const currentSlideIdx = parseInt(active.dataset.activeImageIndex || 0);
+        let nextSlideIdx = currentSlideIdx;
+        if (direction === 'next') {
+          nextSlideIdx = (currentSlideIdx + 1) % 5;
+        } else {
+          nextSlideIdx = (currentSlideIdx - 1 + 5) % 5;
+        }
+        setCollectionSlide(active, nextSlideIdx);
+      }
+
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stopAutoCycle();
+        navigateSlide('prev');
+      });
+
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stopAutoCycle();
+        navigateSlide('next');
+      });
+
+      // Click on the right container to advance to the next slide
+      right.addEventListener('click', (e) => {
+        // Only advance if we didn't click on an arrow or indicator bar
+        if (e.target.closest('.cl-gallery-control') || e.target.closest('.cl-indicators')) {
+          return;
+        }
+        stopAutoCycle();
+        navigateSlide('next');
+      });
+
+      // Clicking individual indicator bars
+      indicatorBars.forEach(bar => {
+        bar.addEventListener('click', (e) => {
+          e.stopPropagation();
+          stopAutoCycle();
+          const targetIdx = parseInt(bar.dataset.index);
+          if (active) {
+            setCollectionSlide(active, targetIdx);
+          }
+        });
+      });
+
+      function nextItem() {
+        if (links.length === 0) return;
+        let nextIdx = (currentIndex + 1) % links.length;
+        showItem(nextIdx);
+      }
+
+      function startAutoCycle() {
+        stopAutoCycle();
+        cycleInterval = setInterval(() => {
+          if (!isHoveringAny) {
+            nextItem();
+          }
+        }, 3000);
+      }
+
+      function stopAutoCycle() {
+        if (cycleInterval) {
+          clearInterval(cycleInterval);
+          cycleInterval = null;
+        }
+      }
+
+      links.forEach((link, idx) => {
+        link.addEventListener('mouseenter', () => {
+          isHoveringAny = true;
+          clearTimeout(hideTimer);
+          stopAutoCycle();
+          showItem(idx);
+        });
+
+        link.addEventListener('mouseleave', () => {
+          isHoveringAny = false;
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(() => {
+            if (!isHoveringAny) {
+              startAutoCycle();
+            }
+          }, 2000);
+        });
+      });
+
+      if (links.length > 0) {
+        showItem(0);
+        startAutoCycle();
+      }
+    })();
+  </script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/nav_sidebar.js"></script>
+</body>
+
+</html>
