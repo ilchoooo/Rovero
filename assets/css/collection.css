@@ -172,8 +172,10 @@ header.scrolled {
     transition: transform 0.4s ease;
 }
 
-.product-card:hover {
-    transform: translateY(-5px);
+@media (hover: hover) {
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
 }
 
 .card-image-wrapper {
@@ -200,16 +202,18 @@ header.scrolled {
     z-index: 2;
 }
 
-.product-card:hover .card-img {
-    transform: scale(1.05);
-}
+@media (hover: hover) {
+    .product-card:hover .card-img {
+        transform: scale(1.05);
+    }
 
-.product-card:hover .hover-img {
-    opacity: 1;
-}
+    .product-card:hover .hover-img {
+        opacity: 1;
+    }
 
-.product-card:hover .main-img {
-    opacity: 0;
+    .product-card:hover .main-img {
+        opacity: 0;
+    }
 }
 
 .card-info {

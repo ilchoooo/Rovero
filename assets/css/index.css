@@ -896,12 +896,14 @@
     z-index: 2;
 }
 
-.product-card:hover .hover-img {
-    opacity: 1;
-}
+@media (hover: hover) {
+    .product-card:hover .hover-img {
+        opacity: 1;
+    }
 
-.product-card:hover .main-img {
-    opacity: 0;
+    .product-card:hover .main-img {
+        opacity: 0;
+    }
 }
 
 /* Make group headers look clickable */
@@ -1091,8 +1093,10 @@ header, footer, button, .nav-item, .h-icon, .cart-badge, .fav-badge,
     transition: transform 0.6s ease;
 }
 
-.random-products-grid .product-card:hover .card-img {
-    transform: scale(1.05);
+@media (hover: hover) {
+    .random-products-grid .product-card:hover .card-img {
+        transform: scale(1.05);
+    }
 }
 
 
@@ -1194,8 +1198,10 @@ header, footer, button, .nav-item, .h-icon, .cart-badge, .fav-badge,
     transition: transform 0.6s ease;
 }
 
-.product-card:hover .card-img {
-    transform: scale(1.05);
+@media (hover: hover) {
+    .product-card:hover .card-img {
+        transform: scale(1.05);
+    }
 }
 
 .card-info {
@@ -1241,10 +1247,12 @@ header, footer, button, .nav-item, .h-icon, .cart-badge, .fav-badge,
     border-bottom-right-radius: 16px;
 }
 
-.product-card:hover .card-hover-btn {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+@media (hover: hover) {
+    .product-card:hover .card-hover-btn {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
 }
 
 .card-hover-btn.in-cart {

@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (favs.length === 0) {
             favGrid.style.display = 'none';
             emptyMsg.style.display = 'block';
+            favGrid.innerHTML = '';
             return;
         }
         
