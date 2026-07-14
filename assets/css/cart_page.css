@@ -185,8 +185,10 @@ header.scrolled {
     cursor: pointer;
     transition: 0.3s;
 }
-.ci-remove:hover {
-    opacity: 1;
+@media (hover: hover) {
+    .ci-remove:hover {
+        opacity: 1;
+    }
 }
 
 @media (max-width: 768px) {
@@ -284,6 +286,8 @@ header.scrolled {
     cursor: pointer;
     transition: 0.3s;
 }
-.cs-checkout-btn:hover {
-    opacity: 0.8;
+@media (hover: hover) {
+    .cs-checkout-btn:hover {
+        opacity: 0.8;
+    }
 }

@@ -49,9 +49,15 @@ header.scrolled {
     text-decoration: none;
 }
 
-.cat-link:hover, .cat-link.active {
+.cat-link.active {
     color: #000;
     font-weight: 500;
+}
+@media (hover: hover) {
+    .cat-link:hover {
+        color: #000;
+        font-weight: 500;
+    }
 }
 
 .catalog-controls-row {
@@ -125,8 +131,10 @@ header.scrolled {
     visibility: visible;
 }
 
-.catalog-search-clear:hover {
-    color: #1e1e1e;
+@media (hover: hover) {
+    .catalog-search-clear:hover {
+        color: #1e1e1e;
+    }
 }
 
 
@@ -151,8 +159,10 @@ header.scrolled {
     transition: all 0.3s ease;
 }
 
-.control-btn:hover {
-    border-color: #000;
+@media (hover: hover) {
+    .control-btn:hover {
+        border-color: #000;
+    }
 }
 
 /* SORT DROPDOWN */
@@ -190,9 +200,15 @@ header.scrolled {
     transition: background 0.2s, color 0.2s;
 }
 
-.sort-option:hover, .sort-option.active {
+.sort-option.active {
     background: #f8f8f8;
     color: var(--gold, #C5A065);
+}
+@media (hover: hover) {
+    .sort-option:hover {
+        background: #f8f8f8;
+        color: var(--gold, #C5A065);
+    }
 }
 
 
@@ -393,8 +409,10 @@ header.scrolled {
     transition: all 0.2s ease;
 }
 
-.custom-checkbox:hover input ~ .checkmark {
-    border-color: #000;
+@media (hover: hover) {
+    .custom-checkbox:hover input ~ .checkmark {
+        border-color: #000;
+    }
 }
 
 .custom-checkbox input:checked ~ .checkmark {
@@ -443,9 +461,11 @@ header.scrolled {
     transition: all 0.3s ease;
 }
 
-.reset-filter-btn:hover {
-    border-color: #1e1e1e;
-    background: rgba(0,0,0,0.05);
+@media (hover: hover) {
+    .reset-filter-btn:hover {
+        border-color: #1e1e1e;
+        background: rgba(0,0,0,0.05);
+    }
 }
 
 .apply-filter-btn {
@@ -462,8 +482,10 @@ header.scrolled {
     transition: background 0.3s ease;
 }
 
-.apply-filter-btn:hover {
-    background: var(--gold, #C5A065);
+@media (hover: hover) {
+    .apply-filter-btn:hover {
+        background: var(--gold, #C5A065);
+    }
 }
 
 /* RESPONSIVE */
@@ -667,9 +689,11 @@ header.scrolled {
     transition: transform 0.15s ease, background 0.15s ease;
 }
 
-.range-slider input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.25);
-    background: #141414;
+@media (hover: hover) {
+    .range-slider input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.25);
+        background: #141414;
+    }
 }
 
 .range-slider input[type="range"]::-webkit-slider-thumb:active {
@@ -689,9 +713,11 @@ header.scrolled {
     transition: transform 0.15s ease, background 0.15s ease;
 }
 
-.range-slider input[type="range"]::-moz-range-thumb:hover {
-    transform: scale(1.25);
-    background: #141414;
+@media (hover: hover) {
+    .range-slider input[type="range"]::-moz-range-thumb:hover {
+        transform: scale(1.25);
+        background: #141414;
+    }
 }
 
 .range-slider input[type="range"]::-moz-range-thumb:active {
@@ -714,8 +740,10 @@ header.scrolled {
     transition: background 0.3s ease;
 }
 
-.filter-body::-webkit-scrollbar-thumb:hover {
-    background: var(--gold, #C5A065);
+@media (hover: hover) {
+    .filter-body::-webkit-scrollbar-thumb:hover {
+        background: var(--gold, #C5A065);
+    }
 }
 
 /* FILTER DRAWER: ACCORDION HEADER */

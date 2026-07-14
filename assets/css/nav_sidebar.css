@@ -23,8 +23,10 @@
     display: none !important;
 }
 
-.nav-menu-btn:hover {
-    opacity: 0.6;
+@media (hover: hover) {
+    .nav-menu-btn:hover {
+        opacity: 0.6;
+    }
 }
 
 .nav-menu-btn .hamburger {
@@ -117,9 +119,11 @@
     flex-shrink: 0;
 }
 
-.nav-close-btn:hover {
-    background: #1a1a1a;
-    color: #fff;
+@media (hover: hover) {
+    .nav-close-btn:hover {
+        background: #1a1a1a;
+        color: #fff;
+    }
 }
 
 .nav-close-btn svg {
@@ -130,8 +134,10 @@
     transition: transform 0.3s ease;
 }
 
-.nav-close-btn:hover svg {
-    transform: rotate(90deg);
+@media (hover: hover) {
+    .nav-close-btn:hover svg {
+        transform: rotate(90deg);
+    }
 }
 
 /* — Sidebar section — */
@@ -177,10 +183,12 @@
     width: 100%;
 }
 
-.nav-link:hover {
-    color: var(--gold);
-    padding-left: 6px;
-    border-bottom-color: var(--gold);
+@media (hover: hover) {
+    .nav-link:hover {
+        color: var(--gold);
+        padding-left: 6px;
+        border-bottom-color: var(--gold);
+    }
 }
 
 /* — Contacts section — */
@@ -204,8 +212,10 @@
     transition: color 0.2s;
 }
 
-.nav-contact-item:hover {
-    color: #1a1a1a;
+@media (hover: hover) {
+    .nav-contact-item:hover {
+        color: #1a1a1a;
+    }
 }
 
 /* — Override: remove old nav-container — */

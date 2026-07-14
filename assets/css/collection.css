@@ -36,8 +36,10 @@ header.scrolled {
     transition: transform 2s ease-out;
 }
 
-.collection-hero:hover .collection-hero-bg {
-    transform: scale(1.05);
+@media (hover: hover) {
+    .collection-hero:hover .collection-hero-bg {
+        transform: scale(1.05);
+    }
 }
 
 .collection-hero-content {

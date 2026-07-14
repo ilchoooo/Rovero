@@ -115,10 +115,12 @@
             border-radius: 4px;
         }
 
-        .kids-btn-primary:hover {
-            background: var(--gold);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(197, 160, 101, 0.3);
+        @media (hover: hover) {
+            .kids-btn-primary:hover {
+                background: var(--gold);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(197, 160, 101, 0.3);
+            }
         }
 
         .kids-btn-outline {
@@ -137,9 +139,11 @@
             border-radius: 4px;
         }
 
-        .kids-btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+        @media (hover: hover) {
+            .kids-btn-outline:hover {
+                border-color: var(--gold);
+                color: var(--gold);
+            }
         }
 
         /* HERO RIGHT — like collections.html */
@@ -356,11 +360,17 @@
             outline: none;
         }
 
-        .kids-cert-item:hover,
         .kids-cert-item.active {
             border-color: var(--gold);
             transform: translateY(-6px);
             box-shadow: 0 15px 35px rgba(197, 160, 101, 0.15);
+        }
+        @media (hover: hover) {
+            .kids-cert-item:hover {
+                border-color: var(--gold);
+                transform: translateY(-6px);
+                box-shadow: 0 15px 35px rgba(197, 160, 101, 0.15);
+            }
         }
 
         .kids-cert-icon {
@@ -437,10 +447,12 @@
             flex-direction: column;
         }
 
-        .kids-module-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--gold);
-            box-shadow: 0 20px 50px rgba(197, 160, 101, 0.1);
+        @media (hover: hover) {
+            .kids-module-card:hover {
+                transform: translateY(-6px);
+                border-color: var(--gold);
+                box-shadow: 0 20px 50px rgba(197, 160, 101, 0.1);
+            }
         }
 
         .kids-module-visual {
@@ -457,8 +469,10 @@
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .kids-module-card:hover .kids-module-visual img {
-            transform: scale(1.05);
+        @media (hover: hover) {
+            .kids-module-card:hover .kids-module-visual img {
+                transform: scale(1.05);
+            }
         }
 
         .kids-module-info {
@@ -541,10 +555,12 @@
             border: 2px solid transparent;
         }
 
-        .kids-swatch:hover {
-            transform: translateY(-4px);
-            border-color: var(--gold);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        @media (hover: hover) {
+            .kids-swatch:hover {
+                transform: translateY(-4px);
+                border-color: var(--gold);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            }
         }
 
         .kids-swatch-color {
@@ -780,10 +796,12 @@
             margin-top: 8px;
         }
 
-        .kids-form-submit:hover {
-            background: var(--gold);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(197, 160, 101, 0.25);
+        @media (hover: hover) {
+            .kids-form-submit:hover {
+                background: var(--gold);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 24px rgba(197, 160, 101, 0.25);
+            }
         }
 
         .kids-form-submit:disabled {
@@ -878,8 +896,10 @@
             transition: color 0.3s;
         }
 
-        .kids-faq-question:hover .kids-faq-question-text {
-            color: var(--gold);
+        @media (hover: hover) {
+            .kids-faq-question:hover .kids-faq-question-text {
+                color: var(--gold);
+            }
         }
 
         .kids-faq-toggle {
