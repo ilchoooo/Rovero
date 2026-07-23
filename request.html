@@ -591,11 +591,11 @@
         <div class="cookie-text">Мы используем файлы cookie. <a href="cookie.html" data-hover>Подробнее</a>.</div>
         <button class="cookie-btn" onclick="acceptCookies()" data-hover>Принять</button>
     </div>
+    <script src="assets/js/supabaseClient.bundle.js"></script>
     <script src="assets/js/catalog_data.js"></script>
     <script src="assets/js/db.js"></script>
     <script src="assets/js/cart.js"></script>
     <script src="assets/js/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -704,9 +704,18 @@
             btn.disabled = true; btn.innerText = 'ОТПРАВКА…';
             let ok = false;
             try {
-                const client = window.ROVERO_SUPABASE_CLIENT;
-                if (client) { const res = await client.from('requests_rovero').insert(payload); ok = !res.error; }
-            } catch (err) { }
+                let client = window.ROVERO_SUPABASE_CLIENT;
+                if (!client && typeof window.supabase !== 'undefined' && window.supabase.createClient) {
+                    client = window.supabase.createClient(window.ROVERO_SUPABASE_URL, window.ROVERO_SUPABASE_ANON_KEY);
+                    window.ROVERO_SUPABASE_CLIENT = client;
+                }
+                if (client) {
+                    const res = await client.from('requests_rovero').insert(payload);
+                    ok = !res.error;
+                }
+            } catch (err) {
+                console.error('Request form error:', err);
+            }
             if (ok) {
                 form.style.display = 'none';
                 document.getElementById('reqSuccess').style.display = 'block';

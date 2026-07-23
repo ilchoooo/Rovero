@@ -431,11 +431,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.ROVERO_SUPABASE_URL      = 'https://smymexmkxqqlcpsiyfym.supabase.co';
     window.ROVERO_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNteW1leG1reHFxbGNwc2l5ZnltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk1Mjg2MDAsImV4cCI6MjA4NTEwNDYwMH0.E7f-juplaPEi6yXn2ENiyXOTsO9T1eyzIVWpLHa1l_c';
     (function initSupabase() {
-        import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm')
-            .then(m => { window.ROVERO_SUPABASE_CLIENT = m.createClient(window.ROVERO_SUPABASE_URL, window.ROVERO_SUPABASE_ANON_KEY); })
-            .catch(e => console.warn(e));
+        if (window.ROVERO_SUPABASE_CLIENT) return;
+        try {
+            var lib = typeof supabase !== 'undefined' ? supabase : window.supabase;
+            if (lib && lib.createClient) {
+                window.ROVERO_SUPABASE_CLIENT = lib.createClient(window.ROVERO_SUPABASE_URL, window.ROVERO_SUPABASE_ANON_KEY);
+            }
+        } catch (e) { console.warn('Supabase init product.js:', e); }
     })();
-
-
-
 });

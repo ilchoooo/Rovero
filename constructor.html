@@ -1623,7 +1623,7 @@
         <button class="cookie-btn" onclick="acceptCookies()" data-hover>Принять</button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/supabaseClient.bundle.js"></script>
     <script src="assets/js/cart.js"></script>
     <script src="assets/js/nav_sidebar.js"></script>
 
@@ -1752,14 +1752,18 @@
             let ok = false;
             try {
                 const SUPABASE_URL = 'https://msyikgbodtfovbqwdpxs.supabase.co';
-                const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zeWlrZ2JvZHRmb3ZicXdkcHhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzNzY5MDcsImV4cCI6MjA2Mzk1MjkwN30.KY1EMGvPLuFZE4MKf6cGioVs_p8Oyi5Mq3t_Bw-FE50';
-                const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                const { error } = await supabase.from('consultation_requests').insert([{
-                    name, phone,
-                    comment: `[ROVERO Kids] Возраст: ${age}. ${comment}`,
-                    source: 'kids'
-                }]);
-                ok = !error;
+                const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zeWlrZ2JvZHRmb3ZicXdkcHhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzNzY5MDcsImV4cCI6MjA6Mzk1MjkwN30.KY1EMGvPLuFZE4MKf6cGioVs_p8Oyi5Mq3t_Bw-FE50';
+                if (window.supabase && window.supabase.createClient) {
+                    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    const { error } = await supabaseClient.from('consultation_requests').insert([{
+                        name, phone,
+                        comment: `[ROVERO Kids] Возраст: ${age}. ${comment}`,
+                        source: 'kids'
+                    }]);
+                    ok = !error;
+                } else {
+                    console.error('Supabase library is not ready.');
+                }
             } catch (err) {
                 console.error('Kids form error:', err);
             }
