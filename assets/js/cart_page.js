@@ -21,14 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         cartItemsList.innerHTML = '';
         let total = 0;
+        let hasOnRequest = false;
         
         cart.forEach((cartItem, index) => {
             const product = catalogData.find(p => p.id === cartItem.id);
             if (!product) return;
             
             const isCustom = !!cartItem.custom;
-            const itemPrice = isCustom ? 0 : product.priceValue;
+            const isOnRequest = isCustom || (product.priceLabel && product.priceLabel.includes('по запросу'));
+            const itemPrice = isOnRequest ? 0 : product.priceValue;
             total += itemPrice * cartItem.qty;
+            if (isOnRequest) hasOnRequest = true;
             
             const div = document.createElement('div');
             div.className = 'ci-item';
@@ -45,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const modelText = isCustom ? 'под заказ' : 'стандартная';
-            const priceText = isCustom ? 'Цена по запросу' : `${product.priceValue.toLocaleString('ru-RU')} ₽`;
-            const totalText = isCustom ? 'Цена по запросу' : `${(product.priceValue * cartItem.qty).toLocaleString('ru-RU')} ₽`;
+            const priceText = isOnRequest ? 'Цена по запросу' : `${product.priceValue.toLocaleString('ru-RU')} ₽`;
+            const totalText = isOnRequest ? 'Цена по запросу' : `${(product.priceValue * cartItem.qty).toLocaleString('ru-RU')} ₽`;
 
             div.innerHTML = `
                 <div class="ci-swipe-bg">Удалить</div>

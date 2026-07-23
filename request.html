@@ -46,11 +46,16 @@
             min-height: calc(100vh - 80px);
             display: grid;
             grid-template-columns: 45% 55%;
+            align-items: stretch;
         }
 
         @media (min-width: 901px) {
             .request-page {
-                height: calc(100vh - 80px);
+                min-height: calc(100vh - 80px);
+            }
+            .req-form-side {
+                padding: 50px 80px;
+                box-sizing: border-box;
             }
         }
 
@@ -58,6 +63,7 @@
         .req-visual {
             position: relative;
             height: 100%;
+            min-height: 100%;
             overflow: hidden;
             background: #0e0d0b;
         }
@@ -678,15 +684,19 @@
                 const cart = window.CartSystem.getCart();
                 let orderText = "Заказ из корзины:\n";
                 let totalScore = 0;
+                let hasOnRequest = false;
                 cart.forEach(itemInfo => {
                     const product = typeof itemsDB !== 'undefined' ? itemsDB.find(x => x.id === itemInfo.id) : null;
                     if (product) {
                         const isCustom = !!itemInfo.custom;
-                        const itemPrice = isCustom ? 0 : (parseFloat(product.priceValue) || 0);
+                        const isOnRequest = isCustom || (product.priceLabel && product.priceLabel.includes('по запросу'));
+                        const itemPrice = isOnRequest ? 0 : (parseFloat(product.priceValue) || 0);
                         let colorStr = itemInfo.color ? ` (Цвет: ${itemInfo.color})` : '';
                         let modelStr = isCustom ? ` (Под заказ)` : ` (Стандартная)`;
-                        orderText += `- ${product.title}${colorStr}${modelStr} — ${itemInfo.qty} шт.\n`;
+                        let priceDisp = isOnRequest ? 'Цена по запросу' : `${(itemPrice * itemInfo.qty).toLocaleString('ru-RU')} ₽`;
+                        orderText += `- ${product.title}${colorStr}${modelStr} — ${itemInfo.qty} шт. (${priceDisp})\n`;
                         totalScore += itemPrice * itemInfo.qty;
+                        if (isOnRequest) hasOnRequest = true;
                     }
                 });
                 orderText += `\nИтого: ${totalScore.toLocaleString('ru-RU')} ₽`;
